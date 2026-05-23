@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f7f8;
+  --background: #ffffff;
   --foreground: #111111;
   --muted: #6b6b6b;
-  --border: #e2e2e4;
-  --surface: #ffffff;
-  --placeholder: #ebebec;
-  --subtle: #c0c0c2;
+  --border: #e0e0e0;
+  --surface: #f8f8f8;
+  --placeholder: #e8e8e8;
+  --subtle: #b8b8b8;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 }

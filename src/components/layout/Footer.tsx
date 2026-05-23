@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 
 export default function Footer() {
@@ -9,69 +8,63 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        {/* Top row */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
-          {/* Brand */}
-          <div>
-            <Link href="/" className="inline-block transition-opacity hover:opacity-60" aria-label="Ahmilan's Gallery">
-              <Image
-                src="/logo.svg"
-                alt="Ahmilan's Gallery"
-                width={120}
-                height={24}
-                className="h-6 w-auto"
-                unoptimized
-              />
+      <div className="px-6 py-8 lg:px-10">
+
+        {/* 4-column grid */}
+        <div className="grid grid-cols-2 gap-y-6 lg:grid-cols-4 lg:gap-0">
+
+          {/* Col 1: Brand */}
+          <div className="flex items-start">
+            <Link href="/" className="font-sans text-[11px] uppercase tracking-[0.16em] text-foreground transition-opacity hover:opacity-50">
+              AH MILANS
             </Link>
-            <p className="mt-4 text-xs leading-relaxed text-muted">
-              A curatorial label for contemporary abstract art.
-            </p>
           </div>
 
-          {/* Nav links */}
-          <div className="flex flex-col gap-3">
-            <Link href="/artistes" className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-              {t.nav.artists}
-            </Link>
-            <Link href="/oeuvres" className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
+          {/* Col 2: Tagline */}
+          <div className="flex items-start">
+            <span className="font-sans text-[11px] uppercase tracking-widest text-muted">
+              Contemporary Art Label
+            </span>
+          </div>
+
+          {/* Col 3: Nav */}
+          <div className="flex flex-col gap-2">
+            <Link href="/oeuvres" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
               {t.nav.works}
             </Link>
-            <Link href="/articles" className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
+            <Link href="/articles" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
               {t.nav.editorial}
             </Link>
-            <Link href="/contact" className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
+            <Link href="/artistes" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
+              {t.nav.artists}
+            </Link>
+            <Link href="/contact" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
               {t.nav.contact}
             </Link>
           </div>
 
-          {/* Contact + social */}
-          <div className="flex flex-col gap-3">
+          {/* Col 4: Location + email */}
+          <div className="flex flex-col gap-2">
+            <span className="font-sans text-[11px] uppercase tracking-widest text-muted">
+              Europe &amp; USA
+            </span>
             <a
-              href="mailto:contact@ahmilans.gallery"
-              className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
+              href="mailto:ahmilans.gallery@gmail.com"
+              className="font-sans text-[11px] text-muted transition-colors hover:text-foreground"
             >
-              contact@ahmilans.gallery
-            </a>
-            <a
-              href="https://www.instagram.com/ahmilans.gallery"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
-            >
-              Instagram
+              ahmilans.gallery@gmail.com
             </a>
           </div>
         </div>
 
         {/* Bottom row */}
-        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
-          <p className="text-[11px] text-subtle">
-            © {new Date().getFullYear()} Ahmilan&apos;s Gallery
+        <div className="mt-8 flex flex-col items-start justify-between gap-2 border-t border-border pt-5 sm:flex-row sm:items-center">
+          <p className="font-sans text-[10px] uppercase tracking-widest text-subtle">
+            © {new Date().getFullYear()} AH Milans
           </p>
           <Link
             href="/privacy-policy"
-            className="text-[11px] uppercase tracking-widest text-subtle transition-colors hover:text-muted"
+            className="font-sans text-[10px] uppercase tracking-widest text-subtle transition-colors hover:text-muted"
           >
             {t.footer.privacy}
           </Link>

@@ -11,6 +11,7 @@ const artistPreviewFields = `
   style,
   order,
   featured,
+  statementCourt,
   "profileImageUrl": profileImage.asset->url,
   "featuredImageUrl": featuredImage.asset->url
 `
@@ -48,6 +49,7 @@ export const artistBySlugQuery = groq`
     ${artistPreviewFields},
     bio,
     instagramUrl,
+    website,
     "artworks": *[_type == "artwork" && references(^._id)] | order(_createdAt desc) {
       ${artworkPreviewFields}
     }

@@ -58,6 +58,18 @@ export const artist = defineType({
       type: 'url',
     }),
     defineField({
+      name: 'website',
+      title: 'Website',
+      type: 'url',
+    }),
+    defineField({
+      name: 'statementCourt',
+      title: 'Short Statement',
+      type: 'text',
+      rows: 3,
+      description: '1–2 sentences for the homepage.',
+    }),
+    defineField({
       name: 'order',
       title: 'Order',
       type: 'number',

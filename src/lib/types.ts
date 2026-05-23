@@ -15,6 +15,7 @@ export interface ArtistPreview {
   style?: string
   order: number
   featured: boolean
+  statementCourt?: string
   profileImageUrl?: string
   featuredImageUrl?: string
 }
@@ -23,6 +24,7 @@ export interface ArtistFull extends ArtistPreview {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   bio?: any[]
   instagramUrl?: string
+  website?: string
   artworks?: ArtworkPreview[]
 }
 
