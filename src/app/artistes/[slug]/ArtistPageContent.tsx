@@ -23,7 +23,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
   return (
     <MainLayout>
       {/* ── Hero pleine largeur ─────────────────────────────────────── */}
-      <section className="relative min-h-[500px] w-full overflow-hidden bg-placeholder" style={{ height: '90svh' }}>
+      <section className="relative ml-[calc(-50vw+50%)] min-h-[500px] w-screen overflow-hidden bg-placeholder" style={{ height: '90svh' }}>
         {heroImage && (
           <Image
             src={heroImage}
@@ -35,7 +35,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/75 via-[#111111]/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 px-8 pb-12 lg:px-16 lg:pb-16">
+        <div className="absolute bottom-0 left-0 right-0 px-5 pb-8 lg:px-16 lg:pb-16">
           <p className="mb-3 text-[10px] uppercase tracking-widest text-white/60">
             {[artist.country, artist.style].filter(Boolean).join(' · ')}
           </p>
@@ -56,7 +56,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
 
       {/* ── Bio ────────────────────────────────────────────────────── */}
       {(artist.bio || artist.instagramUrl) && (
-        <section className="mx-auto max-w-3xl px-6 py-28 lg:py-36">
+        <section className="mx-auto max-w-3xl px-6 py-16 lg:py-28">
           {artist.bio && <PortableTextRenderer value={artist.bio} />}
           {artist.instagramUrl && (
             <div className="mt-8">
@@ -76,8 +76,8 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
 
       {/* ── Œuvres ─────────────────────────────────────────────────── */}
       {artworks.length > 0 && (
-        <section className="mx-auto max-w-7xl px-6 pb-28 lg:pb-36">
-          <div className="mb-16">
+        <section className="mx-auto max-w-7xl px-6 pb-16 lg:pb-28">
+          <div className="mb-10 lg:mb-16">
             <h2 className="font-serif text-3xl text-foreground">
               Œuvres
               <span className="ml-3 font-sans text-base font-light text-muted">
@@ -85,7 +85,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
               </span>
             </h2>
           </div>
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
             {artworks.map((artwork) => (
               <ArtworkCard key={artwork._id} artwork={artwork} />
             ))}

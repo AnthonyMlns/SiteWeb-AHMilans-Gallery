@@ -85,7 +85,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             {t.home.heroLeft}
           </p>
           <div className="flex flex-col justify-between gap-4 lg:items-end lg:text-right">
-            <p className="font-sans leading-relaxed text-muted" style={{ fontSize: 'clamp(0.8rem, 1.1vw, 1rem)', maxWidth: '30ch' }}>
+            <p className="font-sans leading-relaxed text-muted" style={{ fontSize: 'clamp(0.875rem, 1.1vw, 1rem)', maxWidth: '30ch' }}>
               {t.home.heroRight}
             </p>
             <Link
@@ -105,7 +105,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── HERO ARTICLE ──────────────────────────────────────────────── */}
-      <section aria-label="Article à la une" className="mt-20 lg:mt-28">
+      <section aria-label="Article à la une" className="mt-12 lg:mt-28">
         {featuredArticle ? (
           <Link href={`/articles/${featuredArticle.slug.current}`} className="group block">
             <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]">
@@ -124,7 +124,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                   />
                 )}
               </div>
-              <div className="flex flex-col justify-center px-8 py-12 lg:px-14 lg:py-16">
+              <div className="flex flex-col justify-center px-5 py-8 lg:px-14 lg:py-16">
                 {featuredArticle.category && (
                   <p className="mb-5 font-sans text-[10px] uppercase tracking-[0.22em] text-muted">
                     {featuredArticle.category}
@@ -161,7 +161,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
       {/* ── ARTICLE GRID (always 4 slots) ─────────────────────────────── */}
       <section aria-label={t.nav.editorial}>
-        <div className="px-6 pb-10 pt-28 lg:px-10 lg:pt-36">
+        <div className="px-6 pb-8 pt-16 sm:pt-24 lg:px-10 lg:pt-36">
           <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.editorial}</p>
           <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
             {t.home.sectionJournalDesc}
@@ -208,7 +208,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-        <div className="px-6 pb-16 pt-8 lg:px-10 lg:pb-20">
+        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-20">
           <Link
             href="/articles"
             className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
@@ -240,7 +240,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         {featuredArtist ? (
           <Link
             href={`/artistes/${featuredArtist.slug.current}`}
-            className="group flex flex-col items-center justify-center px-6 py-32 text-center md:py-44"
+            className="group flex flex-col items-center justify-center px-6 py-20 text-center md:py-44"
           >
             <p className="mb-4 font-sans text-[10px] uppercase tracking-[0.28em] text-muted">
               {t.home.portrait}
@@ -256,7 +256,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             </p>
           </Link>
         ) : (
-          <div className="flex flex-col items-center justify-center px-6 py-32 text-center md:py-44">
+          <div className="flex flex-col items-center justify-center px-6 py-20 text-center md:py-44">
             <div className="mb-4"><Bar w="w-16" h="h-2" /></div>
             <Bar w="w-56" h="h-14" />
             <div className="mt-7"><Bar w="w-20" h="h-2" /></div>
@@ -265,12 +265,12 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── MANIFESTE ─────────────────────────────────────────────────── */}
-      <section className="px-6 py-28 lg:px-10 lg:py-40">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-24">
+      <section className="px-6 py-16 lg:px-10 lg:py-40">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-24">
           <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.3rem, 2.2vw, 2rem)', lineHeight: 1.2 }}>
             {t.home.manifestoLeft}
           </p>
-          <p className="font-sans leading-relaxed text-muted lg:self-center" style={{ fontSize: 'clamp(0.8rem, 1vw, 0.95rem)' }}>
+          <p className="font-sans leading-relaxed text-muted lg:self-center" style={{ fontSize: 'clamp(0.875rem, 1.1vw, 1rem)' }}>
             {t.home.manifestoRight}
           </p>
         </div>
@@ -278,7 +278,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
       {/* ── ARTISTS GRID (always 4 slots) ─────────────────────────────── */}
       <section aria-label={t.home.theRoster}>
-        <div className="px-6 pb-10 pt-28 lg:px-10 lg:pt-36">
+        <div className="px-6 pb-8 pt-16 sm:pt-24 lg:px-10 lg:pt-36">
           <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.artists}</p>
           <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
             {t.home.sectionArtistsDesc}
@@ -321,7 +321,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-        <div className="px-6 pb-16 pt-8 lg:px-10 lg:pb-20">
+        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-20">
           <Link
             href="/artistes"
             className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
@@ -333,7 +333,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
       {/* ── ARTWORK GRID (always 4 slots) ─────────────────────────────── */}
       <section aria-label={t.home.selectedWorks}>
-        <div className="px-6 pb-10 pt-28 lg:px-10 lg:pt-36">
+        <div className="px-6 pb-8 pt-16 sm:pt-24 lg:px-10 lg:pt-36">
           <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.works}</p>
           <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
             {t.home.sectionWorksDesc}
@@ -382,7 +382,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-        <div className="px-6 pb-16 pt-8 lg:px-10 lg:pb-20">
+        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-20">
           <Link
             href="/oeuvres"
             className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
@@ -393,7 +393,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── NEWSLETTER ────────────────────────────────────────────────── */}
-      <section aria-label="Newsletter" className="px-6 py-28 text-center lg:py-36">
+      <section aria-label="Newsletter" className="px-6 py-20 text-center lg:py-36">
         <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-muted">
           {t.home.newsletterTitle}
         </p>

@@ -15,8 +15,8 @@ export default function ArtistesContent({ artists }: ArtistesContentProps) {
 
   return (
     <MainLayout>
-      <div className="mx-auto max-w-7xl px-6 py-28 lg:py-36">
-        <div className="mb-20">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:py-28">
+        <div className="mb-10 lg:mb-20">
           <h1 className="font-serif text-5xl text-foreground">{t.artists.title}</h1>
           <p className="mt-2 text-sm text-muted">{t.artists.count(artists.length)}</p>
         </div>

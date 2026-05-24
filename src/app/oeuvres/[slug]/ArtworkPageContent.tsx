@@ -32,10 +32,10 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
 
   return (
     <MainLayout>
-      <div className="mx-auto max-w-7xl px-6 py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:py-28">
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 gap-20 lg:grid-cols-2 lg:gap-28">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-28">
 
           {/* Primary image */}
           <div className="relative aspect-square overflow-hidden bg-placeholder">
@@ -97,7 +97,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
 
         {/* Additional images */}
         {additionalImages.length > 0 && (
-          <div className="mt-24 grid grid-cols-2 gap-4 md:grid-cols-3">
+          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3 lg:mt-24 lg:gap-4">
             {additionalImages.map((img, i) => (
               <div key={i} className="relative aspect-square overflow-hidden bg-placeholder">
                 <Image
@@ -113,7 +113,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
         )}
 
         {/* Back */}
-        <div className="mt-24">
+        <div className="mt-12 lg:mt-24">
           <Link
             href="/oeuvres"
             className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
