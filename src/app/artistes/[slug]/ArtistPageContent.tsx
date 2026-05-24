@@ -1,11 +1,8 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import ArtworkCard from '@/components/cards/ArtworkCard'
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer'
-import { useTranslation } from '@/lib/i18n/LanguageContext'
 import type { ArtistPreview, ArtworkPreview } from '@/lib/types'
 
 interface ArtistFull extends ArtistPreview {
@@ -20,14 +17,13 @@ interface ArtistPageContentProps {
 }
 
 export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
-  const { t } = useTranslation()
   const heroImage = artist.featuredImageUrl ?? artist.profileImageUrl
   const artworks: ArtworkPreview[] = artist.artworks ?? []
 
   return (
     <MainLayout>
-      {/* Hero pleine largeur */}
-      <section className="relative h-[90vh] min-h-[500px] w-full overflow-hidden bg-placeholder">
+      {/* ── Hero pleine largeur ─────────────────────────────────────── */}
+      <section className="relative min-h-[500px] w-full overflow-hidden bg-placeholder" style={{ height: '90svh' }}>
         {heroImage && (
           <Image
             src={heroImage}
@@ -54,13 +50,13 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
           href="/artistes"
           className="absolute left-8 top-8 text-[10px] uppercase tracking-widest text-white/60 transition-opacity hover:text-white lg:left-16"
         >
-          {t.artists.backLink}
+          ← Artistes
         </Link>
       </section>
 
-      {/* Bio */}
+      {/* ── Bio ────────────────────────────────────────────────────── */}
       {(artist.bio || artist.instagramUrl) && (
-        <section className="mx-auto max-w-3xl px-6 py-20">
+        <section className="mx-auto max-w-3xl px-6 py-28 lg:py-36">
           {artist.bio && <PortableTextRenderer value={artist.bio} />}
           {artist.instagramUrl && (
             <div className="mt-8">
@@ -78,12 +74,12 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
         </section>
       )}
 
-      {/* Œuvres */}
+      {/* ── Œuvres ─────────────────────────────────────────────────── */}
       {artworks.length > 0 && (
-        <section className="mx-auto max-w-7xl px-6 pb-24">
-          <div className="mb-10 border-b border-border pb-5">
+        <section className="mx-auto max-w-7xl px-6 pb-28 lg:pb-36">
+          <div className="mb-16">
             <h2 className="font-serif text-3xl text-foreground">
-              {t.artists.worksHeading}
+              Œuvres
               <span className="ml-3 font-sans text-base font-light text-muted">
                 ({artworks.length})
               </span>

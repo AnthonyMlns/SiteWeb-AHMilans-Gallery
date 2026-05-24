@@ -7,7 +7,8 @@ export default function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="border-t border-border">
+    <footer className="relative">
+      <span aria-hidden="true" className="absolute top-0 left-1/2 h-px w-screen -translate-x-1/2 bg-border" />
       <div className="px-6 py-8 lg:px-10">
 
         {/* 4-column grid */}
@@ -41,6 +42,9 @@ export default function Footer() {
             <Link href="/contact" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
               {t.nav.contact}
             </Link>
+            <Link href="/newsletter" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
+              Newsletter
+            </Link>
           </div>
 
           {/* Col 4: Location + email */}
@@ -58,7 +62,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom row */}
-        <div className="mt-8 flex flex-col items-start justify-between gap-2 border-t border-border pt-5 sm:flex-row sm:items-center">
+        <div className="mt-8 flex flex-col items-start justify-between gap-2 pt-5 sm:flex-row sm:items-center">
           <p className="font-sans text-[10px] uppercase tracking-widest text-subtle">
             © {new Date().getFullYear()} AH Milans
           </p>

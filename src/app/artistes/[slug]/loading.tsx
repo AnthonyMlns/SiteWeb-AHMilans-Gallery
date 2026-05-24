@@ -28,7 +28,7 @@ export default function Loading() {
 
       {/* Artworks section */}
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-8">
-        <div className="mb-10 border-b border-border pb-5">
+        <div className="mb-10 pb-5">
           <Skeleton className="h-9 w-24" />
         </div>
         <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">

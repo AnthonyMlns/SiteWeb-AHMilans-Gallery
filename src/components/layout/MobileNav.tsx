@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Logo } from './Header'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
-import type { Lang } from '@/lib/i18n/index'
 
 interface MobileNavProps {
   isOpen: boolean
@@ -14,7 +13,7 @@ interface MobileNavProps {
 
 export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const pathname = usePathname()
-  const { lang, setLang, t } = useTranslation()
+  const { t } = useTranslation()
 
   const navItems = [
     { href: '/', label: t.nav.home },
@@ -22,6 +21,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
     { href: '/artistes', label: t.nav.artists },
     { href: '/oeuvres', label: t.nav.works },
     { href: '/contact', label: t.nav.contact },
+    { href: '/newsletter', label: 'Newsletter' },
   ]
 
   useEffect(() => {
@@ -39,9 +39,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
-  const handleLang = (l: Lang) => { setLang(l); onClose() }
-
-  return (
+return (
     <div
       role="dialog"
       aria-modal="true"
@@ -70,7 +68,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
       {/* Nav items */}
       <nav
         aria-label="Navigation mobile"
-        className="flex flex-1 flex-col justify-center border-t border-border px-6"
+        className="flex flex-1 flex-col justify-center px-6"
       >
         {navItems.map((item, i) => (
           <Link
@@ -79,7 +77,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             onClick={onClose}
             style={{ transitionDelay: isOpen ? `${50 + i * 45}ms` : '0ms' }}
             className={[
-              'border-b border-border py-5',
+              'py-5',
               'font-sans font-light uppercase tracking-[0.1em]',
               'transition-all duration-300',
               'text-[clamp(1.75rem,7vw,2.75rem)]',
@@ -93,7 +91,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
       </nav>
 
       {/* Bottom bar */}
-      <div className="flex shrink-0 items-center justify-between px-6 py-6 text-[10px] uppercase tracking-widest">
+      <div className="flex shrink-0 items-center px-6 py-6 text-[10px] uppercase tracking-widest">
         <a
           href="https://www.instagram.com/ahmilans.gallery"
           target="_blank"
@@ -102,21 +100,6 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         >
           Instagram
         </a>
-        <div className="flex items-center gap-2 text-muted">
-          <button
-            onClick={() => handleLang('fr')}
-            className={lang === 'fr' ? 'text-foreground' : 'transition-colors hover:text-foreground'}
-          >
-            FR
-          </button>
-          <span className="text-border">|</span>
-          <button
-            onClick={() => handleLang('en')}
-            className={lang === 'en' ? 'text-foreground' : 'transition-colors hover:text-foreground'}
-          >
-            EN
-          </button>
-        </div>
       </div>
     </div>
   )

@@ -36,9 +36,9 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-10">
       <div>
-        <label className="mb-2 block text-[10px] uppercase tracking-widest text-muted">
+        <label className="mb-3 block text-[10px] uppercase tracking-widest text-muted">
           {t.contact.form.name} *
         </label>
         <input
@@ -46,12 +46,12 @@ export default function ContactForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder={t.contact.form.namePlaceholder}
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
+          className="w-full border-b border-border bg-transparent py-4 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
         />
       </div>
 
       <div>
-        <label className="mb-2 block text-[10px] uppercase tracking-widest text-muted">
+        <label className="mb-3 block text-[10px] uppercase tracking-widest text-muted">
           {t.contact.form.email} *
         </label>
         <input
@@ -60,12 +60,12 @@ export default function ContactForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={t.contact.form.emailPlaceholder}
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
+          className="w-full border-b border-border bg-transparent px-3 py-4 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
         />
       </div>
 
       <div>
-        <label className="mb-2 block text-[10px] uppercase tracking-widest text-muted">
+        <label className="mb-3 block text-[10px] uppercase tracking-widest text-muted">
           {t.contact.form.message} *
         </label>
         <textarea
@@ -74,13 +74,13 @@ export default function ContactForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder={t.contact.form.messagePlaceholder}
-          className="w-full resize-none border-b border-border bg-transparent py-2.5 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
+          className="w-full resize-none border-b border-border bg-transparent py-4 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
         />
       </div>
 
       <button
         type="submit"
-        className="inline-flex items-center gap-3 border border-foreground px-8 py-3.5 text-[11px] uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background"
+        className="mt-2 inline-flex items-center gap-3 border border-foreground px-8 py-4 text-[11px] uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background"
       >
         {t.contact.form.send}
         <span className="text-base leading-none">→</span>

@@ -11,21 +11,21 @@ interface ArticlesContentProps {
 }
 
 export default function ArticlesContent({ articles }: ArticlesContentProps) {
-  const { t, lang } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <MainLayout>
-      <div className="mx-auto max-w-5xl px-6 py-16">
-        <div className="mb-14 border-b border-border pb-6">
+      <div className="mx-auto max-w-5xl px-6 py-28 lg:py-36">
+        <div className="mb-20">
           <h1 className="font-serif text-5xl text-foreground">{t.articles.title}</h1>
           <p className="mt-2 text-sm text-muted">{t.articles.count(articles.length)}</p>
         </div>
 
         {articles.length > 0 ? (
-          <div className="divide-y divide-border">
+          <div className="divide-y divide-transparent">
             {articles.map((article) => {
               const dateStr = article.publishedAt
-                ? new Date(article.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', {
+                ? new Date(article.publishedAt).toLocaleDateString('en-GB', {
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric',

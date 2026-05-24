@@ -1,11 +1,8 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer'
 import InquireModal from '@/components/artwork/InquireModal'
-import { useTranslation } from '@/lib/i18n/LanguageContext'
 import type { ArtworkPreview, SanityImage } from '@/lib/types'
 
 interface ArtworkFull extends ArtworkPreview {
@@ -20,27 +17,25 @@ interface ArtworkPageContentProps {
 }
 
 export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps) {
-  const { t } = useTranslation()
-
   const primaryImage: SanityImage | undefined = artwork.images?.[0]
   const additionalImages: SanityImage[] = artwork.images?.slice(1) ?? []
 
   const specs = [
-    artwork.year      && { label: t.works.specs.year,         value: String(artwork.year) },
-    artwork.medium    && { label: t.works.specs.medium,        value: artwork.medium },
-    artwork.dimensions && { label: t.works.specs.dimensions,   value: artwork.dimensions },
-    { label: t.works.specs.availability, value: artwork.available ? t.works.available : t.works.sold },
+    artwork.year       && { label: 'Année',         value: String(artwork.year) },
+    artwork.medium     && { label: 'Technique',      value: artwork.medium },
+    artwork.dimensions && { label: 'Dimensions',     value: artwork.dimensions },
+    { label: 'Disponibilité', value: artwork.available ? 'Disponible' : 'Vendue' },
     artwork.price && artwork.available
-      ? { label: t.works.specs.price, value: `${artwork.price.toLocaleString('fr-FR')} €` }
+      ? { label: 'Prix', value: `${artwork.price.toLocaleString('fr-FR')} €` }
       : null,
   ].filter(Boolean) as { label: string; value: string }[]
 
   return (
     <MainLayout>
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-6 py-28 lg:py-36">
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-20 lg:grid-cols-2 lg:gap-28">
 
           {/* Primary image */}
           <div className="relative aspect-square overflow-hidden bg-placeholder">
@@ -75,7 +70,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
             </h1>
 
             {/* Specs */}
-            <div className="mt-10 divide-y divide-border border-t border-border">
+            <div className="mt-10 divide-y divide-transparent">
               {specs.map(({ label, value }) => (
                 <div key={label} className="flex items-baseline justify-between py-3 text-sm">
                   <span className="text-muted">{label}</span>
@@ -102,7 +97,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
 
         {/* Additional images */}
         {additionalImages.length > 0 && (
-          <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-3">
+          <div className="mt-24 grid grid-cols-2 gap-4 md:grid-cols-3">
             {additionalImages.map((img, i) => (
               <div key={i} className="relative aspect-square overflow-hidden bg-placeholder">
                 <Image
@@ -118,12 +113,12 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
         )}
 
         {/* Back */}
-        <div className="mt-16">
+        <div className="mt-24">
           <Link
             href="/oeuvres"
             className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
           >
-            {t.works.backLink}
+            ← Toutes les œuvres
           </Link>
         </div>
       </div>

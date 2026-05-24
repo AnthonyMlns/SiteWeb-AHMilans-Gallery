@@ -9,8 +9,8 @@ export default function ContactContent() {
 
   return (
     <MainLayout>
-      <div className="mx-auto max-w-5xl px-6 py-16">
-        <div className="mb-14 border-b border-border pb-6">
+      <div className="mx-auto max-w-5xl px-6 py-28 lg:py-36">
+        <div className="mb-20">
           <h1 className="font-serif text-5xl text-foreground">{t.contact.title}</h1>
         </div>
 

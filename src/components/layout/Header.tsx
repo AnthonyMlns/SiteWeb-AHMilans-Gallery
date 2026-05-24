@@ -7,7 +7,16 @@ import MobileNav from './MobileNav'
 import { useTheme } from '@/lib/ThemeContext'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 
-export function Logo({ onClick, className }: { onClick?: () => void; className?: string }) {
+export function Logo({
+  onClick,
+  className,
+  svgClassName,
+}: {
+  onClick?: () => void
+  className?: string
+  /** Tailwind classes applied directly to the <svg>. Defaults to "h-7 w-auto". */
+  svgClassName?: string
+}) {
   return (
     <Link
       href="/"
@@ -21,7 +30,7 @@ export function Logo({ onClick, className }: { onClick?: () => void; className?:
         viewBox="0 0 909 170"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="h-7 w-auto"
+        className={svgClassName ?? 'h-7 w-auto'}
         aria-hidden="true"
       >
         <path d="M77.1664 117.311L99.6904 53.264H112.242L134.766 117.311H123.934L119.034 102.954H92.9848L87.9985 117.311H77.1664ZM95.9077 93.9276H115.939L104.591 60.3994H107.428L95.9077 93.9276ZM150.961 117.311V53.264H161.106V81.462H190.765V53.264H200.823V117.311H190.765V90.4888H161.106V117.311H150.961Z" fill="currentColor"/>
@@ -37,7 +46,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const { theme, toggleTheme } = useTheme()
-  const { lang, setLang, t } = useTranslation()
+  const { t } = useTranslation()
 
   const leftLinks = [
     { href: '/articles', label: t.nav.editorial },
@@ -49,7 +58,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-sm">
+      <header className="relative sticky top-0 z-40 bg-background">
         <div className="flex h-14 items-center justify-between px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-10">
 
           {/* Left: desktop nav */}
@@ -82,23 +91,7 @@ export default function Header() {
               {t.nav.contact}
             </Link>
 
-            <div className="flex items-center gap-1.5 text-[10px] tracking-widest text-muted">
-              <button
-                onClick={() => setLang('fr')}
-                className={lang === 'fr' ? 'text-foreground' : 'transition-colors hover:text-foreground'}
-              >
-                FR
-              </button>
-              <span className="text-border">|</span>
-              <button
-                onClick={() => setLang('en')}
-                className={lang === 'en' ? 'text-foreground' : 'transition-colors hover:text-foreground'}
-              >
-                EN
-              </button>
-            </div>
-
-            <button
+<button
               onClick={toggleTheme}
               aria-label={theme === 'dark' ? 'Mode clair' : 'Mode sombre'}
               className="text-muted transition-colors hover:text-foreground"
@@ -134,6 +127,7 @@ export default function Header() {
             </button>
           </div>
         </div>
+        <span aria-hidden="true" className="absolute bottom-0 left-1/2 h-px w-screen -translate-x-1/2 bg-border" />
       </header>
 
       <MobileNav isOpen={isOpen} onClose={() => setIsOpen(false)} />

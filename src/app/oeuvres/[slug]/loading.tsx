@@ -16,7 +16,7 @@ export default function Loading() {
             <Skeleton className="mt-1 h-14 w-3/5" />
 
             {/* Specs table */}
-            <div className="mt-10 divide-y divide-border border-t border-border">
+            <div className="mt-10 divide-y divide-transparent">
               {Array.from({ length: 4 }).map((_, i) => (
                 <div key={i} className="flex justify-between py-3">
                   <Skeleton className="h-4 w-20" />

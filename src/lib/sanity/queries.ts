@@ -103,7 +103,7 @@ export const allArticlesQuery = groq`
 `
 
 export const latestArticlesQuery = groq`
-  *[_type == "article"] | order(publishedAt desc) [0..2] {
+  *[_type == "article"] | order(publishedAt desc) [0..4] {
     _id,
     title,
     slug,

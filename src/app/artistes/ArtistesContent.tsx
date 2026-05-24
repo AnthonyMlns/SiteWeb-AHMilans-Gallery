@@ -6,8 +6,6 @@ import MainLayout from '@/components/layout/MainLayout'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import type { ArtistPreview } from '@/lib/types'
 
-const ASPECTS = ['aspect-[2/3]', 'aspect-[3/4]', 'aspect-[3/4]', 'aspect-[2/3]', 'aspect-[4/5]']
-
 interface ArtistesContentProps {
   artists: ArtistPreview[]
 }
@@ -17,22 +15,21 @@ export default function ArtistesContent({ artists }: ArtistesContentProps) {
 
   return (
     <MainLayout>
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-14 border-b border-border pb-6">
+      <div className="mx-auto max-w-7xl px-6 py-28 lg:py-36">
+        <div className="mb-20">
           <h1 className="font-serif text-5xl text-foreground">{t.artists.title}</h1>
           <p className="mt-2 text-sm text-muted">{t.artists.count(artists.length)}</p>
         </div>
 
         {artists.length > 0 ? (
-          <div className="columns-2 gap-5 md:columns-3 lg:columns-4">
-            {artists.map((artist, i) => {
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
+            {artists.map((artist) => {
               const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
-              const aspectClass = ASPECTS[i % ASPECTS.length]
 
               return (
-                <div key={artist._id} className="mb-5 break-inside-avoid">
+                <div key={artist._id}>
                   <Link href={`/artistes/${artist.slug.current}`} className="group block">
-                    <div className={['relative overflow-hidden bg-placeholder', aspectClass].join(' ')}>
+                    <div className="relative aspect-[3/4] overflow-hidden bg-placeholder">
                       {imageUrl ? (
                         <Image
                           src={imageUrl}
