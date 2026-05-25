@@ -20,8 +20,6 @@ interface HomeContentProps {
   collection: ArtworkPreview[]
 }
 
-// ─── Fisher-Yates (client-side only) ─────────────────────────────────────────
-
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
@@ -33,15 +31,27 @@ function shuffle<T>(arr: T[]): T[] {
 
 const ARTWORKS_VISIBLE = 8
 
+// ─── Lien CTA réutilisable ────────────────────────────────────────────────────
+
+function SectionLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="inline-block border-b border-foreground pb-0.5 font-sans text-[12px] uppercase tracking-widest text-foreground transition-opacity hover:opacity-40"
+    >
+      {label}
+    </Link>
+  )
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomeContent({ settings, articles, roster, collection }: HomeContentProps) {
   const { t } = useTranslation()
 
-  const featuredArticle = articles.find((a) => a.featured) ?? articles[0]
-  const gridArticles    = articles.filter((a) => a._id !== featuredArticle?._id).slice(0, 8)
+  const gridArticles = articles.slice(0, 8)
 
-  // ── Mélange unique à la connexion (pas de rotation périodique) ─────────────
+  // Mélange unique au montage
   const [displayedArtworks, setDisplayedArtworks] = useState<ArtworkPreview[]>(
     collection.slice(0, ARTWORKS_VISIBLE)
   )
@@ -73,7 +83,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── GRILLE ARTISTES — tous, 4 colonnes, infos visibles ───────── */}
+      {/* ── ARTISTES — tous, 4 colonnes, sans fond gris ───────────────── */}
       <section aria-label={t.home.theRoster}>
         <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
@@ -84,7 +94,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             {t.home.sectionArtistsDesc}
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {roster.length > 0
             ? roster.map((artist) => {
                 const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
@@ -92,10 +102,10 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                   <Link
                     key={artist._id}
                     href={`/artistes/${artist.slug.current}`}
-                    className="group bg-background px-5 py-6 lg:px-6 lg:py-7"
+                    className="group"
                   >
                     <div
-                      className="relative mb-4 overflow-hidden bg-placeholder"
+                      className="relative mb-3 overflow-hidden bg-placeholder"
                       style={{ aspectRatio: '3/4' }}
                     >
                       {imageUrl && (
@@ -120,22 +130,20 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                 )
               })
             : Array.from({ length: 4 }).map((_, i) => (
-                <div key={`ph-r-${i}`} className="bg-background px-5 py-6 lg:px-6 lg:py-7">
-                  <div className="mb-4 bg-placeholder" style={{ aspectRatio: '3/4' }} />
+                <div key={`ph-r-${i}`}>
+                  <div className="mb-3 bg-placeholder" style={{ aspectRatio: '3/4' }} />
                   <div className="h-2.5 w-32 rounded-sm bg-placeholder" />
                   <div className="mt-1.5 h-2 w-20 rounded-sm bg-placeholder" />
                 </div>
               ))
           }
         </div>
-        <div className="px-6 py-8 lg:px-10 lg:py-12">
-          <Link href="/artistes" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-            {t.home.artistsLink}
-          </Link>
+        <div className="px-6 py-10 lg:px-10 lg:py-14">
+          <SectionLink href="/artistes" label={t.home.artistsLink} />
         </div>
       </section>
 
-      {/* ── GRILLE ŒUVRES — 2 × 4, mélange unique, infos visibles ───── */}
+      {/* ── ŒUVRES — 2 × 4, mélange unique, sans fond gris ──────────── */}
       <section aria-label={t.home.selectedWorks}>
         <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
@@ -146,13 +154,13 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             {t.home.sectionWorksDesc}
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
             const artwork = displayedArtworks[i]
             if (!artwork) {
               return (
-                <div key={`ph-w-${i}`} className="bg-background px-5 py-6 lg:px-6 lg:py-7">
-                  <div className="mb-4 bg-placeholder" style={{ aspectRatio: '3/4' }} />
+                <div key={`ph-w-${i}`}>
+                  <div className="mb-3 bg-placeholder" style={{ aspectRatio: '3/4' }} />
                   <div className="h-2.5 w-28 rounded-sm bg-placeholder" />
                   <div className="mt-1.5 h-2 w-20 rounded-sm bg-placeholder" />
                 </div>
@@ -163,10 +171,10 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               <Link
                 key={artwork._id}
                 href={`/oeuvres/${artwork.slug.current}`}
-                className="group bg-background px-5 py-6 lg:px-6 lg:py-7"
+                className="group"
               >
                 <div
-                  className="relative mb-4 overflow-hidden bg-placeholder"
+                  className="relative mb-3 overflow-hidden bg-placeholder"
                   style={{ aspectRatio: '3/4' }}
                 >
                   {image?.url && (
@@ -197,70 +205,14 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-        <div className="px-6 py-8 lg:px-10 lg:py-12">
-          <Link href="/oeuvres" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-            {t.home.artworksLink}
-          </Link>
+        <div className="px-6 py-10 lg:px-10 lg:py-14">
+          <SectionLink href="/oeuvres" label={t.home.artworksLink} />
         </div>
       </section>
 
-      {/* ── ARTICLE À LA UNE ─────────────────────────────────────────── */}
-      <section aria-label="Article à la une" className="pt-24 lg:pt-36">
-        {featuredArticle ? (
-          <Link href={`/articles/${featuredArticle.slug.current}`} className="group block">
-            <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr]">
-              <div
-                className="relative overflow-hidden bg-placeholder"
-                style={{ minHeight: 'clamp(320px, 65vh, 800px)' }}
-              >
-                {featuredArticle.thumbnailUrl && (
-                  <Image
-                    src={featuredArticle.thumbnailUrl}
-                    alt={featuredArticle.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                  />
-                )}
-              </div>
-              <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
-                {featuredArticle.category && (
-                  <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">
-                    {featuredArticle.category}
-                  </p>
-                )}
-                <h1
-                  className="font-serif italic leading-[1.05] text-foreground"
-                  style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)' }}
-                >
-                  {featuredArticle.title}
-                </h1>
-                {featuredArticle.excerpt && (
-                  <p className="mt-5 font-sans text-sm leading-relaxed text-muted">
-                    {featuredArticle.excerpt}
-                  </p>
-                )}
-                <p className="mt-8 font-sans text-[10px] uppercase tracking-widest text-muted transition-colors group-hover:text-foreground">
-                  {t.home.readMore} ↗
-                </p>
-              </div>
-            </div>
-          </Link>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr]">
-            <div className="bg-placeholder" style={{ minHeight: 'clamp(320px, 65vh, 800px)' }} />
-            <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
-              <div className="mb-4 h-1.5 w-10 rounded-sm bg-placeholder" />
-              <div className="h-10 w-3/4 rounded-sm bg-placeholder" />
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* ── GRILLE ÉDITORIALE — 2 × 4 ────────────────────────────────── */}
+      {/* ── ÉDITORIAL — 2 × 4 ────────────────────────────────────────── */}
       <section aria-label={t.nav.editorial}>
-        <div className="px-6 pb-10 pt-16 lg:px-10 lg:pb-12 lg:pt-24">
+        <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
           <h2
             className="font-serif italic text-foreground"
@@ -269,13 +221,13 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             {t.home.sectionJournalDesc}
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {Array.from({ length: 8 }).map((_, i) => {
             const article = gridArticles[i]
             if (!article) {
               return (
-                <div key={`ph-a-${i}`} className="bg-background px-5 py-6 lg:px-6 lg:py-7">
-                  <div className="mb-4 bg-placeholder" style={{ aspectRatio: '4/3' }} />
+                <div key={`ph-a-${i}`}>
+                  <div className="mb-3 bg-placeholder" style={{ aspectRatio: '4/3' }} />
                   <div className="h-2 w-10 rounded-sm bg-placeholder" />
                   <div className="mt-2 h-3 w-3/4 rounded-sm bg-placeholder" />
                 </div>
@@ -288,9 +240,9 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               <Link
                 key={article._id}
                 href={`/articles/${article.slug.current}`}
-                className="group bg-background px-5 py-6 lg:px-6 lg:py-7"
+                className="group"
               >
-                <div className="relative mb-4 overflow-hidden bg-placeholder" style={{ aspectRatio: '4/3' }}>
+                <div className="relative mb-3 overflow-hidden bg-placeholder" style={{ aspectRatio: '4/3' }}>
                   {article.thumbnailUrl && (
                     <Image
                       src={article.thumbnailUrl}
@@ -302,7 +254,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                   )}
                 </div>
                 {categoryLabel && (
-                  <p className="mb-2 font-sans text-[9px] uppercase tracking-[0.18em] text-subtle">
+                  <p className="mb-1.5 font-sans text-[9px] uppercase tracking-[0.18em] text-subtle">
                     {categoryLabel}
                   </p>
                 )}
@@ -318,10 +270,8 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-        <div className="px-6 py-8 lg:px-10 lg:py-12">
-          <Link href="/articles" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-            {t.home.readMore} ↗
-          </Link>
+        <div className="px-6 py-10 lg:px-10 lg:py-14">
+          <SectionLink href="/articles" label={`${t.home.readMore} ↗`} />
         </div>
       </section>
 
