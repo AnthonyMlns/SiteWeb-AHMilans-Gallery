@@ -121,11 +121,11 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                         />
                       )}
                     </div>
-                    <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-50">
+                    <p className="font-sans text-[13px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-50">
                       {artist.name}
                     </p>
                     {(artist.country || artist.style) && (
-                      <p className="mt-0.5 font-sans text-[11px] text-muted">
+                      <p className="mt-0.5 font-sans text-[13px] text-muted">
                         {[artist.country, artist.style].filter(Boolean).join(' · ')}
                       </p>
                     )}
@@ -190,17 +190,17 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                     />
                   )}
                 </div>
-                <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-50">
+                <p className="font-sans text-[13px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-50">
                   {artwork.title}
                 </p>
                 {artwork.artist && (
-                  <p className="mt-0.5 font-sans text-[11px] text-muted">{artwork.artist.name}</p>
+                  <p className="mt-0.5 font-sans text-[13px] text-muted">{artwork.artist.name}</p>
                 )}
                 {artwork.dimensions && (
-                  <p className="mt-0.5 font-sans text-[11px] text-subtle">{artwork.dimensions}</p>
+                  <p className="mt-0.5 font-sans text-[13px] text-subtle">{artwork.dimensions}</p>
                 )}
                 {artwork.available && artwork.price && (
-                  <p className="mt-1 font-sans text-[11px] text-muted">
+                  <p className="mt-1 font-sans text-[13px] text-muted">
                     {artwork.price.toLocaleString('en-GB')} €
                   </p>
                 )}
@@ -265,7 +265,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                   {article.title}
                 </h3>
                 {article.excerpt && (
-                  <p className="mt-1.5 line-clamp-2 font-sans text-[11px] leading-relaxed text-muted">
+                    <p className="mt-1.5 line-clamp-2 font-sans text-[13px] leading-relaxed text-muted">
                     {article.excerpt}
                   </p>
                 )}

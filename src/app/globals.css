@@ -8,8 +8,8 @@
   --surface: #f3f1ee;
   --placeholder: #e5e3df;
   --subtle: #b5b3ae;
-  --font-serif: var(--font-inter);
-  --font-sans: var(--font-inter);
+  --font-serif: var(--font-crimson);
+  --font-sans: var(--font-geist);
 }
 
 html.dark {
@@ -30,8 +30,8 @@ html.dark {
   --color-surface: var(--surface);
   --color-placeholder: var(--placeholder);
   --color-subtle: var(--subtle);
-  --font-serif: var(--font-serif);
-  --font-sans: var(--font-sans);
+  --font-serif: var(--font-crimson);
+  --font-sans: var(--font-geist);
 }
 
 @keyframes ticker {

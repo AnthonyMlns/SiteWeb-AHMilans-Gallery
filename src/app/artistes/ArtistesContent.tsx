@@ -49,7 +49,7 @@ export default function ArtistesContent({ artists }: ArtistesContentProps) {
                     <div className="mt-3 pb-1">
                       <h2 className="font-serif text-lg leading-snug text-foreground">{artist.name}</h2>
                       {(artist.country || artist.style) && (
-                        <p className="mt-0.5 text-[11px] uppercase tracking-wide text-muted">
+                        <p className="mt-0.5 text-[13px] uppercase tracking-wide text-muted">
                           {[artist.country, artist.style].filter(Boolean).join(' · ')}
                         </p>
                       )}

@@ -72,7 +72,7 @@ export default function ArticlesContent({ articles }: ArticlesContentProps) {
                         {article.excerpt}
                       </p>
                     )}
-                    <div className="mt-3 flex items-center gap-3 text-[11px] text-muted">
+                    <div className="mt-3 flex items-center gap-3 text-[13px] text-muted">
                       {dateStr && <span>{dateStr}</span>}
                       {article.readTime && (
                         <span className="before:mr-3 before:content-['·']">

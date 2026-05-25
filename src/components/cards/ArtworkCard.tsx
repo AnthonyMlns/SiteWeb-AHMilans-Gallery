@@ -39,14 +39,14 @@ export default function ArtworkCard({ artwork }: ArtworkCardProps) {
           {artwork.title}
         </h3>
         {artwork.artist && (
-          <p className="text-[11px] text-muted">{artwork.artist.name}</p>
+          <p className="text-[13px] text-muted">{artwork.artist.name}</p>
         )}
         <div className="flex items-center justify-between pt-0.5">
           {artwork.year && (
-            <span className="text-[11px] text-muted">{artwork.year}</span>
+            <span className="text-[13px] text-muted">{artwork.year}</span>
           )}
           {artwork.price && artwork.available && (
-            <span className="text-[11px] font-medium text-foreground">
+            <span className="text-[13px] font-medium text-foreground">
               {artwork.price.toLocaleString('en-GB')} €
             </span>
           )}

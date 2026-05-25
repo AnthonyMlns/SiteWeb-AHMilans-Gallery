@@ -48,7 +48,7 @@ export default function ContactContent() {
                 href="https://www.instagram.com/ahmilans.gallery"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
+                className="inline-flex items-center gap-3 text-[13px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
               >
                 Instagram
                 <span className="text-base leading-none">→</span>

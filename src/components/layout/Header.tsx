@@ -68,7 +68,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={[
-                  'text-[11px] uppercase tracking-widest transition-colors',
+                  'text-[13px] uppercase tracking-widest transition-colors',
                   isActive(item.href) ? 'text-foreground' : 'text-muted hover:text-foreground',
                 ].join(' ')}
               >
@@ -86,7 +86,7 @@ export default function Header() {
           <div className="flex items-center justify-end gap-6">
             <Link
               href="/contact"
-              className="hidden text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground lg:block"
+              className="hidden text-[13px] uppercase tracking-widest text-muted transition-colors hover:text-foreground lg:block"
             >
               {t.nav.contact}
             </Link>
