@@ -40,7 +40,7 @@ export default function ArtistesContent({ artists }: ArtistesContentProps) {
                         />
                       ) : (
                         <div className="flex h-full items-center justify-center">
-                          <span className="font-serif text-5xl italic text-muted opacity-20">
+                          <span className="font-serif text-5xl text-muted opacity-20">
                             {artist.name[0]}
                           </span>
                         </div>

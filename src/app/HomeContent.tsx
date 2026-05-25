@@ -72,7 +72,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       <section className="relative flex h-[90vh] flex-col items-center justify-center px-6 text-center">
         <Logo svgClassName="w-[min(520px,78vw)] h-auto" />
         <p
-          className="mt-6 font-serif italic text-muted"
+          className="mt-6 font-serif text-muted"
           style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.1rem)' }}
         >
           A curatorial label for contemporary abstract art
@@ -89,7 +89,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
             <h2
-              className="font-serif italic text-foreground"
+              className="font-serif text-foreground"
               style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)', lineHeight: 1.3, maxWidth: '44ch' }}
             >
               {t.home.sectionArtistsDesc}
@@ -149,7 +149,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
             <h2
-              className="font-serif italic text-foreground"
+              className="font-serif text-foreground"
               style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)', lineHeight: 1.3, maxWidth: '44ch' }}
             >
               {t.home.sectionWorksDesc}
@@ -216,7 +216,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
             <h2
-              className="font-serif italic text-foreground"
+              className="font-serif text-foreground"
               style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)', lineHeight: 1.3, maxWidth: '44ch' }}
             >
               {t.home.sectionJournalDesc}
@@ -261,7 +261,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                     {categoryLabel}
                   </p>
                 )}
-                <h3 className="line-clamp-2 font-serif italic text-[0.9rem] leading-snug text-foreground transition-opacity group-hover:opacity-50">
+                <h3 className="line-clamp-2 font-serif text-[0.9rem] leading-snug text-foreground transition-opacity group-hover:opacity-50">
                   {article.title}
                 </h3>
                 {article.excerpt && (
@@ -279,7 +279,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       <section className="px-6 py-24 lg:px-10 lg:py-40">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[3fr_2fr] lg:gap-32">
           <p
-            className="font-serif italic text-foreground"
+            className="font-serif text-foreground"
             style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.5rem)', lineHeight: 1.15 }}
           >
             {t.home.manifestoLeft}
@@ -296,7 +296,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           {t.home.newsletterTitle}
         </p>
         <p
-          className="mt-3 font-serif italic text-foreground"
+          className="mt-3 font-serif text-foreground"
           style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}
         >
           {t.home.newsletterSubtitle}

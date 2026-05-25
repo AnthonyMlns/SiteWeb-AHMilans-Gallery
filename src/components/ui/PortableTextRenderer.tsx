@@ -28,7 +28,7 @@ export default function PortableTextRenderer({ value }: PortableTextRendererProp
               <h3 className="mb-3 mt-8 font-serif text-2xl text-foreground">{children}</h3>
             ),
             blockquote: ({ children }) => (
-              <blockquote className="my-8 border-l border-foreground pl-5 font-serif text-xl italic text-muted">
+              <blockquote className="my-8 border-l border-foreground pl-5 font-serif text-xl text-muted">
                 {children}
               </blockquote>
             ),
