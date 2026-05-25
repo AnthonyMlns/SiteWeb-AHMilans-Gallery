@@ -3,6 +3,7 @@
 import MainLayout from '@/components/layout/MainLayout'
 import ContactForm from '@/components/contact/ContactForm'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
+import { CONTACT_EMAIL } from '@/lib/config'
 
 export default function ContactContent() {
   const { t } = useTranslation()
@@ -34,10 +35,10 @@ export default function ContactContent() {
             <div>
               <p className="mb-4 text-[10px] uppercase tracking-widest text-muted">{t.contact.email}</p>
               <a
-                href="mailto:contact@ahmilans.gallery"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="text-sm text-foreground transition-opacity hover:opacity-60"
               >
-                contact@ahmilans.gallery
+                {CONTACT_EMAIL}
               </a>
             </div>
 

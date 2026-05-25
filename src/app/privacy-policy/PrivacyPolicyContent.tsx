@@ -2,6 +2,7 @@
 
 import MainLayout from '@/components/layout/MainLayout'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
+import { CONTACT_EMAIL } from '@/lib/config'
 
 function FrenchPolicy() {
   return (
@@ -10,7 +11,7 @@ function FrenchPolicy() {
         <h2 className="mb-4 font-serif text-2xl text-foreground">1. Responsable du traitement</h2>
         <p>
           Le responsable du traitement des données personnelles collectées via ce site est Ahmilan&apos;s Gallery,
-          joignable à l&apos;adresse : <a href="mailto:contact@ahmilans.gallery" className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">contact@ahmilans.gallery</a>.
+          joignable à l&apos;adresse : <a href={`mailto:${CONTACT_EMAIL}`} className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">{CONTACT_EMAIL}</a>.
         </p>
       </section>
       <section>
@@ -42,7 +43,7 @@ function FrenchPolicy() {
       </section>
       <section>
         <h2 className="mb-4 font-serif text-2xl text-foreground">7. Vos droits</h2>
-        <p className="mb-4">Conformément au RGPD, vous disposez des droits d&apos;accès, de rectification, d&apos;effacement, de limitation, de portabilité et d&apos;opposition. Contactez-nous à <a href="mailto:contact@ahmilans.gallery" className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">contact@ahmilans.gallery</a>. Vous pouvez également saisir la <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">CNIL</a>.</p>
+        <p className="mb-4">Conformément au RGPD, vous disposez des droits d&apos;accès, de rectification, d&apos;effacement, de limitation, de portabilité et d&apos;opposition. Contactez-nous à <a href={`mailto:${CONTACT_EMAIL}`} className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">{CONTACT_EMAIL}</a>. Vous pouvez également saisir la <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">CNIL</a>.</p>
       </section>
       <section>
         <h2 className="mb-4 font-serif text-2xl text-foreground">8. Sécurité</h2>
@@ -62,7 +63,7 @@ function EnglishPolicy() {
       <section>
         <h2 className="mb-4 font-serif text-2xl text-foreground">1. Data Controller</h2>
         <p>
-          The controller of personal data collected via this site is Ahmilan&apos;s Gallery, reachable at: <a href="mailto:contact@ahmilans.gallery" className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">contact@ahmilans.gallery</a>.
+          The controller of personal data collected via this site is Ahmilan&apos;s Gallery, reachable at: <a href={`mailto:${CONTACT_EMAIL}`} className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">{CONTACT_EMAIL}</a>.
         </p>
       </section>
       <section>
@@ -94,7 +95,7 @@ function EnglishPolicy() {
       </section>
       <section>
         <h2 className="mb-4 font-serif text-2xl text-foreground">7. Your Rights</h2>
-        <p>Under the GDPR, you have the right of access, rectification, erasure, restriction, portability and objection. Contact us at <a href="mailto:contact@ahmilans.gallery" className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">contact@ahmilans.gallery</a>. You may also lodge a complaint with your national data protection authority.</p>
+        <p>Under the GDPR, you have the right of access, rectification, erasure, restriction, portability and objection. Contact us at <a href={`mailto:${CONTACT_EMAIL}`} className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">{CONTACT_EMAIL}</a>. You may also lodge a complaint with your national data protection authority.</p>
       </section>
       <section>
         <h2 className="mb-4 font-serif text-2xl text-foreground">8. Security</h2>

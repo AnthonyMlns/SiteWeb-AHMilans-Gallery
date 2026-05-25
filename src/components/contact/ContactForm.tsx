@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
+import { CONTACT_EMAIL } from '@/lib/config'
 
 type Status = 'idle' | 'sent'
 
@@ -16,7 +17,7 @@ export default function ContactForm() {
     e.preventDefault()
     const subject = encodeURIComponent('Message via ahmilans.gallery')
     const body = encodeURIComponent(`De : ${name} <${email}>\n\n${message}`)
-    window.location.href = `mailto:contact@ahmilans.gallery?subject=${subject}&body=${body}`
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
     setStatus('sent')
   }
 

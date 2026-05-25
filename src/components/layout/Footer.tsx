@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
+import { CONTACT_EMAIL } from '@/lib/config'
 
 export default function Footer() {
   const { t } = useTranslation()
@@ -53,10 +54,10 @@ export default function Footer() {
               Europe &amp; USA
             </span>
             <a
-              href="mailto:ahmilans.gallery@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="font-sans text-[11px] text-muted transition-colors hover:text-foreground"
             >
-              ahmilans.gallery@gmail.com
+              {CONTACT_EMAIL}
             </a>
           </div>
         </div>
