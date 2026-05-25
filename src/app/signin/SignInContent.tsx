@@ -19,76 +19,84 @@ export default function SignInContent() {
     // Auth not yet implemented — Clerk integration coming soon
   }
 
-  const inputClass =
-    'w-full border border-border bg-background px-4 py-4 font-sans text-sm text-foreground focus:border-foreground focus:outline-none transition-colors'
-
   return (
     <MainLayout>
 
-      {/* ── Form area ──────────────────────────────────────────────────── */}
-      <div className="flex flex-col items-center px-6 py-28 lg:py-36">
+      <div className="mx-auto max-w-sm px-6 py-28 lg:py-36">
 
         {/* Tabs */}
-        <div className="mb-10 flex gap-8">
-          {(['login', 'join'] as Tab[]).map((t) => (
+        <div className="mb-14 flex gap-0 border-b border-border">
+          {(tab === 'login'
+            ? [{ key: 'login', label: 'Log in' }, { key: 'join', label: 'Join' }]
+            : [{ key: 'join', label: 'Join' }, { key: 'login', label: 'Log in' }]
+          ).map((t) => (
             <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={[
-                'font-sans text-sm capitalize pb-1 border-b transition-colors',
-                tab === t
-                  ? 'text-blue-600 border-blue-600'
-                  : 'text-muted border-transparent hover:text-foreground',
-              ].join(' ')}
+              key={t.key}
+              onClick={() => setTab(t.key as Tab)}
+              className={`flex-1 pb-4 text-[11px] uppercase tracking-widest transition-colors ${
+                tab === t.key
+                  ? 'text-foreground border-b border-foreground'
+                  : 'text-muted hover:text-foreground'
+              }`}
             >
-              {t === 'login' ? 'Log in' : 'Join'}
+              {t.label}
             </button>
           ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="flex w-full max-w-sm flex-col gap-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-10">
           {tab === 'join' && (
             <div>
-              <label className="mb-3 block font-sans text-sm text-foreground">Name</label>
+              <label className="mb-3 block text-[10px] uppercase tracking-widest text-muted">
+                Name
+              </label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 autoComplete="name"
-                className={inputClass}
+                placeholder="Your name"
+                className="w-full border-b border-border bg-transparent py-4 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
               />
             </div>
           )}
 
           <div>
-            <label className="mb-3 block font-sans text-sm text-foreground">Email</label>
+            <label className="mb-3 block text-[10px] uppercase tracking-widest text-muted">
+              Email
+            </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
-              className={inputClass}
+              placeholder="your@email.com"
+              className="w-full border-b border-border bg-transparent py-4 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
             />
           </div>
 
           <div>
-            <label className="mb-3 block font-sans text-sm text-foreground">Password</label>
+            <label className="mb-3 block text-[10px] uppercase tracking-widest text-muted">
+              Password
+            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete={tab === 'login' ? 'current-password' : 'new-password'}
-              className={inputClass}
+              placeholder={tab === 'login' ? 'Your password' : 'Choose a password'}
+              className="w-full border-b border-border bg-transparent py-4 text-sm text-foreground placeholder-subtle outline-none transition-colors focus:border-foreground"
             />
           </div>
 
           <button
             type="submit"
             disabled={isEmpty}
-            className={[
-              'py-2 font-sans text-sm transition-colors',
-              isEmpty ? 'text-subtle cursor-default' : 'text-foreground hover:text-muted',
-            ].join(' ')}
+            className={`w-full border px-6 py-3.5 text-[11px] uppercase tracking-widest transition-colors ${
+              isEmpty
+                ? 'border-border text-subtle cursor-default'
+                : 'border-foreground text-foreground hover:bg-foreground hover:text-background'
+            }`}
           >
             {tab === 'login' ? 'Log in' : 'Join'}
           </button>
@@ -97,7 +105,7 @@ export default function SignInContent() {
             <p className="text-center">
               <button
                 type="button"
-                className="font-sans text-sm text-subtle transition-colors hover:text-muted"
+                className="text-[11px] uppercase tracking-widest text-subtle transition-colors hover:text-muted"
               >
                 Forgot password?
               </button>
@@ -106,15 +114,18 @@ export default function SignInContent() {
         </form>
       </div>
 
-      {/* ── Newsletter ─────────────────────────────────────────────────── */}
-      <section className="px-6 py-28 text-center lg:py-36">
-        <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-muted">
+      {/* Newsletter */}
+      <section aria-label="Newsletter" className="px-6 py-28 text-center lg:py-36">
+        <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-subtle">
           Not your average newsletter
         </p>
-        <p className="mt-1 font-sans text-[10px] uppercase tracking-[0.25em] text-foreground">
+        <p
+          className="mt-3 font-serif text-foreground"
+          style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}
+        >
           Best emerging artist updates
         </p>
-        <NewsletterForm className="mx-auto mt-7 max-w-xs" />
+        <NewsletterForm className="mx-auto mt-10 max-w-xs" />
       </section>
 
     </MainLayout>
