@@ -8,8 +8,8 @@
   --surface: #f3f1ee;
   --placeholder: #e5e3df;
   --subtle: #b5b3ae;
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 html.dark {
