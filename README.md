@@ -64,11 +64,13 @@ Studio Sanity accessible sur `/studio`.
 
 ## Design
 
-- Mise en page centrée sur **1440px max**, marges latérales automatiques
+- Mise en page centrée sur **1120px max**, marges latérales automatiques
+- Chaque section homepage occupe **min 100vh** (sauf hero : 90vh) pour un défilement cinématique
+- Artistes : affichage complet du roster (grille responsive 2 → 3 → 4 colonnes)
+- Œuvres homepage : **8 toiles** tirées aléatoirement d'un pool de 24, rotation automatique toutes les 12 s avec fondu
 - Palette minimale : `--background`, `--foreground`, `--muted`, `--border`
 - Dark mode via `localStorage` + classe `html.dark`
 - Typographie fluid avec `clamp()` sur les titres et textes hero
-- Espacements généreux entre sections (`py-28 lg:py-36`) pour un rendu aéré
 
 ---
 

@@ -114,9 +114,9 @@ export default function HomeContent({ settings, articles, roster, collection }: 
     <MainLayout>
 
       {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen">
+      <section className="relative h-[90vh]">
 
-        {/* Textes centrés à ~50vh */}
+        {/* Textes centrés verticalement */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 grid grid-cols-1 gap-6 px-6 lg:grid-cols-2 lg:gap-12 lg:px-10">
           <p
             className="font-serif italic text-foreground"
@@ -137,8 +137,8 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           </div>
         </div>
 
-        {/* Logo à 90vh */}
-        <div className="absolute inset-x-0 top-[90%] flex -translate-y-1/2 justify-center">
+        {/* Logo ancré au bas de la section */}
+        <div className="absolute inset-x-0 bottom-8 flex justify-center">
           <Logo svgClassName="w-[min(640px,84vw)] h-auto" />
         </div>
 
