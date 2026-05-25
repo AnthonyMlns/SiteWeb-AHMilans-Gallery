@@ -85,7 +85,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
       {/* ── ARTISTES — tous, 4 colonnes, sans fond gris ───────────────── */}
       <section aria-label={t.home.theRoster}>
-        <div className="flex items-start justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+        <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
             <h2
@@ -145,7 +145,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
       {/* ── ŒUVRES — 2 × 4, mélange unique, sans fond gris ──────────── */}
       <section aria-label={t.home.selectedWorks}>
-        <div className="flex items-start justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+        <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
             <h2
@@ -212,7 +212,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
       {/* ── ÉDITORIAL — 2 × 4 ────────────────────────────────────────── */}
       <section aria-label={t.nav.editorial}>
-        <div className="flex items-start justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+        <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
             <h2
