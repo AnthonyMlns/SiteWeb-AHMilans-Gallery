@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
@@ -19,7 +20,18 @@ interface HomeContentProps {
   collection: ArtworkPreview[]
 }
 
-// ─── Placeholder blocks ───────────────────────────────────────────────────────
+// ─── Mélange Fisher-Yates (côté client) ──────────────────────────────────────
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
+
+// ─── Blocs de remplacement ───────────────────────────────────────────────────
 
 function Bar({ w = 'w-24', h = 'h-2' }: { w?: string; h?: string }) {
   return <div className={`rounded-sm bg-placeholder ${w} ${h}`} />
@@ -63,6 +75,9 @@ function ArtworkPlaceholder() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+const ARTWORKS_VISIBLE = 8
+const ROTATION_INTERVAL_MS = 12_000 // rotation toutes les 12 s
+
 export default function HomeContent({ settings, articles, roster, collection }: HomeContentProps) {
   const { t } = useTranslation()
 
@@ -70,11 +85,36 @@ export default function HomeContent({ settings, articles, roster, collection }: 
   const gridArticles    = articles.filter((a) => a._id !== featuredArticle?._id).slice(0, 4)
   const featuredArtist  = settings?.heroArtist ?? roster[0]
 
+  // ── Rotation des œuvres ────────────────────────────────────────────────────
+  // Initialisation déterministe (identique SSR ↔ client) → pas d'erreur d'hydratation.
+  // Math.random() n'est appelé que dans les useEffect (côté client uniquement).
+  const [displayedArtworks, setDisplayedArtworks] = useState<ArtworkPreview[]>(
+    collection.slice(0, ARTWORKS_VISIBLE)
+  )
+  const [artworksVisible, setArtworksVisible] = useState(true)
+
+  const rotate = useCallback(() => {
+    if (collection.length <= ARTWORKS_VISIBLE) return
+    setArtworksVisible(false)
+    setTimeout(() => {
+      setDisplayedArtworks(shuffle(collection).slice(0, ARTWORKS_VISIBLE))
+      setArtworksVisible(true)
+    }, 500)
+  }, [collection])
+
+  // Premier mélange après hydratation, puis rotation régulière
+  useEffect(() => {
+    rotate()
+    const id = setInterval(rotate, ROTATION_INTERVAL_MS)
+    return () => clearInterval(id)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <MainLayout>
 
       {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <section className="relative h-[90vh]">
+      <section className="relative min-h-screen">
 
         {/* Textes centrés à ~50vh */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 grid grid-cols-1 gap-6 px-6 lg:grid-cols-2 lg:gap-12 lg:px-10">
@@ -105,7 +145,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── HERO ARTICLE ──────────────────────────────────────────────── */}
-      <section aria-label="Article à la une" className="mt-12 lg:mt-28">
+      <section aria-label="Article à la une" className="min-h-screen flex flex-col justify-center">
         {featuredArticle ? (
           <Link href={`/articles/${featuredArticle.slug.current}`} className="group block">
             <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]">
@@ -159,9 +199,9 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         )}
       </section>
 
-      {/* ── ARTICLE GRID (always 4 slots) ─────────────────────────────── */}
-      <section aria-label={t.nav.editorial}>
-        <div className="px-6 pb-8 pt-16 sm:pt-24 lg:px-10 lg:pt-36">
+      {/* ── ARTICLE GRID (toujours 4 emplacements) ────────────────────── */}
+      <section aria-label={t.nav.editorial} className="min-h-screen flex flex-col justify-center">
+        <div className="px-6 pb-8 pt-16 sm:pt-20 lg:px-10 lg:pt-24">
           <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.editorial}</p>
           <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
             {t.home.sectionJournalDesc}
@@ -208,7 +248,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-20">
+        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-16">
           <Link
             href="/articles"
             className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
@@ -218,11 +258,10 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── FULL-WIDTH ARTIST IMAGE (always visible) ───────────────────── */}
+      {/* ── IMAGE ARTISTE PLEIN ÉCRAN ──────────────────────────────────── */}
       <section
         aria-label="Image portrait"
-        className="relative overflow-hidden bg-placeholder"
-        style={{ height: 'clamp(300px, 58vh, 680px)' }}
+        className="relative min-h-screen overflow-hidden bg-placeholder"
       >
         {featuredArtist?.featuredImageUrl && (
           <Image
@@ -235,12 +274,12 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         )}
       </section>
 
-      {/* ── EDITORIAL MOMENT (always visible) ─────────────────────────── */}
-      <section aria-label="Portrait">
+      {/* ── MOMENT ÉDITORIAL ──────────────────────────────────────────── */}
+      <section aria-label="Portrait" className="min-h-screen flex flex-col justify-center">
         {featuredArtist ? (
           <Link
             href={`/artistes/${featuredArtist.slug.current}`}
-            className="group flex flex-col items-center justify-center px-6 py-20 text-center md:py-44"
+            className="group flex flex-col items-center justify-center px-6 py-20 text-center md:py-32"
           >
             <p className="mb-4 font-sans text-[10px] uppercase tracking-[0.28em] text-muted">
               {t.home.portrait}
@@ -256,7 +295,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             </p>
           </Link>
         ) : (
-          <div className="flex flex-col items-center justify-center px-6 py-20 text-center md:py-44">
+          <div className="flex flex-col items-center justify-center px-6 py-20 text-center md:py-32">
             <div className="mb-4"><Bar w="w-16" h="h-2" /></div>
             <Bar w="w-56" h="h-14" />
             <div className="mt-7"><Bar w="w-20" h="h-2" /></div>
@@ -265,7 +304,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── MANIFESTE ─────────────────────────────────────────────────── */}
-      <section className="px-6 py-16 lg:px-10 lg:py-40">
+      <section className="min-h-screen flex flex-col justify-center px-6 lg:px-10">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-24">
           <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.3rem, 2.2vw, 2rem)', lineHeight: 1.2 }}>
             {t.home.manifestoLeft}
@@ -276,52 +315,53 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── ARTISTS GRID (always 4 slots) ─────────────────────────────── */}
-      <section aria-label={t.home.theRoster}>
-        <div className="px-6 pb-8 pt-16 sm:pt-24 lg:px-10 lg:pt-36">
+      {/* ── GRILLE ARTISTES (tous les artistes) ───────────────────────── */}
+      <section aria-label={t.home.theRoster} className="min-h-screen flex flex-col justify-center">
+        <div className="px-6 pb-8 pt-16 sm:pt-20 lg:px-10 lg:pt-24">
           <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.artists}</p>
           <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
             {t.home.sectionArtistsDesc}
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-background lg:grid-cols-4">
-          {Array.from({ length: 4 }).map((_, i) => {
-            const artist = roster[i]
-            if (!artist) return <ArtistPlaceholder key={`ph-r-${i}`} />
-            const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
-            return (
-              <Link
-                key={artist._id}
-                href={`/artistes/${artist.slug.current}`}
-                className="group bg-background px-5 py-7 lg:px-6 lg:py-8"
-              >
-                <div
-                  className="relative mb-4 overflow-hidden bg-placeholder"
-                  style={{ aspectRatio: '3/4' }}
-                >
-                  {imageUrl && (
-                    <Image
-                      src={imageUrl}
-                      alt={artist.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 768px) 50vw, 25vw"
-                    />
-                  )}
-                </div>
-                <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-60">
-                  {artist.name}
-                </p>
-                {(artist.country || artist.style) && (
-                  <p className="mt-0.5 font-sans text-[11px] text-muted">
-                    {[artist.country, artist.style].filter(Boolean).join(' · ')}
-                  </p>
-                )}
-              </Link>
-            )
-          })}
+        <div className="grid grid-cols-2 gap-px bg-background sm:grid-cols-3 lg:grid-cols-4">
+          {roster.length > 0
+            ? roster.map((artist) => {
+                const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
+                return (
+                  <Link
+                    key={artist._id}
+                    href={`/artistes/${artist.slug.current}`}
+                    className="group bg-background px-5 py-7 lg:px-6 lg:py-8"
+                  >
+                    <div
+                      className="relative mb-4 overflow-hidden bg-placeholder"
+                      style={{ aspectRatio: '3/4' }}
+                    >
+                      {imageUrl && (
+                        <Image
+                          src={imageUrl}
+                          alt={artist.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        />
+                      )}
+                    </div>
+                    <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-60">
+                      {artist.name}
+                    </p>
+                    {(artist.country || artist.style) && (
+                      <p className="mt-0.5 font-sans text-[11px] text-muted">
+                        {[artist.country, artist.style].filter(Boolean).join(' · ')}
+                      </p>
+                    )}
+                  </Link>
+                )
+              })
+            : Array.from({ length: 4 }).map((_, i) => <ArtistPlaceholder key={`ph-r-${i}`} />)
+          }
         </div>
-        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-20">
+        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-16">
           <Link
             href="/artistes"
             className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
@@ -331,58 +371,69 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── ARTWORK GRID (always 4 slots) ─────────────────────────────── */}
-      <section aria-label={t.home.selectedWorks}>
-        <div className="px-6 pb-8 pt-16 sm:pt-24 lg:px-10 lg:pt-36">
+      {/* ── GRILLE ŒUVRES (8 toiles, rotation automatique) ────────────── */}
+      <section aria-label={t.home.selectedWorks} className="min-h-screen flex flex-col justify-center">
+        <div className="px-6 pb-8 pt-16 sm:pt-20 lg:px-10 lg:pt-24">
           <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.works}</p>
           <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
             {t.home.sectionWorksDesc}
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-background lg:grid-cols-4">
-          {Array.from({ length: 4 }).map((_, i) => {
-            const artwork = collection[i]
-            if (!artwork) return <ArtworkPlaceholder key={`ph-w-${i}`} />
-            const image = artwork.images?.[0]
-            return (
-              <Link
-                key={artwork._id}
-                href={`/oeuvres/${artwork.slug.current}`}
-                className="group bg-background px-5 py-7 lg:px-6 lg:py-8"
-              >
-                <div
-                  className="relative mb-4 overflow-hidden bg-placeholder"
-                  style={{ aspectRatio: '3/4' }}
-                >
-                  {image?.url && (
-                    <Image
-                      src={image.url}
-                      alt={artwork.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 768px) 50vw, 25vw"
-                    />
-                  )}
-                </div>
-                <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-60">
-                  {artwork.title}
-                </p>
-                {artwork.artist && (
-                  <p className="mt-0.5 font-sans text-[11px] text-muted">{artwork.artist.name}</p>
-                )}
-                {artwork.dimensions && (
-                  <p className="mt-0.5 font-sans text-[11px] text-subtle">{artwork.dimensions}</p>
-                )}
-                {artwork.available && artwork.price && (
-                  <p className="mt-1 font-sans text-[11px] text-muted">
-                    {artwork.price.toLocaleString('fr-FR')} €
-                  </p>
-                )}
-              </Link>
-            )
-          })}
+
+        {/* Grille avec fondu lors de la rotation */}
+        <div
+          className="grid grid-cols-2 gap-px bg-background lg:grid-cols-4 transition-opacity duration-500"
+          style={{ opacity: artworksVisible ? 1 : 0 }}
+        >
+          {displayedArtworks.length > 0
+            ? Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
+                const artwork = displayedArtworks[i]
+                if (!artwork) return <ArtworkPlaceholder key={`ph-w-${i}`} />
+                const image = artwork.images?.[0]
+                return (
+                  <Link
+                    key={artwork._id}
+                    href={`/oeuvres/${artwork.slug.current}`}
+                    className="group bg-background px-5 py-7 lg:px-6 lg:py-8"
+                  >
+                    <div
+                      className="relative mb-4 overflow-hidden bg-placeholder"
+                      style={{ aspectRatio: '3/4' }}
+                    >
+                      {image?.url && (
+                        <Image
+                          src={image.url}
+                          alt={artwork.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          sizes="(max-width: 768px) 50vw, 25vw"
+                        />
+                      )}
+                    </div>
+                    <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-60">
+                      {artwork.title}
+                    </p>
+                    {artwork.artist && (
+                      <p className="mt-0.5 font-sans text-[11px] text-muted">{artwork.artist.name}</p>
+                    )}
+                    {artwork.dimensions && (
+                      <p className="mt-0.5 font-sans text-[11px] text-subtle">{artwork.dimensions}</p>
+                    )}
+                    {artwork.available && artwork.price && (
+                      <p className="mt-1 font-sans text-[11px] text-muted">
+                        {artwork.price.toLocaleString('fr-FR')} €
+                      </p>
+                    )}
+                  </Link>
+                )
+              })
+            : Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => (
+                <ArtworkPlaceholder key={`ph-w-${i}`} />
+              ))
+          }
         </div>
-        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-20">
+
+        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-16">
           <Link
             href="/oeuvres"
             className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
@@ -393,7 +444,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── NEWSLETTER ────────────────────────────────────────────────── */}
-      <section aria-label="Newsletter" className="px-6 py-20 text-center lg:py-36">
+      <section aria-label="Newsletter" className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
         <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-muted">
           {t.home.newsletterTitle}
         </p>

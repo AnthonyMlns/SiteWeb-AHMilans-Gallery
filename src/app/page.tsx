@@ -27,15 +27,15 @@ export default async function HomePage() {
     getAvailableArtworks(),
   ])
 
-  // Pick 4 random artworks from the full catalogue
-  const randomArtworks = shuffle((allArtworks ?? []) as ArtworkPreview[]).slice(0, 4)
+  // Passer jusqu'à 24 œuvres mélangées — la rotation client-side en tire 8 à la fois
+  const shuffledArtworks = shuffle((allArtworks ?? []) as ArtworkPreview[]).slice(0, 24)
 
   return (
     <HomeContent
       settings={settings}
       articles={(articles ?? []) as ArticlePreview[]}
       roster={(artists ?? []) as ArtistPreview[]}
-      collection={randomArtworks}
+      collection={shuffledArtworks}
     />
   )
 }
