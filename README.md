@@ -13,7 +13,7 @@ Built with **Next.js** (App Router) and **Sanity v3** as a headless CMS.
 | Framework | Next.js 16 (App Router) |
 | CMS | Sanity v3 |
 | Styles | Tailwind CSS v4 |
-| Typography | Inter (300/400/500/600) |
+| Typography | Crimson Text (headings) + Geist (body) |
 | Deployment | Vercel |
 
 ---
@@ -70,8 +70,15 @@ Sanity Studio is available at `/studio`.
 - Dark mode via `localStorage` + `html.dark` class
 
 **Typography**
-- Inter throughout (no italic) — 300/400/500/600
-- Section headings in Inter, sans serif, no italic
+- **Headings**: Crimson Text (serif — 400/600/700) via `next/font`
+- **Body**: Geist (sans-serif variable) via `next/font`
+- No italic, no serif/sans-serif contrast — uniform typographic system
+
+**Card / Nav / Footer font sizes**:
+- Navbar links: 13px
+- Footer: 12px
+- Artist & artwork card metadata: 13px
+- Section labels (Scroll, Artists, Works…): 9px
 
 **Homepage layout — section order:**
 1. Hero (90vh) — centred logo + tagline + scroll indicator
