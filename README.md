@@ -13,7 +13,7 @@ Construit avec **Next.js** (App Router) et **Sanity v3** comme CMS headless.
 | Framework | Next.js 15 (App Router) |
 | CMS | Sanity v3 |
 | Styles | Tailwind CSS v4 |
-| Typo | Instrument Serif · Plus Jakarta Sans |
+| Typo | Inter (regular + 300/400/500/600) |
 | Déploiement | Vercel |
 
 ---
@@ -31,13 +31,13 @@ src/
 │   └── signin/           # Authentification (à venir)
 ├── components/
 │   ├── layout/           # Header, Footer, MobileNav, MainLayout
-│   ├── cards/            # ArtworkCard
 │   ├── artwork/          # ArtworkFilter, InquireModal
 │   ├── contact/          # ContactForm
 │   └── ui/               # NewsletterForm, PortableTextRenderer
 └── lib/
     ├── sanity/           # Client, queries, types
     ├── i18n/             # Traductions (EN)
+    ├── config.ts         # Constantes globales (CONTACT_EMAIL…)
     └── ThemeContext.tsx  # Dark / Light mode
 ```
 
@@ -50,12 +50,13 @@ npm install
 npm run dev
 ```
 
-Copier `.env.local.example` → `.env.local` et renseigner les variables Sanity :
+Copier `.env.example` → `.env.local` et renseigner les variables :
 
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=
 SANITY_API_TOKEN=
+NEXT_PUBLIC_CONTACT_EMAIL=
 ```
 
 Studio Sanity accessible sur `/studio`.
@@ -64,13 +65,27 @@ Studio Sanity accessible sur `/studio`.
 
 ## Design
 
-- Mise en page centrée sur **1120px max**, marges latérales automatiques
-- Chaque section homepage occupe **min 100vh** (sauf hero : 90vh) pour un défilement cinématique
-- Artistes : affichage complet du roster (grille responsive 2 → 3 → 4 colonnes)
-- Œuvres homepage : **8 toiles** tirées aléatoirement d'un pool de 24, rotation automatique toutes les 12 s avec fondu
-- Palette minimale : `--background`, `--foreground`, `--muted`, `--border`
+**Palette — "White Cube"**
+- Fond `#faf9f7` (blanc lin) · texte `#0f0f0f` · tons chauds sur tous les gris
 - Dark mode via `localStorage` + classe `html.dark`
-- Typographie fluid avec `clamp()` sur les titres et textes hero
+
+**Typographie**
+- Inter partout (sans italic) — regular, 300/400/500/600
+- Titres de section en Inter, sans serif, sans italic
+
+**Layout homepage** — ordre des sections :
+1. Hero (90vh) — logo centré + tagline + indicateur scroll
+2. Artistes — grille 4 colonnes, tous les artistes, infos visibles sous l'image
+3. Œuvres — grille 4 colonnes × 2 rangées (8 toiles), mélange aléatoire **une fois par connexion**
+4. Éditorial — grille 4 colonnes × 2 rangées (8 articles)
+5. Manifeste
+6. Newsletter
+
+**CTA de section** — positionnés en bas à droite du header de section (flex `justify-between items-end`)
+
+**Container** — `max-w-[1120px]` centré, marges automatiques
+
+**Email de contact** — centralisé dans `src/lib/config.ts` via `NEXT_PUBLIC_CONTACT_EMAIL`
 
 ---
 
