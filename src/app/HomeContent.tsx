@@ -37,7 +37,7 @@ function SectionLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="inline-block border-b border-foreground pb-0.5 font-sans text-[12px] uppercase tracking-widest text-foreground transition-opacity hover:opacity-40"
+      className="font-sans text-[13px] uppercase tracking-widest text-foreground transition-opacity hover:opacity-40"
     >
       {label}
     </Link>
@@ -85,14 +85,17 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
       {/* ── ARTISTES — tous, 4 colonnes, sans fond gris ───────────────── */}
       <section aria-label={t.home.theRoster}>
-        <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
-          <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
-          <h2
-            className="font-serif italic text-foreground"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
-          >
-            {t.home.sectionArtistsDesc}
-          </h2>
+        <div className="flex items-start justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+          <div>
+            <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
+            <h2
+              className="font-serif italic text-foreground"
+              style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+            >
+              {t.home.sectionArtistsDesc}
+            </h2>
+          </div>
+          <SectionLink href="/artistes" label={t.home.artistsLink} />
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {roster.length > 0
@@ -138,21 +141,21 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               ))
           }
         </div>
-        <div className="px-6 py-10 lg:px-10 lg:py-14">
-          <SectionLink href="/artistes" label={t.home.artistsLink} />
-        </div>
       </section>
 
       {/* ── ŒUVRES — 2 × 4, mélange unique, sans fond gris ──────────── */}
       <section aria-label={t.home.selectedWorks}>
-        <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
-          <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
-          <h2
-            className="font-serif italic text-foreground"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
-          >
-            {t.home.sectionWorksDesc}
-          </h2>
+        <div className="flex items-start justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+          <div>
+            <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
+            <h2
+              className="font-serif italic text-foreground"
+              style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+            >
+              {t.home.sectionWorksDesc}
+            </h2>
+          </div>
+          <SectionLink href="/oeuvres" label={t.home.artworksLink} />
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
@@ -205,21 +208,21 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-        <div className="px-6 py-10 lg:px-10 lg:py-14">
-          <SectionLink href="/oeuvres" label={t.home.artworksLink} />
-        </div>
       </section>
 
       {/* ── ÉDITORIAL — 2 × 4 ────────────────────────────────────────── */}
       <section aria-label={t.nav.editorial}>
-        <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
-          <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
-          <h2
-            className="font-serif italic text-foreground"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
-          >
-            {t.home.sectionJournalDesc}
-          </h2>
+        <div className="flex items-start justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+          <div>
+            <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
+            <h2
+              className="font-serif italic text-foreground"
+              style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+            >
+              {t.home.sectionJournalDesc}
+            </h2>
+          </div>
+          <SectionLink href="/articles" label={`${t.home.readMore} ↗`} />
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {Array.from({ length: 8 }).map((_, i) => {
@@ -269,9 +272,6 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               </Link>
             )
           })}
-        </div>
-        <div className="px-6 py-10 lg:px-10 lg:py-14">
-          <SectionLink href="/articles" label={`${t.home.readMore} ↗`} />
         </div>
       </section>
 
