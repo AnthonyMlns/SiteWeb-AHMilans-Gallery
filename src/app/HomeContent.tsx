@@ -90,7 +90,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
             <h2
               className="font-serif italic text-foreground"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+              style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)', lineHeight: 1.3, maxWidth: '44ch' }}
             >
               {t.home.sectionArtistsDesc}
             </h2>
@@ -150,7 +150,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
             <h2
               className="font-serif italic text-foreground"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+              style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)', lineHeight: 1.3, maxWidth: '44ch' }}
             >
               {t.home.sectionWorksDesc}
             </h2>
@@ -217,7 +217,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
             <h2
               className="font-serif italic text-foreground"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+              style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)', lineHeight: 1.3, maxWidth: '44ch' }}
             >
               {t.home.sectionJournalDesc}
             </h2>
