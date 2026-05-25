@@ -10,63 +10,26 @@ export default function Footer() {
   return (
     <footer className="relative">
       <span aria-hidden="true" className="absolute top-0 left-1/2 h-px w-screen -translate-x-1/2 bg-border" />
-      <div className="px-6 py-8 lg:px-10">
+      <div className="flex flex-col items-start gap-4 px-6 py-8 sm:flex-row sm:items-center sm:justify-between lg:px-10">
 
-        {/* 4-column grid */}
-        <div className="grid grid-cols-2 gap-y-6 lg:grid-cols-4 lg:gap-0">
+        <p className="font-sans text-[10px] uppercase tracking-widest text-subtle">
+          © {new Date().getFullYear()} AH Milans
+        </p>
 
-          {/* Col 1: Brand */}
-          <div className="flex items-start">
-            <Link href="/" className="font-sans text-[11px] uppercase tracking-[0.16em] text-foreground transition-opacity hover:opacity-50">
-              AH MILANS
-            </Link>
-          </div>
+        <nav aria-label="Footer" className="flex items-center gap-6">
+          <Link href="/oeuvres"   className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.works}</Link>
+          <Link href="/artistes"  className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.artists}</Link>
+          <Link href="/articles"  className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.editorial}</Link>
+          <Link href="/contact"   className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.contact}</Link>
+        </nav>
 
-          {/* Col 2: Tagline */}
-          <div className="flex items-start">
-            <span className="font-sans text-[11px] uppercase tracking-widest text-muted">
-              Contemporary Art Label
-            </span>
-          </div>
-
-          {/* Col 3: Nav */}
-          <div className="flex flex-col gap-2">
-            <Link href="/oeuvres" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-              {t.nav.works}
-            </Link>
-            <Link href="/articles" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-              {t.nav.editorial}
-            </Link>
-            <Link href="/artistes" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-              {t.nav.artists}
-            </Link>
-            <Link href="/contact" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-              {t.nav.contact}
-            </Link>
-            <Link href="/newsletter" className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-              Newsletter
-            </Link>
-          </div>
-
-          {/* Col 4: Location + email */}
-          <div className="flex flex-col gap-2">
-            <span className="font-sans text-[11px] uppercase tracking-widest text-muted">
-              Europe &amp; USA
-            </span>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="font-sans text-[11px] text-muted transition-colors hover:text-foreground"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-        </div>
-
-        {/* Bottom row */}
-        <div className="mt-8 flex flex-col items-start justify-between gap-2 pt-5 sm:flex-row sm:items-center">
-          <p className="font-sans text-[10px] uppercase tracking-widest text-subtle">
-            © {new Date().getFullYear()} AH Milans
-          </p>
+        <div className="flex items-center gap-5">
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="font-sans text-[10px] text-muted transition-colors hover:text-foreground"
+          >
+            {CONTACT_EMAIL}
+          </a>
           <Link
             href="/privacy-policy"
             className="font-sans text-[10px] uppercase tracking-widest text-subtle transition-colors hover:text-muted"
@@ -74,6 +37,7 @@ export default function Footer() {
             {t.footer.privacy}
           </Link>
         </div>
+
       </div>
     </footer>
   )

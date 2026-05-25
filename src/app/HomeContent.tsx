@@ -20,7 +20,7 @@ interface HomeContentProps {
   collection: ArtworkPreview[]
 }
 
-// ─── Mélange Fisher-Yates (côté client) ──────────────────────────────────────
+// ─── Fisher-Yates (client-side only) ─────────────────────────────────────────
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
@@ -31,52 +31,12 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-// ─── Blocs de remplacement ───────────────────────────────────────────────────
-
-function Bar({ w = 'w-24', h = 'h-2' }: { w?: string; h?: string }) {
-  return <div className={`rounded-sm bg-placeholder ${w} ${h}`} />
-}
-
-function ArticlePlaceholder() {
-  return (
-    <div className="bg-background px-5 py-7 lg:px-6 lg:py-8">
-      <div className="mb-5 bg-placeholder" style={{ aspectRatio: '4/3' }} />
-      <Bar w="w-14" h="h-2" />
-      <div className="mt-2"><Bar w="w-40" h="h-4" /></div>
-      <div className="mt-3 flex flex-col gap-1.5">
-        <Bar w="w-full" h="h-2" />
-        <Bar w="w-5/6" h="h-2" />
-        <Bar w="w-4/6" h="h-2" />
-      </div>
-    </div>
-  )
-}
-
-function ArtistPlaceholder() {
-  return (
-    <div className="bg-background px-5 py-7 lg:px-6 lg:py-8">
-      <div className="mb-4 bg-placeholder" style={{ aspectRatio: '3/4' }} />
-      <Bar w="w-32" h="h-2.5" />
-      <div className="mt-1.5"><Bar w="w-20" h="h-2" /></div>
-    </div>
-  )
-}
-
-function ArtworkPlaceholder() {
-  return (
-    <div className="bg-background px-5 py-7 lg:px-6 lg:py-8">
-      <div className="mb-4 bg-placeholder" style={{ aspectRatio: '3/4' }} />
-      <Bar w="w-28" h="h-2.5" />
-      <div className="mt-1.5"><Bar w="w-20" h="h-2" /></div>
-      <div className="mt-1.5"><Bar w="w-16" h="h-2" /></div>
-    </div>
-  )
-}
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// ─── Constantes ───────────────────────────────────────────────────────────────
 
 const ARTWORKS_VISIBLE = 8
-const ROTATION_INTERVAL_MS = 12_000 // rotation toutes les 12 s
+const ROTATION_INTERVAL_MS = 12_000
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomeContent({ settings, articles, roster, collection }: HomeContentProps) {
   const { t } = useTranslation()
@@ -86,8 +46,6 @@ export default function HomeContent({ settings, articles, roster, collection }: 
   const featuredArtist  = settings?.heroArtist ?? roster[0]
 
   // ── Rotation des œuvres ────────────────────────────────────────────────────
-  // Initialisation déterministe (identique SSR ↔ client) → pas d'erreur d'hydratation.
-  // Math.random() n'est appelé que dans les useEffect (côté client uniquement).
   const [displayedArtworks, setDisplayedArtworks] = useState<ArtworkPreview[]>(
     collection.slice(0, ARTWORKS_VISIBLE)
   )
@@ -102,7 +60,6 @@ export default function HomeContent({ settings, articles, roster, collection }: 
     }, 500)
   }, [collection])
 
-  // Premier mélange après hydratation, puis rotation régulière
   useEffect(() => {
     rotate()
     const id = setInterval(rotate, ROTATION_INTERVAL_MS)
@@ -113,45 +70,31 @@ export default function HomeContent({ settings, articles, roster, collection }: 
   return (
     <MainLayout>
 
-      {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <section className="relative h-[90vh]">
+      {/* ── HERO — typographique, centré ──────────────────────────────── */}
+      <section className="relative flex h-[90vh] flex-col items-center justify-center text-center px-6">
+        <Logo svgClassName="w-[min(520px,78vw)] h-auto" />
+        <p
+          className="mt-6 font-serif italic text-muted"
+          style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.1rem)' }}
+        >
+          A curatorial label for contemporary abstract art
+        </p>
 
-        {/* Textes centrés verticalement */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 grid grid-cols-1 gap-6 px-6 lg:grid-cols-2 lg:gap-12 lg:px-10">
-          <p
-            className="font-serif italic text-foreground"
-            style={{ fontSize: 'clamp(1.1rem, 2vw, 1.55rem)', lineHeight: 1.38, maxWidth: '34ch' }}
-          >
-            {t.home.heroLeft}
-          </p>
-          <div className="flex flex-col justify-between gap-4 lg:items-end lg:text-right">
-            <p className="font-sans leading-relaxed text-muted" style={{ fontSize: 'clamp(0.875rem, 1.1vw, 1rem)', maxWidth: '30ch' }}>
-              {t.home.heroRight}
-            </p>
-            <Link
-              href="/oeuvres"
-              className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
-            >
-              {t.home.heroLink}
-            </Link>
-          </div>
+        {/* Indicateur de scroll */}
+        <div className="absolute bottom-10 flex flex-col items-center gap-3">
+          <span className="font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">Scroll</span>
+          <div className="h-10 w-px bg-border" />
         </div>
-
-        {/* Logo ancré au bas de la section */}
-        <div className="absolute inset-x-0 bottom-8 flex justify-center">
-          <Logo svgClassName="w-[min(640px,84vw)] h-auto" />
-        </div>
-
       </section>
 
-      {/* ── HERO ARTICLE ──────────────────────────────────────────────── */}
-      <section aria-label="Article à la une" className="min-h-screen flex flex-col justify-center">
+      {/* ── ARTICLE À LA UNE ──────────────────────────────────────────── */}
+      <section aria-label="Article à la une">
         {featuredArticle ? (
           <Link href={`/articles/${featuredArticle.slug.current}`} className="group block">
-            <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]">
+            <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr]">
               <div
                 className="relative overflow-hidden bg-placeholder"
-                style={{ minHeight: 'clamp(260px, 52vh, 620px)' }}
+                style={{ minHeight: 'clamp(320px, 65vh, 800px)' }}
               >
                 {featuredArticle.thumbnailUrl && (
                   <Image
@@ -160,107 +103,120 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                     priority
-                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
                   />
                 )}
               </div>
-              <div className="flex flex-col justify-center px-5 py-8 lg:px-14 lg:py-16">
+              <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
                 {featuredArticle.category && (
-                  <p className="mb-5 font-sans text-[10px] uppercase tracking-[0.22em] text-muted">
+                  <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">
                     {featuredArticle.category}
                   </p>
                 )}
                 <h1
                   className="font-serif italic leading-[1.05] text-foreground"
-                  style={{ fontSize: 'clamp(2rem, 3.5vw, 3.25rem)' }}
+                  style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)' }}
                 >
                   {featuredArticle.title}
                 </h1>
                 {featuredArticle.excerpt && (
-                  <p className="mt-5 font-serif italic text-muted" style={{ fontSize: '1.05rem' }}>
-                    — {featuredArticle.excerpt}
+                  <p className="mt-5 font-sans text-sm leading-relaxed text-muted">
+                    {featuredArticle.excerpt}
                   </p>
                 )}
+                <p className="mt-8 font-sans text-[10px] uppercase tracking-widest text-muted transition-colors group-hover:text-foreground">
+                  {t.home.readMore}
+                </p>
               </div>
             </div>
           </Link>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]">
-            <div className="bg-placeholder" style={{ minHeight: 'clamp(260px, 52vh, 620px)' }} />
-            <div className="flex flex-col justify-center px-8 py-12 lg:px-14 lg:py-16">
-              <div className="mb-5"><Bar w="w-16" h="h-2" /></div>
-              <Bar w="w-3/4" h="h-10" />
-              <div className="mt-5 flex flex-col gap-2">
-                <Bar w="w-full" h="h-3" />
-                <Bar w="w-5/6" h="h-3" />
+          <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr]">
+            <div className="bg-placeholder" style={{ minHeight: 'clamp(320px, 65vh, 800px)' }} />
+            <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
+              <div className="mb-4 h-1.5 w-10 rounded-sm bg-placeholder" />
+              <div className="h-10 w-3/4 rounded-sm bg-placeholder" />
+              <div className="mt-5 space-y-2">
+                <div className="h-2 w-full rounded-sm bg-placeholder" />
+                <div className="h-2 w-5/6 rounded-sm bg-placeholder" />
               </div>
             </div>
           </div>
         )}
       </section>
 
-      {/* ── ARTICLE GRID (toujours 4 emplacements) ────────────────────── */}
-      <section aria-label={t.nav.editorial} className="min-h-screen flex flex-col justify-center">
-        <div className="px-6 pb-8 pt-16 sm:pt-20 lg:px-10 lg:pt-24">
-          <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.editorial}</p>
-          <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
+      {/* ── GRILLE ÉDITORIALE ─────────────────────────────────────────── */}
+      <section aria-label={t.nav.editorial}>
+        <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+          <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
+          <h2
+            className="font-serif italic text-foreground"
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+          >
             {t.home.sectionJournalDesc}
-          </p>
+          </h2>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-background lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
           {Array.from({ length: 4 }).map((_, i) => {
             const article = gridArticles[i]
-            if (!article) return <ArticlePlaceholder key={`ph-a-${i}`} />
+            if (!article) {
+              return (
+                <div key={`ph-a-${i}`} className="bg-background">
+                  <div className="bg-placeholder" style={{ aspectRatio: '4/3' }} />
+                  <div className="space-y-2 px-4 py-5">
+                    <div className="h-1.5 w-10 rounded-sm bg-placeholder" />
+                    <div className="h-3 w-3/4 rounded-sm bg-placeholder" />
+                  </div>
+                </div>
+              )
+            }
+            const categoryLabel = article.category
+              ? (t.categories as Record<string, string>)[article.category] ?? article.category
+              : null
             return (
               <Link
                 key={article._id}
                 href={`/articles/${article.slug.current}`}
-                className="group bg-background px-5 py-7 lg:px-6 lg:py-8"
+                className="group block bg-background"
               >
-                <div
-                  className="relative mb-5 overflow-hidden bg-placeholder"
-                  style={{ aspectRatio: '4/3' }}
-                >
+                <div className="relative overflow-hidden bg-placeholder" style={{ aspectRatio: '4/3' }}>
                   {article.thumbnailUrl && (
                     <Image
                       src={article.thumbnailUrl}
                       alt={article.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
                   )}
                 </div>
-                {article.category && (
-                  <p className="mb-2 font-sans text-[10px] uppercase tracking-[0.18em] text-muted">
-                    {article.category}
-                  </p>
-                )}
-                <h3 className="line-clamp-2 font-serif italic text-[0.95rem] leading-snug text-foreground transition-opacity group-hover:opacity-60">
-                  {article.title}
-                </h3>
-                {article.excerpt && (
-                  <p className="mt-2 line-clamp-3 font-sans text-[11px] leading-relaxed text-muted">
-                    {article.excerpt}
-                  </p>
-                )}
+                <div className="px-4 py-5">
+                  {categoryLabel && (
+                    <p className="mb-1.5 font-sans text-[9px] uppercase tracking-[0.18em] text-subtle">
+                      {categoryLabel}
+                    </p>
+                  )}
+                  <h3 className="line-clamp-2 font-serif italic text-[0.9rem] leading-snug text-foreground transition-opacity group-hover:opacity-50">
+                    {article.title}
+                  </h3>
+                </div>
               </Link>
             )
           })}
         </div>
-        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-16">
+        <div className="px-6 py-8 lg:px-10 lg:py-12">
           <Link
             href="/articles"
-            className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
+            className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
           >
-            {t.home.readMore}
+            {t.home.readMore} ↗
           </Link>
         </div>
       </section>
 
-      {/* ── IMAGE ARTISTE PLEIN ÉCRAN ──────────────────────────────────── */}
+      {/* ── PORTRAIT PLEIN ÉCRAN ──────────────────────────────────────── */}
       <section
-        aria-label="Image portrait"
+        aria-label="Portrait"
         className="relative min-h-screen overflow-hidden bg-placeholder"
       >
         {featuredArtist?.featuredImageUrl && (
@@ -275,55 +231,61 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── MOMENT ÉDITORIAL ──────────────────────────────────────────── */}
-      <section aria-label="Portrait" className="min-h-screen flex flex-col justify-center">
+      <section aria-label="Artiste en avant">
         {featuredArtist ? (
           <Link
             href={`/artistes/${featuredArtist.slug.current}`}
-            className="group flex flex-col items-center justify-center px-6 py-20 text-center md:py-32"
+            className="group flex flex-col items-center justify-center px-6 py-28 text-center lg:py-44"
           >
-            <p className="mb-4 font-sans text-[10px] uppercase tracking-[0.28em] text-muted">
+            <p className="mb-5 font-sans text-[9px] uppercase tracking-[0.28em] text-subtle">
               {t.home.portrait}
             </p>
             <h2
-              className="font-serif italic text-foreground transition-opacity group-hover:opacity-60"
-              style={{ fontSize: 'clamp(3rem, 9vw, 6.5rem)', lineHeight: 1 }}
+              className="font-serif italic text-foreground transition-opacity group-hover:opacity-40"
+              style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)', lineHeight: 1 }}
             >
               {featuredArtist.name}
             </h2>
-            <p className="mt-7 font-sans text-[11px] uppercase tracking-widest text-muted transition-colors group-hover:text-foreground">
+            <p className="mt-8 font-sans text-[10px] uppercase tracking-widest text-muted transition-colors group-hover:text-foreground">
               {t.home.readNow}
             </p>
           </Link>
         ) : (
-          <div className="flex flex-col items-center justify-center px-6 py-20 text-center md:py-32">
-            <div className="mb-4"><Bar w="w-16" h="h-2" /></div>
-            <Bar w="w-56" h="h-14" />
-            <div className="mt-7"><Bar w="w-20" h="h-2" /></div>
+          <div className="flex flex-col items-center justify-center px-6 py-28 text-center lg:py-44">
+            <div className="mb-5 h-1.5 w-14 rounded-sm bg-placeholder" />
+            <div className="h-16 w-64 rounded-sm bg-placeholder" />
+            <div className="mt-8 h-1.5 w-20 rounded-sm bg-placeholder" />
           </div>
         )}
       </section>
 
       {/* ── MANIFESTE ─────────────────────────────────────────────────── */}
-      <section className="min-h-screen flex flex-col justify-center px-6 lg:px-10">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-24">
-          <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.3rem, 2.2vw, 2rem)', lineHeight: 1.2 }}>
+      <section className="px-6 py-24 lg:px-10 lg:py-40">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[3fr_2fr] lg:gap-32">
+          <p
+            className="font-serif italic text-foreground"
+            style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.5rem)', lineHeight: 1.15 }}
+          >
             {t.home.manifestoLeft}
           </p>
-          <p className="font-sans leading-relaxed text-muted lg:self-center" style={{ fontSize: 'clamp(0.875rem, 1.1vw, 1rem)' }}>
+          <p className="font-sans leading-relaxed text-muted lg:self-center" style={{ fontSize: '0.9rem' }}>
             {t.home.manifestoRight}
           </p>
         </div>
       </section>
 
-      {/* ── GRILLE ARTISTES (tous les artistes) ───────────────────────── */}
-      <section aria-label={t.home.theRoster} className="min-h-screen flex flex-col justify-center">
-        <div className="px-6 pb-8 pt-16 sm:pt-20 lg:px-10 lg:pt-24">
-          <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.artists}</p>
-          <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
+      {/* ── GRILLE ARTISTES — tous, full-bleed ────────────────────────── */}
+      <section aria-label={t.home.theRoster}>
+        <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+          <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
+          <h2
+            className="font-serif italic text-foreground"
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+          >
             {t.home.sectionArtistsDesc}
-          </p>
+          </h2>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-background sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4">
           {roster.length > 0
             ? roster.map((artist) => {
                 const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
@@ -331,112 +293,104 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                   <Link
                     key={artist._id}
                     href={`/artistes/${artist.slug.current}`}
-                    className="group bg-background px-5 py-7 lg:px-6 lg:py-8"
+                    className="group relative block overflow-hidden bg-placeholder"
+                    style={{ aspectRatio: '3/4' }}
                   >
-                    <div
-                      className="relative mb-4 overflow-hidden bg-placeholder"
-                      style={{ aspectRatio: '3/4' }}
-                    >
-                      {imageUrl && (
-                        <Image
-                          src={imageUrl}
-                          alt={artist.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        />
+                    {imageUrl && (
+                      <Image
+                        src={imageUrl}
+                        alt={artist.name}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      />
+                    )}
+                    <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/55 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-white">
+                        {artist.name}
+                      </p>
+                      {(artist.country || artist.style) && (
+                        <p className="mt-0.5 font-sans text-[10px] text-white/60">
+                          {[artist.country, artist.style].filter(Boolean).join(' · ')}
+                        </p>
                       )}
                     </div>
-                    <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-60">
-                      {artist.name}
-                    </p>
-                    {(artist.country || artist.style) && (
-                      <p className="mt-0.5 font-sans text-[11px] text-muted">
-                        {[artist.country, artist.style].filter(Boolean).join(' · ')}
-                      </p>
-                    )}
                   </Link>
                 )
               })
-            : Array.from({ length: 4 }).map((_, i) => <ArtistPlaceholder key={`ph-r-${i}`} />)
+            : Array.from({ length: 4 }).map((_, i) => (
+                <div key={`ph-r-${i}`} className="bg-placeholder" style={{ aspectRatio: '3/4' }} />
+              ))
           }
         </div>
-        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-16">
+        <div className="px-6 py-8 lg:px-10 lg:py-12">
           <Link
             href="/artistes"
-            className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
+            className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
           >
             {t.home.artistsLink}
           </Link>
         </div>
       </section>
 
-      {/* ── GRILLE ŒUVRES (8 toiles, rotation automatique) ────────────── */}
-      <section aria-label={t.home.selectedWorks} className="min-h-screen flex flex-col justify-center">
-        <div className="px-6 pb-8 pt-16 sm:pt-20 lg:px-10 lg:pt-24">
-          <p className="mb-3 font-sans text-[10px] uppercase tracking-[0.2em] text-muted">{t.nav.works}</p>
-          <p className="font-serif italic text-foreground" style={{ fontSize: 'clamp(1.15rem, 2vw, 1.7rem)', lineHeight: 1.3, maxWidth: '48ch' }}>
+      {/* ── GRILLE ŒUVRES — 8 toiles, rotation, full-bleed ───────────── */}
+      <section aria-label={t.home.selectedWorks}>
+        <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
+          <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
+          <h2
+            className="font-serif italic text-foreground"
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+          >
             {t.home.sectionWorksDesc}
-          </p>
+          </h2>
         </div>
-
-        {/* Grille avec fondu lors de la rotation */}
         <div
-          className="grid grid-cols-2 gap-px bg-background lg:grid-cols-4 transition-opacity duration-500"
+          className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4 transition-opacity duration-500"
           style={{ opacity: artworksVisible ? 1 : 0 }}
         >
-          {displayedArtworks.length > 0
-            ? Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
-                const artwork = displayedArtworks[i]
-                if (!artwork) return <ArtworkPlaceholder key={`ph-w-${i}`} />
-                const image = artwork.images?.[0]
-                return (
-                  <Link
-                    key={artwork._id}
-                    href={`/oeuvres/${artwork.slug.current}`}
-                    className="group bg-background px-5 py-7 lg:px-6 lg:py-8"
-                  >
-                    <div
-                      className="relative mb-4 overflow-hidden bg-placeholder"
-                      style={{ aspectRatio: '3/4' }}
-                    >
-                      {image?.url && (
-                        <Image
-                          src={image.url}
-                          alt={artwork.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                          sizes="(max-width: 768px) 50vw, 25vw"
-                        />
-                      )}
-                    </div>
-                    <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-60">
-                      {artwork.title}
+          {Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
+            const artwork = displayedArtworks[i]
+            if (!artwork) {
+              return <div key={`ph-w-${i}`} className="bg-placeholder" style={{ aspectRatio: '3/4' }} />
+            }
+            const image = artwork.images?.[0]
+            return (
+              <Link
+                key={artwork._id}
+                href={`/oeuvres/${artwork.slug.current}`}
+                className="group relative block overflow-hidden bg-placeholder"
+                style={{ aspectRatio: '3/4' }}
+              >
+                {image?.url && (
+                  <Image
+                    src={image.url}
+                    alt={artwork.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                )}
+                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/55 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-white">
+                    {artwork.title}
+                  </p>
+                  {artwork.artist && (
+                    <p className="mt-0.5 font-sans text-[10px] text-white/60">{artwork.artist.name}</p>
+                  )}
+                  {artwork.available && artwork.price && (
+                    <p className="mt-1 font-sans text-[10px] text-white/50">
+                      {artwork.price.toLocaleString('fr-FR')} €
                     </p>
-                    {artwork.artist && (
-                      <p className="mt-0.5 font-sans text-[11px] text-muted">{artwork.artist.name}</p>
-                    )}
-                    {artwork.dimensions && (
-                      <p className="mt-0.5 font-sans text-[11px] text-subtle">{artwork.dimensions}</p>
-                    )}
-                    {artwork.available && artwork.price && (
-                      <p className="mt-1 font-sans text-[11px] text-muted">
-                        {artwork.price.toLocaleString('fr-FR')} €
-                      </p>
-                    )}
-                  </Link>
-                )
-              })
-            : Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => (
-                <ArtworkPlaceholder key={`ph-w-${i}`} />
-              ))
-          }
+                  )}
+                </div>
+              </Link>
+            )
+          })}
         </div>
-
-        <div className="px-6 pb-10 pt-5 lg:px-10 lg:pb-16">
+        <div className="px-6 py-8 lg:px-10 lg:py-12">
           <Link
             href="/oeuvres"
-            className="font-sans text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
+            className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
           >
             {t.home.artworksLink}
           </Link>
@@ -444,14 +398,17 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── NEWSLETTER ────────────────────────────────────────────────── */}
-      <section aria-label="Newsletter" className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-        <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-muted">
+      <section aria-label="Newsletter" className="px-6 py-28 text-center lg:py-44">
+        <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-subtle">
           {t.home.newsletterTitle}
         </p>
-        <p className="mt-1 font-sans text-[10px] uppercase tracking-[0.25em] text-foreground">
+        <p
+          className="mt-3 font-serif italic text-foreground"
+          style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}
+        >
           {t.home.newsletterSubtitle}
         </p>
-        <NewsletterForm className="mx-auto mt-7 max-w-xs" />
+        <NewsletterForm className="mx-auto mt-10 max-w-xs" />
       </section>
 
     </MainLayout>
