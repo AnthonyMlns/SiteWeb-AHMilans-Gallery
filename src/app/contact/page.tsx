@@ -3,7 +3,7 @@ import ContactContent from './ContactContent'
 
 export const metadata: Metadata = {
   title: "Contact — Ahmilan's Gallery",
-  description: "Contactez Ahmilan's Gallery pour toute demande d'acquisition, de collaboration ou d'information.",
+  description: "Contact Ahmilan's Gallery for acquisition inquiries, collaborations, or information.",
 }
 
 export default function ContactPage() {

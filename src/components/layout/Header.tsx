@@ -62,7 +62,7 @@ export default function Header() {
         <div className="flex h-14 items-center justify-between px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-10">
 
           {/* Left: desktop nav */}
-          <nav aria-label="Navigation principale" className="hidden items-center gap-7 lg:flex">
+          <nav aria-label="Main navigation" className="hidden items-center gap-7 lg:flex">
             {leftLinks.map((item) => (
               <Link
                 key={item.href}
@@ -93,7 +93,7 @@ export default function Header() {
 
 <button
               onClick={toggleTheme}
-              aria-label={theme === 'dark' ? 'Mode clair' : 'Mode sombre'}
+              aria-label={theme === 'dark' ? 'Light mode' : 'Dark mode'}
               className="text-muted transition-colors hover:text-foreground"
             >
               {theme === 'dark' ? (
@@ -118,7 +118,7 @@ export default function Header() {
             {/* Hamburger */}
             <button
               onClick={() => setIsOpen(true)}
-              aria-label="Ouvrir le menu"
+              aria-label="Open menu"
               aria-expanded={isOpen}
               className="flex h-8 w-6 flex-col items-end justify-center gap-[5px]"
             >

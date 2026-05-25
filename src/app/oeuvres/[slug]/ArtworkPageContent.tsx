@@ -21,12 +21,12 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
   const additionalImages: SanityImage[] = artwork.images?.slice(1) ?? []
 
   const specs = [
-    artwork.year       && { label: 'Année',         value: String(artwork.year) },
-    artwork.medium     && { label: 'Technique',      value: artwork.medium },
+    artwork.year       && { label: 'Year',           value: String(artwork.year) },
+    artwork.medium     && { label: 'Medium',          value: artwork.medium },
     artwork.dimensions && { label: 'Dimensions',     value: artwork.dimensions },
-    { label: 'Disponibilité', value: artwork.available ? 'Disponible' : 'Vendue' },
+    { label: 'Availability', value: artwork.available ? 'Available' : 'Sold' },
     artwork.price && artwork.available
-      ? { label: 'Prix', value: `${artwork.price.toLocaleString('fr-FR')} €` }
+      ? { label: 'Price', value: `${artwork.price.toLocaleString('en-GB')} €` }
       : null,
   ].filter(Boolean) as { label: string; value: string }[]
 
@@ -118,7 +118,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
             href="/oeuvres"
             className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
           >
-            ← Toutes les œuvres
+            ← All works
           </Link>
         </div>
       </div>

@@ -17,10 +17,10 @@ interface ArticlePageContentProps {
 }
 
 export default function ArticlePageContent({ article }: ArticlePageContentProps) {
-  const { t, lang } = useTranslation()
+  const { t } = useTranslation()
 
   const dateStr = article.publishedAt
-    ? new Date(article.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', {
+    ? new Date(article.publishedAt).toLocaleDateString('en-GB', {
         day: 'numeric',
         month: 'long',
         year: 'numeric',

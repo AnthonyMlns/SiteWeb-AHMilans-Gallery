@@ -4,60 +4,7 @@ import MainLayout from '@/components/layout/MainLayout'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import { CONTACT_EMAIL } from '@/lib/config'
 
-function FrenchPolicy() {
-  return (
-    <div className="space-y-12 text-sm leading-relaxed text-muted">
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">1. Responsable du traitement</h2>
-        <p>
-          Le responsable du traitement des données personnelles collectées via ce site est Ahmilan&apos;s Gallery,
-          joignable à l&apos;adresse : <a href={`mailto:${CONTACT_EMAIL}`} className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">{CONTACT_EMAIL}</a>.
-        </p>
-      </section>
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">2. Données collectées</h2>
-        <p className="mb-4">Nous collectons les données suivantes :</p>
-        <ul className="list-none space-y-3">
-          <li className="flex gap-3"><span className="mt-1 shrink-0 text-border">—</span><span><strong className="font-medium text-foreground">Formulaire de contact</strong> : nom, adresse email et contenu du message. Ces données sont uniquement utilisées pour répondre à votre demande.</span></li>
-          <li className="flex gap-3"><span className="mt-1 shrink-0 text-border">—</span><span><strong className="font-medium text-foreground">Cookies analytiques</strong> : données de navigation anonymisées (pages visitées, durée de session, pays d&apos;origine) pour mesurer l&apos;audience du site.</span></li>
-        </ul>
-      </section>
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">3. Finalités du traitement</h2>
-        <ul className="list-none space-y-3">
-          <li className="flex gap-3"><span className="mt-1 shrink-0 text-border">—</span><span>Répondre à vos demandes d&apos;information ou d&apos;acquisition</span></li>
-          <li className="flex gap-3"><span className="mt-1 shrink-0 text-border">—</span><span>Améliorer l&apos;expérience et le contenu du site via des statistiques d&apos;audience anonymes</span></li>
-        </ul>
-      </section>
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">4. Base légale</h2>
-        <p>Le traitement de vos données repose sur votre <strong className="font-medium text-foreground">consentement</strong> et sur notre <strong className="font-medium text-foreground">intérêt légitime</strong> à assurer la sécurité et le bon fonctionnement du site.</p>
-      </section>
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">5. Durée de conservation</h2>
-        <p>Les données issues du formulaire de contact sont conservées le temps nécessaire au traitement de votre demande, et au maximum 3 ans à compter du dernier contact. Les données analytiques sont conservées sous forme agrégée et anonymisée.</p>
-      </section>
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">6. Partage des données</h2>
-        <p>Ahmilan&apos;s Gallery <strong className="font-medium text-foreground">ne vend pas vos données personnelles</strong> à des tiers. Vos données peuvent être transmises à des sous-traitants techniques dans le strict cadre de l&apos;exécution de leurs prestations.</p>
-      </section>
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">7. Vos droits</h2>
-        <p className="mb-4">Conformément au RGPD, vous disposez des droits d&apos;accès, de rectification, d&apos;effacement, de limitation, de portabilité et d&apos;opposition. Contactez-nous à <a href={`mailto:${CONTACT_EMAIL}`} className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">{CONTACT_EMAIL}</a>. Vous pouvez également saisir la <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">CNIL</a>.</p>
-      </section>
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">8. Sécurité</h2>
-        <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte ou divulgation.</p>
-      </section>
-      <section>
-        <h2 className="mb-4 font-serif text-2xl text-foreground">9. Modifications</h2>
-        <p>Cette politique peut être mise à jour afin de refléter les évolutions légales ou de nos pratiques. La date de dernière mise à jour est indiquée en haut de cette page.</p>
-      </section>
-    </div>
-  )
-}
-
-function EnglishPolicy() {
+function PrivacyContent() {
   return (
     <div className="space-y-12 text-sm leading-relaxed text-muted">
       <section>
@@ -110,7 +57,7 @@ function EnglishPolicy() {
 }
 
 export default function PrivacyPolicyContent() {
-  const { lang, t } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <MainLayout>
@@ -118,11 +65,11 @@ export default function PrivacyPolicyContent() {
         <div className="mb-14 border-b border-border pb-6">
           <h1 className="font-serif text-5xl text-foreground">{t.footer.privacy}</h1>
           <p className="mt-3 text-sm text-muted">
-            {lang === 'fr' ? 'Dernière mise à jour : mai 2025' : 'Last updated: May 2025'}
+            Last updated: May 2025
           </p>
         </div>
 
-        {lang === 'fr' ? <FrenchPolicy /> : <EnglishPolicy />}
+        <PrivacyContent />
       </div>
     </MainLayout>
   )

@@ -13,7 +13,7 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue>({ t: translations, lang: 'en' })
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  // Langue fixe : 'en'. Ajouter un useState<Lang> ici si on implémente un switcher.
+  // Fixed language: 'en'. Add useState<Lang> here if implementing a language switcher.
   return (
     <LanguageContext.Provider value={{ t: translations, lang: 'en' }}>
       {children}

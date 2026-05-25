@@ -50,7 +50,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
           href="/artistes"
           className="absolute left-8 top-8 text-[10px] uppercase tracking-widest text-white/60 transition-opacity hover:text-white lg:left-16"
         >
-          ← Artistes
+          ← Artists
         </Link>
       </section>
 
@@ -79,7 +79,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
         <section className="mx-auto max-w-7xl px-6 pb-16 lg:pb-28">
           <div className="mb-10 lg:mb-16">
             <h2 className="font-serif text-3xl text-foreground">
-              Œuvres
+              Works
               <span className="ml-3 font-sans text-base font-light text-muted">
                 ({artworks.length})
               </span>

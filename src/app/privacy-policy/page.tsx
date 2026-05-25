@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PrivacyPolicyContent from './PrivacyPolicyContent'
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité — Ahmilan's Gallery",
-  description: "Politique de confidentialité et traitement des données personnelles d'Ahmilan's Gallery.",
+  title: "Privacy Policy — Ahmilan's Gallery",
+  description: "Privacy policy and personal data processing at Ahmilan's Gallery.",
 }
 
 export default function PrivacyPolicyPage() {

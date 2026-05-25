@@ -1,20 +1,20 @@
 # AH Milans Gallery
 
-Site web du label curatorial **AH Milans** — présentation d'artistes émergents, œuvres disponibles à l'acquisition, et programme éditorial.
+Website for the curatorial label **AH Milans** — showcasing emerging artists, works available for acquisition, and an editorial programme.
 
-Construit avec **Next.js** (App Router) et **Sanity v3** comme CMS headless.
+Built with **Next.js** (App Router) and **Sanity v3** as a headless CMS.
 
 ---
 
 ## Stack
 
-| Couche | Technologie |
+| Layer | Technology |
 |---|---|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | CMS | Sanity v3 |
 | Styles | Tailwind CSS v4 |
-| Typo | Inter (regular + 300/400/500/600) |
-| Déploiement | Vercel |
+| Typography | Inter (300/400/500/600) |
+| Deployment | Vercel |
 
 ---
 
@@ -23,12 +23,12 @@ Construit avec **Next.js** (App Router) et **Sanity v3** comme CMS headless.
 ```
 src/
 ├── app/                  # Pages (App Router)
-│   ├── articles/         # Journal éditorial
-│   ├── artistes/         # Roster + pages artistes
-│   ├── oeuvres/          # Collection + pages œuvres
-│   ├── contact/          # Formulaire de contact
-│   ├── newsletter/       # Page newsletter
-│   └── signin/           # Authentification (à venir)
+│   ├── articles/         # Editorial journal
+│   ├── artistes/         # Roster + artist pages
+│   ├── oeuvres/          # Collection + artwork pages
+│   ├── contact/          # Contact form
+│   ├── newsletter/       # Newsletter page
+│   └── signin/           # Authentication (coming soon)
 ├── components/
 │   ├── layout/           # Header, Footer, MobileNav, MainLayout
 │   ├── artwork/          # ArtworkFilter, InquireModal
@@ -36,21 +36,21 @@ src/
 │   └── ui/               # NewsletterForm, PortableTextRenderer
 └── lib/
     ├── sanity/           # Client, queries, types
-    ├── i18n/             # Traductions (EN)
-    ├── config.ts         # Constantes globales (CONTACT_EMAIL…)
+    ├── i18n/             # Translations (EN)
+    ├── config.ts         # Global constants (CONTACT_EMAIL…)
     └── ThemeContext.tsx  # Dark / Light mode
 ```
 
 ---
 
-## Démarrage
+## Getting Started
 
 ```bash
 npm install
 npm run dev
 ```
 
-Copier `.env.example` → `.env.local` et renseigner les variables :
+Copy `.env.example` → `.env.local` and fill in the variables:
 
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID=
@@ -59,40 +59,40 @@ SANITY_API_TOKEN=
 NEXT_PUBLIC_CONTACT_EMAIL=
 ```
 
-Studio Sanity accessible sur `/studio`.
+Sanity Studio is available at `/studio`.
 
 ---
 
 ## Design
 
 **Palette — "White Cube"**
-- Fond `#faf9f7` (blanc lin) · texte `#0f0f0f` · tons chauds sur tous les gris
-- Dark mode via `localStorage` + classe `html.dark`
+- Background `#faf9f7` (linen white) · text `#0f0f0f` · warm tones on all greys
+- Dark mode via `localStorage` + `html.dark` class
 
-**Typographie**
-- Inter partout (sans italic) — regular, 300/400/500/600
-- Titres de section en Inter, sans serif, sans italic
+**Typography**
+- Inter throughout (no italic) — 300/400/500/600
+- Section headings in Inter, sans serif, no italic
 
-**Layout homepage** — ordre des sections :
-1. Hero (90vh) — logo centré + tagline + indicateur scroll
-2. Artistes — grille 4 colonnes, tous les artistes, infos visibles sous l'image
-3. Œuvres — grille 4 colonnes × 2 rangées (8 toiles), mélange aléatoire **une fois par connexion**
-4. Éditorial — grille 4 colonnes × 2 rangées (8 articles)
-5. Manifeste
+**Homepage layout — section order:**
+1. Hero (90vh) — centred logo + tagline + scroll indicator
+2. Artists — 4-column grid, all artists, info visible below image
+3. Works — 4-column × 2-row grid (8 works), shuffled **once per session**
+4. Editorial — 4-column × 2-row grid (8 articles)
+5. Manifesto
 6. Newsletter
 
-**CTA de section** — positionnés en bas à droite du header de section (flex `justify-between items-end`)
+**Section CTAs** — positioned at the bottom-right of the section header (flex `justify-between items-end`)
 
-**Container** — `max-w-[1120px]` centré, marges automatiques
+**Container** — `max-w-[1120px]` centred, auto margins
 
-**Email de contact** — centralisé dans `src/lib/config.ts` via `NEXT_PUBLIC_CONTACT_EMAIL`
+**Contact email** — centralised in `src/lib/config.ts` via `NEXT_PUBLIC_CONTACT_EMAIL`
 
 ---
 
-## Déploiement
+## Deployment
 
 ```bash
 npm run build
 ```
 
-Le projet est configuré pour Vercel. Les pages avec `revalidate = 60` se régénèrent toutes les minutes (ISR).
+The project is configured for Vercel. Pages with `revalidate = 60` regenerate every minute (ISR).

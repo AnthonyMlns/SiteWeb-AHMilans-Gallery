@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!artist) return {}
   return {
     title: `${artist.name} — Ahmilan's Gallery`,
-    description: `Découvrez les œuvres de ${artist.name}${artist.country ? ` (${artist.country})` : ''}.`,
+    description: `Discover artworks by ${artist.name}${artist.country ? ` (${artist.country})` : ''}.`,
   }
 }
 

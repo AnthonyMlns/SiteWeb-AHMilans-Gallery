@@ -43,7 +43,7 @@ return (
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Menu de navigation"
+      aria-label="Navigation menu"
       className={[
         'fixed inset-0 z-50 flex flex-col bg-background',
         'transition-[opacity,visibility] duration-300 ease-in-out',
@@ -55,7 +55,7 @@ return (
         <Logo onClick={onClose} />
         <button
           onClick={onClose}
-          aria-label="Fermer le menu"
+          aria-label="Close menu"
           className="flex h-8 w-8 items-center justify-center"
         >
           <span className="relative block h-4 w-4">
@@ -67,7 +67,7 @@ return (
 
       {/* Nav items */}
       <nav
-        aria-label="Navigation mobile"
+        aria-label="Mobile navigation"
         className="flex flex-1 flex-col justify-center px-6"
       >
         {navItems.map((item, i) => (

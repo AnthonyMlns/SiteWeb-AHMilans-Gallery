@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import MainLayout from '@/components/layout/MainLayout'
 
 export const metadata: Metadata = {
-  title: "Page introuvable — Ahmilan's Gallery",
+  title: "Page Not Found — Ahmilan's Gallery",
 }
 
 export default function NotFound() {
@@ -11,7 +11,7 @@ export default function NotFound() {
     <MainLayout>
       <div className="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
         <p className="mb-6 text-[10px] uppercase tracking-[0.2em] text-muted">
-          Erreur
+          Error
         </p>
 
         <h1
@@ -23,7 +23,7 @@ export default function NotFound() {
         </h1>
 
         <p className="mt-8 max-w-sm text-base text-muted">
-          La page que vous cherchez n&apos;existe pas ou a été déplacée.
+          The page you are looking for does not exist or has been moved.
         </p>
 
         <div className="mt-10">
@@ -32,7 +32,7 @@ export default function NotFound() {
             className="inline-flex items-center gap-3 text-[11px] uppercase tracking-widest text-foreground transition-opacity hover:opacity-50"
           >
             <span className="text-base leading-none">←</span>
-            Retour à l&apos;accueil
+            Back to home
           </Link>
         </div>
       </div>

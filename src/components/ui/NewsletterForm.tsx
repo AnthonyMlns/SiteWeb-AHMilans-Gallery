@@ -58,7 +58,7 @@ export default function NewsletterForm({ className }: NewsletterFormProps) {
             <button
               type="submit"
               disabled={status === 'loading'}
-              aria-label="S'inscrire à la newsletter"
+              aria-label="Subscribe to newsletter"
               className="px-3 text-foreground transition-opacity hover:opacity-40 disabled:opacity-30"
             >
               →

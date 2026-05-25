@@ -43,7 +43,7 @@ export const settings = defineType({
           fields: [
             defineField({
               name: 'title',
-              title: 'Titre',
+              title: 'Title',
               type: 'string',
               validation: (Rule) => Rule.required(),
             }),

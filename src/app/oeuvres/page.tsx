@@ -7,8 +7,8 @@ import type { ArtworkPreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Œuvres — Ahmilan's Gallery",
-  description: "Toutes les œuvres disponibles à l'acquisition.",
+  title: "Works — Ahmilan's Gallery",
+  description: "All works available for acquisition.",
 }
 
 export default async function OeuvresPage() {
@@ -18,7 +18,7 @@ export default async function OeuvresPage() {
     <MainLayout>
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-28">
         <div className="mb-10 lg:mb-20">
-          <h1 className="font-serif text-5xl text-foreground">Œuvres</h1>
+          <h1 className="font-serif text-5xl text-foreground">Works</h1>
         </div>
         <ArtworkFilter artworks={artworks} />
       </div>

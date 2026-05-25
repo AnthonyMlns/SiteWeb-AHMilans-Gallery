@@ -27,7 +27,7 @@ export default async function HomePage() {
     getAvailableArtworks(),
   ])
 
-  // Passer jusqu'à 24 œuvres mélangées — la rotation client-side en tire 8 à la fois
+  // Pass up to 24 shuffled artworks — client-side rotation picks 8 at a time
   const shuffledArtworks = shuffle((allArtworks ?? []) as ArtworkPreview[]).slice(0, 24)
 
   return (

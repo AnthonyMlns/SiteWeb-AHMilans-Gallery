@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   }
 
   if (!email || typeof email !== 'string') {
-    return NextResponse.json({ error: 'Email requis' }, { status: 400 })
+    return NextResponse.json({ error: 'Email is required' }, { status: 400 })
   }
 
   const apiKey = process.env.BREVO_API_KEY
@@ -48,11 +48,11 @@ export async function POST(req: NextRequest) {
     const data = await res.json().catch(() => ({}))
     console.error('[newsletter] Brevo error:', res.status, data)
     return NextResponse.json(
-      { error: (data as { message?: string }).message ?? 'Erreur Brevo' },
+      { error: (data as { message?: string }).message ?? 'Brevo error' },
       { status: 500 },
     )
   } catch (err) {
     console.error('[newsletter] Unexpected error:', err)
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
+    return NextResponse.json({ error: 'Server error' }, { status: 500 })
   }
 }

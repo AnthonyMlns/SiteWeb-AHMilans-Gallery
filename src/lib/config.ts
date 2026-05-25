@@ -1,7 +1,7 @@
 /**
- * Constantes de configuration globales.
- * Toutes les valeurs lues depuis les variables d'environnement ont un fallback
- * explicite pour éviter les undefined silencieux.
+ * Global configuration constants.
+ * All environment variables have an explicit fallback
+ * to prevent silent undefined values.
  */
 
 export const CONTACT_EMAIL =

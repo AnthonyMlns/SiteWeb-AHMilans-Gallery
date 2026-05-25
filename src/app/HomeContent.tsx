@@ -31,7 +31,7 @@ function shuffle<T>(arr: T[]): T[] {
 
 const ARTWORKS_VISIBLE = 8
 
-// ─── Lien CTA réutilisable ────────────────────────────────────────────────────
+  // ─── Reusable CTA link ────────────────────────────────────────────────────────
 
 function SectionLink({ href, label }: { href: string; label: string }) {
   return (
@@ -51,7 +51,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
   const gridArticles = articles.slice(0, 8)
 
-  // Mélange unique au montage
+  // Single shuffle on mount
   const [displayedArtworks, setDisplayedArtworks] = useState<ArtworkPreview[]>(
     collection.slice(0, ARTWORKS_VISIBLE)
   )
@@ -83,7 +83,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── ARTISTES — tous, 4 colonnes, sans fond gris ───────────────── */}
+      {/* ── ARTISTS — all, 4 columns ─────────────────────────────────── */}
       <section aria-label={t.home.theRoster}>
         <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>
@@ -143,7 +143,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── ŒUVRES — 2 × 4, mélange unique, sans fond gris ──────────── */}
+      {/* ── WORKS — 2 × 4, single shuffle ────────────────────────────── */}
       <section aria-label={t.home.selectedWorks}>
         <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>
@@ -201,7 +201,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                 )}
                 {artwork.available && artwork.price && (
                   <p className="mt-1 font-sans text-[11px] text-muted">
-                    {artwork.price.toLocaleString('fr-FR')} €
+                    {artwork.price.toLocaleString('en-GB')} €
                   </p>
                 )}
               </Link>
@@ -210,7 +210,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── ÉDITORIAL — 2 × 4 ────────────────────────────────────────── */}
+      {/* ── EDITORIAL — 2 × 4 ────────────────────────────────────────── */}
       <section aria-label={t.nav.editorial}>
         <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>

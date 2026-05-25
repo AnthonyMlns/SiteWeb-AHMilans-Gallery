@@ -47,7 +47,7 @@ export default function ArtworkCard({ artwork }: ArtworkCardProps) {
           )}
           {artwork.price && artwork.available && (
             <span className="text-[11px] font-medium text-foreground">
-              {artwork.price.toLocaleString('fr-FR')} €
+              {artwork.price.toLocaleString('en-GB')} €
             </span>
           )}
         </div>

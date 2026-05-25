@@ -7,7 +7,7 @@ export const revalidate = 60
 
 export const metadata: Metadata = {
   title: "Journal — Ahmilan's Gallery",
-  description: "Interviews, portraits et réflexions sur l'art contemporain.",
+  description: "Interviews, artist portraits, and reflections on contemporary art.",
 }
 
 export default async function ArticlesPage() {
