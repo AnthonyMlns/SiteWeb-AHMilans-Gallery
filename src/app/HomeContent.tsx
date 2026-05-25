@@ -31,10 +31,7 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-// ─── Constantes ───────────────────────────────────────────────────────────────
-
 const ARTWORKS_VISIBLE = 8
-const ROTATION_INTERVAL_MS = 12_000
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -43,27 +40,18 @@ export default function HomeContent({ settings, articles, roster, collection }: 
 
   const featuredArticle = articles.find((a) => a.featured) ?? articles[0]
   const gridArticles    = articles.filter((a) => a._id !== featuredArticle?._id).slice(0, 8)
-  const featuredArtist  = settings?.heroArtist ?? roster[0]
 
-  // ── Rotation des œuvres ────────────────────────────────────────────────────
+  // ── Mélange unique à la connexion (pas de rotation périodique) ─────────────
   const [displayedArtworks, setDisplayedArtworks] = useState<ArtworkPreview[]>(
     collection.slice(0, ARTWORKS_VISIBLE)
   )
-  const [artworksVisible, setArtworksVisible] = useState(true)
 
-  const rotate = useCallback(() => {
-    if (collection.length <= ARTWORKS_VISIBLE) return
-    setArtworksVisible(false)
-    setTimeout(() => {
-      setDisplayedArtworks(shuffle(collection).slice(0, ARTWORKS_VISIBLE))
-      setArtworksVisible(true)
-    }, 500)
+  const shuffleOnce = useCallback(() => {
+    setDisplayedArtworks(shuffle(collection).slice(0, ARTWORKS_VISIBLE))
   }, [collection])
 
   useEffect(() => {
-    rotate()
-    const id = setInterval(rotate, ROTATION_INTERVAL_MS)
-    return () => clearInterval(id)
+    shuffleOnce()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -82,184 +70,6 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         <div className="absolute bottom-10 flex flex-col items-center gap-3">
           <span className="font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">Scroll</span>
           <div className="h-10 w-px bg-border" />
-        </div>
-      </section>
-
-      {/* ── ARTICLE À LA UNE ─────────────────────────────────────────── */}
-      <section aria-label="Article à la une">
-        {featuredArticle ? (
-          <Link href={`/articles/${featuredArticle.slug.current}`} className="group block">
-            <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr]">
-              <div
-                className="relative overflow-hidden bg-placeholder"
-                style={{ minHeight: 'clamp(320px, 65vh, 800px)' }}
-              >
-                {featuredArticle.thumbnailUrl && (
-                  <Image
-                    src={featuredArticle.thumbnailUrl}
-                    alt={featuredArticle.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                  />
-                )}
-              </div>
-              <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
-                {featuredArticle.category && (
-                  <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">
-                    {featuredArticle.category}
-                  </p>
-                )}
-                <h1
-                  className="font-serif italic leading-[1.05] text-foreground"
-                  style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)' }}
-                >
-                  {featuredArticle.title}
-                </h1>
-                {featuredArticle.excerpt && (
-                  <p className="mt-5 font-sans text-sm leading-relaxed text-muted">
-                    {featuredArticle.excerpt}
-                  </p>
-                )}
-                <p className="mt-8 font-sans text-[10px] uppercase tracking-widest text-muted transition-colors group-hover:text-foreground">
-                  {t.home.readMore} ↗
-                </p>
-              </div>
-            </div>
-          </Link>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr]">
-            <div className="bg-placeholder" style={{ minHeight: 'clamp(320px, 65vh, 800px)' }} />
-            <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
-              <div className="mb-4 h-1.5 w-10 rounded-sm bg-placeholder" />
-              <div className="h-10 w-3/4 rounded-sm bg-placeholder" />
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* ── GRILLE ÉDITORIALE — 2 × 4 ────────────────────────────────── */}
-      <section aria-label={t.nav.editorial}>
-        <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
-          <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
-          <h2
-            className="font-serif italic text-foreground"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
-          >
-            {t.home.sectionJournalDesc}
-          </h2>
-        </div>
-        <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
-          {Array.from({ length: 8 }).map((_, i) => {
-            const article = gridArticles[i]
-            if (!article) {
-              return (
-                <div key={`ph-a-${i}`} className="bg-background px-5 py-6 lg:px-6 lg:py-7">
-                  <div className="mb-4 bg-placeholder" style={{ aspectRatio: '4/3' }} />
-                  <div className="h-2 w-10 rounded-sm bg-placeholder" />
-                  <div className="mt-2 h-3 w-3/4 rounded-sm bg-placeholder" />
-                </div>
-              )
-            }
-            const categoryLabel = article.category
-              ? (t.categories as Record<string, string>)[article.category] ?? article.category
-              : null
-            return (
-              <Link
-                key={article._id}
-                href={`/articles/${article.slug.current}`}
-                className="group bg-background px-5 py-6 lg:px-6 lg:py-7"
-              >
-                <div className="relative mb-4 overflow-hidden bg-placeholder" style={{ aspectRatio: '4/3' }}>
-                  {article.thumbnailUrl && (
-                    <Image
-                      src={article.thumbnailUrl}
-                      alt={article.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 768px) 50vw, 25vw"
-                    />
-                  )}
-                </div>
-                {categoryLabel && (
-                  <p className="mb-2 font-sans text-[9px] uppercase tracking-[0.18em] text-subtle">
-                    {categoryLabel}
-                  </p>
-                )}
-                <h3 className="line-clamp-2 font-serif italic text-[0.9rem] leading-snug text-foreground transition-opacity group-hover:opacity-50">
-                  {article.title}
-                </h3>
-                {article.excerpt && (
-                  <p className="mt-1.5 line-clamp-2 font-sans text-[11px] leading-relaxed text-muted">
-                    {article.excerpt}
-                  </p>
-                )}
-              </Link>
-            )
-          })}
-        </div>
-        <div className="px-6 py-8 lg:px-10 lg:py-12">
-          <Link href="/articles" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
-            {t.home.readMore} ↗
-          </Link>
-        </div>
-      </section>
-
-      {/* ── PORTRAIT PLEIN ÉCRAN ─────────────────────────────────────── */}
-      <section aria-label="Portrait" className="relative min-h-screen overflow-hidden bg-placeholder">
-        {featuredArtist?.featuredImageUrl && (
-          <Image
-            src={featuredArtist.featuredImageUrl}
-            alt={featuredArtist.name}
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        )}
-      </section>
-
-      {/* ── MOMENT ÉDITORIAL ─────────────────────────────────────────── */}
-      <section aria-label="Artiste en avant">
-        {featuredArtist ? (
-          <Link
-            href={`/artistes/${featuredArtist.slug.current}`}
-            className="group flex flex-col items-center justify-center px-6 py-28 text-center lg:py-44"
-          >
-            <p className="mb-5 font-sans text-[9px] uppercase tracking-[0.28em] text-subtle">
-              {t.home.portrait}
-            </p>
-            <h2
-              className="font-serif italic text-foreground transition-opacity group-hover:opacity-40"
-              style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)', lineHeight: 1 }}
-            >
-              {featuredArtist.name}
-            </h2>
-            <p className="mt-8 font-sans text-[10px] uppercase tracking-widest text-muted transition-colors group-hover:text-foreground">
-              {t.home.readNow}
-            </p>
-          </Link>
-        ) : (
-          <div className="flex flex-col items-center justify-center px-6 py-28 text-center lg:py-44">
-            <div className="mb-5 h-1.5 w-14 rounded-sm bg-placeholder" />
-            <div className="h-16 w-64 rounded-sm bg-placeholder" />
-            <div className="mt-8 h-1.5 w-20 rounded-sm bg-placeholder" />
-          </div>
-        )}
-      </section>
-
-      {/* ── MANIFESTE ────────────────────────────────────────────────── */}
-      <section className="px-6 py-24 lg:px-10 lg:py-40">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[3fr_2fr] lg:gap-32">
-          <p
-            className="font-serif italic text-foreground"
-            style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.5rem)', lineHeight: 1.15 }}
-          >
-            {t.home.manifestoLeft}
-          </p>
-          <p className="font-sans leading-relaxed text-muted lg:self-center" style={{ fontSize: '0.9rem' }}>
-            {t.home.manifestoRight}
-          </p>
         </div>
       </section>
 
@@ -325,7 +135,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── GRILLE ŒUVRES — 2 × 4, rotation, infos visibles ─────────── */}
+      {/* ── GRILLE ŒUVRES — 2 × 4, mélange unique, infos visibles ───── */}
       <section aria-label={t.home.selectedWorks}>
         <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
@@ -336,10 +146,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             {t.home.sectionWorksDesc}
           </h2>
         </div>
-        <div
-          className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4 transition-opacity duration-500"
-          style={{ opacity: artworksVisible ? 1 : 0 }}
-        >
+        <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
           {Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
             const artwork = displayedArtworks[i]
             if (!artwork) {
@@ -394,6 +201,142 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           <Link href="/oeuvres" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
             {t.home.artworksLink}
           </Link>
+        </div>
+      </section>
+
+      {/* ── ARTICLE À LA UNE ─────────────────────────────────────────── */}
+      <section aria-label="Article à la une" className="pt-24 lg:pt-36">
+        {featuredArticle ? (
+          <Link href={`/articles/${featuredArticle.slug.current}`} className="group block">
+            <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr]">
+              <div
+                className="relative overflow-hidden bg-placeholder"
+                style={{ minHeight: 'clamp(320px, 65vh, 800px)' }}
+              >
+                {featuredArticle.thumbnailUrl && (
+                  <Image
+                    src={featuredArticle.thumbnailUrl}
+                    alt={featuredArticle.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                  />
+                )}
+              </div>
+              <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
+                {featuredArticle.category && (
+                  <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">
+                    {featuredArticle.category}
+                  </p>
+                )}
+                <h1
+                  className="font-serif italic leading-[1.05] text-foreground"
+                  style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)' }}
+                >
+                  {featuredArticle.title}
+                </h1>
+                {featuredArticle.excerpt && (
+                  <p className="mt-5 font-sans text-sm leading-relaxed text-muted">
+                    {featuredArticle.excerpt}
+                  </p>
+                )}
+                <p className="mt-8 font-sans text-[10px] uppercase tracking-widest text-muted transition-colors group-hover:text-foreground">
+                  {t.home.readMore} ↗
+                </p>
+              </div>
+            </div>
+          </Link>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr]">
+            <div className="bg-placeholder" style={{ minHeight: 'clamp(320px, 65vh, 800px)' }} />
+            <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
+              <div className="mb-4 h-1.5 w-10 rounded-sm bg-placeholder" />
+              <div className="h-10 w-3/4 rounded-sm bg-placeholder" />
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* ── GRILLE ÉDITORIALE — 2 × 4 ────────────────────────────────── */}
+      <section aria-label={t.nav.editorial}>
+        <div className="px-6 pb-10 pt-16 lg:px-10 lg:pb-12 lg:pt-24">
+          <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
+          <h2
+            className="font-serif italic text-foreground"
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.05, maxWidth: '22ch' }}
+          >
+            {t.home.sectionJournalDesc}
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
+          {Array.from({ length: 8 }).map((_, i) => {
+            const article = gridArticles[i]
+            if (!article) {
+              return (
+                <div key={`ph-a-${i}`} className="bg-background px-5 py-6 lg:px-6 lg:py-7">
+                  <div className="mb-4 bg-placeholder" style={{ aspectRatio: '4/3' }} />
+                  <div className="h-2 w-10 rounded-sm bg-placeholder" />
+                  <div className="mt-2 h-3 w-3/4 rounded-sm bg-placeholder" />
+                </div>
+              )
+            }
+            const categoryLabel = article.category
+              ? (t.categories as Record<string, string>)[article.category] ?? article.category
+              : null
+            return (
+              <Link
+                key={article._id}
+                href={`/articles/${article.slug.current}`}
+                className="group bg-background px-5 py-6 lg:px-6 lg:py-7"
+              >
+                <div className="relative mb-4 overflow-hidden bg-placeholder" style={{ aspectRatio: '4/3' }}>
+                  {article.thumbnailUrl && (
+                    <Image
+                      src={article.thumbnailUrl}
+                      alt={article.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                  )}
+                </div>
+                {categoryLabel && (
+                  <p className="mb-2 font-sans text-[9px] uppercase tracking-[0.18em] text-subtle">
+                    {categoryLabel}
+                  </p>
+                )}
+                <h3 className="line-clamp-2 font-serif italic text-[0.9rem] leading-snug text-foreground transition-opacity group-hover:opacity-50">
+                  {article.title}
+                </h3>
+                {article.excerpt && (
+                  <p className="mt-1.5 line-clamp-2 font-sans text-[11px] leading-relaxed text-muted">
+                    {article.excerpt}
+                  </p>
+                )}
+              </Link>
+            )
+          })}
+        </div>
+        <div className="px-6 py-8 lg:px-10 lg:py-12">
+          <Link href="/articles" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
+            {t.home.readMore} ↗
+          </Link>
+        </div>
+      </section>
+
+      {/* ── MANIFESTE ────────────────────────────────────────────────── */}
+      <section className="px-6 py-24 lg:px-10 lg:py-40">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[3fr_2fr] lg:gap-32">
+          <p
+            className="font-serif italic text-foreground"
+            style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.5rem)', lineHeight: 1.15 }}
+          >
+            {t.home.manifestoLeft}
+          </p>
+          <p className="font-sans leading-relaxed text-muted lg:self-center" style={{ fontSize: '0.9rem' }}>
+            {t.home.manifestoRight}
+          </p>
         </div>
       </section>
 
