@@ -42,7 +42,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
   const { t } = useTranslation()
 
   const featuredArticle = articles.find((a) => a.featured) ?? articles[0]
-  const gridArticles    = articles.filter((a) => a._id !== featuredArticle?._id).slice(0, 4)
+  const gridArticles    = articles.filter((a) => a._id !== featuredArticle?._id).slice(0, 8)
   const featuredArtist  = settings?.heroArtist ?? roster[0]
 
   // ── Rotation des œuvres ────────────────────────────────────────────────────
@@ -70,8 +70,8 @@ export default function HomeContent({ settings, articles, roster, collection }: 
   return (
     <MainLayout>
 
-      {/* ── HERO — typographique, centré ──────────────────────────────── */}
-      <section className="relative flex h-[90vh] flex-col items-center justify-center text-center px-6">
+      {/* ── HERO ─────────────────────────────────────────────────────── */}
+      <section className="relative flex h-[90vh] flex-col items-center justify-center px-6 text-center">
         <Logo svgClassName="w-[min(520px,78vw)] h-auto" />
         <p
           className="mt-6 font-serif italic text-muted"
@@ -79,15 +79,13 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         >
           A curatorial label for contemporary abstract art
         </p>
-
-        {/* Indicateur de scroll */}
         <div className="absolute bottom-10 flex flex-col items-center gap-3">
           <span className="font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">Scroll</span>
           <div className="h-10 w-px bg-border" />
         </div>
       </section>
 
-      {/* ── ARTICLE À LA UNE ──────────────────────────────────────────── */}
+      {/* ── ARTICLE À LA UNE ─────────────────────────────────────────── */}
       <section aria-label="Article à la une">
         {featuredArticle ? (
           <Link href={`/articles/${featuredArticle.slug.current}`} className="group block">
@@ -125,7 +123,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                   </p>
                 )}
                 <p className="mt-8 font-sans text-[10px] uppercase tracking-widest text-muted transition-colors group-hover:text-foreground">
-                  {t.home.readMore}
+                  {t.home.readMore} ↗
                 </p>
               </div>
             </div>
@@ -136,16 +134,12 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             <div className="flex flex-col justify-end px-8 py-12 lg:px-12 lg:py-14">
               <div className="mb-4 h-1.5 w-10 rounded-sm bg-placeholder" />
               <div className="h-10 w-3/4 rounded-sm bg-placeholder" />
-              <div className="mt-5 space-y-2">
-                <div className="h-2 w-full rounded-sm bg-placeholder" />
-                <div className="h-2 w-5/6 rounded-sm bg-placeholder" />
-              </div>
             </div>
           </div>
         )}
       </section>
 
-      {/* ── GRILLE ÉDITORIALE ─────────────────────────────────────────── */}
+      {/* ── GRILLE ÉDITORIALE — 2 × 4 ────────────────────────────────── */}
       <section aria-label={t.nav.editorial}>
         <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
@@ -157,16 +151,14 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           </h2>
         </div>
         <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
-          {Array.from({ length: 4 }).map((_, i) => {
+          {Array.from({ length: 8 }).map((_, i) => {
             const article = gridArticles[i]
             if (!article) {
               return (
-                <div key={`ph-a-${i}`} className="bg-background">
-                  <div className="bg-placeholder" style={{ aspectRatio: '4/3' }} />
-                  <div className="space-y-2 px-4 py-5">
-                    <div className="h-1.5 w-10 rounded-sm bg-placeholder" />
-                    <div className="h-3 w-3/4 rounded-sm bg-placeholder" />
-                  </div>
+                <div key={`ph-a-${i}`} className="bg-background px-5 py-6 lg:px-6 lg:py-7">
+                  <div className="mb-4 bg-placeholder" style={{ aspectRatio: '4/3' }} />
+                  <div className="h-2 w-10 rounded-sm bg-placeholder" />
+                  <div className="mt-2 h-3 w-3/4 rounded-sm bg-placeholder" />
                 </div>
               )
             }
@@ -177,48 +169,45 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               <Link
                 key={article._id}
                 href={`/articles/${article.slug.current}`}
-                className="group block bg-background"
+                className="group bg-background px-5 py-6 lg:px-6 lg:py-7"
               >
-                <div className="relative overflow-hidden bg-placeholder" style={{ aspectRatio: '4/3' }}>
+                <div className="relative mb-4 overflow-hidden bg-placeholder" style={{ aspectRatio: '4/3' }}>
                   {article.thumbnailUrl && (
                     <Image
                       src={article.thumbnailUrl}
                       alt={article.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      sizes="50vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 50vw, 25vw"
                     />
                   )}
                 </div>
-                <div className="px-4 py-5">
-                  {categoryLabel && (
-                    <p className="mb-1.5 font-sans text-[9px] uppercase tracking-[0.18em] text-subtle">
-                      {categoryLabel}
-                    </p>
-                  )}
-                  <h3 className="line-clamp-2 font-serif italic text-[0.9rem] leading-snug text-foreground transition-opacity group-hover:opacity-50">
-                    {article.title}
-                  </h3>
-                </div>
+                {categoryLabel && (
+                  <p className="mb-2 font-sans text-[9px] uppercase tracking-[0.18em] text-subtle">
+                    {categoryLabel}
+                  </p>
+                )}
+                <h3 className="line-clamp-2 font-serif italic text-[0.9rem] leading-snug text-foreground transition-opacity group-hover:opacity-50">
+                  {article.title}
+                </h3>
+                {article.excerpt && (
+                  <p className="mt-1.5 line-clamp-2 font-sans text-[11px] leading-relaxed text-muted">
+                    {article.excerpt}
+                  </p>
+                )}
               </Link>
             )
           })}
         </div>
         <div className="px-6 py-8 lg:px-10 lg:py-12">
-          <Link
-            href="/articles"
-            className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
-          >
+          <Link href="/articles" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
             {t.home.readMore} ↗
           </Link>
         </div>
       </section>
 
-      {/* ── PORTRAIT PLEIN ÉCRAN ──────────────────────────────────────── */}
-      <section
-        aria-label="Portrait"
-        className="relative min-h-screen overflow-hidden bg-placeholder"
-      >
+      {/* ── PORTRAIT PLEIN ÉCRAN ─────────────────────────────────────── */}
+      <section aria-label="Portrait" className="relative min-h-screen overflow-hidden bg-placeholder">
         {featuredArtist?.featuredImageUrl && (
           <Image
             src={featuredArtist.featuredImageUrl}
@@ -230,7 +219,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         )}
       </section>
 
-      {/* ── MOMENT ÉDITORIAL ──────────────────────────────────────────── */}
+      {/* ── MOMENT ÉDITORIAL ─────────────────────────────────────────── */}
       <section aria-label="Artiste en avant">
         {featuredArtist ? (
           <Link
@@ -259,7 +248,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         )}
       </section>
 
-      {/* ── MANIFESTE ─────────────────────────────────────────────────── */}
+      {/* ── MANIFESTE ────────────────────────────────────────────────── */}
       <section className="px-6 py-24 lg:px-10 lg:py-40">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[3fr_2fr] lg:gap-32">
           <p
@@ -274,7 +263,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
         </div>
       </section>
 
-      {/* ── GRILLE ARTISTES — tous, full-bleed ────────────────────────── */}
+      {/* ── GRILLE ARTISTES — tous, 4 colonnes, infos visibles ───────── */}
       <section aria-label={t.home.theRoster}>
         <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
@@ -285,7 +274,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             {t.home.sectionArtistsDesc}
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-border">
+        <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4">
           {roster.length > 0
             ? roster.map((artist) => {
                 const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
@@ -293,47 +282,50 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                   <Link
                     key={artist._id}
                     href={`/artistes/${artist.slug.current}`}
-                    className="group relative block overflow-hidden bg-placeholder"
-                    style={{ aspectRatio: '3/4' }}
+                    className="group bg-background px-5 py-6 lg:px-6 lg:py-7"
                   >
-                    {imageUrl && (
-                      <Image
-                        src={imageUrl}
-                        alt={artist.name}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                        sizes="50vw"
-                      />
-                    )}
-                    <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/55 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-white">
-                        {artist.name}
-                      </p>
-                      {(artist.country || artist.style) && (
-                        <p className="mt-0.5 font-sans text-[10px] text-white/60">
-                          {[artist.country, artist.style].filter(Boolean).join(' · ')}
-                        </p>
+                    <div
+                      className="relative mb-4 overflow-hidden bg-placeholder"
+                      style={{ aspectRatio: '3/4' }}
+                    >
+                      {imageUrl && (
+                        <Image
+                          src={imageUrl}
+                          alt={artist.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          sizes="(max-width: 768px) 50vw, 25vw"
+                        />
                       )}
                     </div>
+                    <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-50">
+                      {artist.name}
+                    </p>
+                    {(artist.country || artist.style) && (
+                      <p className="mt-0.5 font-sans text-[11px] text-muted">
+                        {[artist.country, artist.style].filter(Boolean).join(' · ')}
+                      </p>
+                    )}
                   </Link>
                 )
               })
             : Array.from({ length: 4 }).map((_, i) => (
-                <div key={`ph-r-${i}`} className="bg-placeholder" style={{ aspectRatio: '3/4' }} />
+                <div key={`ph-r-${i}`} className="bg-background px-5 py-6 lg:px-6 lg:py-7">
+                  <div className="mb-4 bg-placeholder" style={{ aspectRatio: '3/4' }} />
+                  <div className="h-2.5 w-32 rounded-sm bg-placeholder" />
+                  <div className="mt-1.5 h-2 w-20 rounded-sm bg-placeholder" />
+                </div>
               ))
           }
         </div>
         <div className="px-6 py-8 lg:px-10 lg:py-12">
-          <Link
-            href="/artistes"
-            className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
-          >
+          <Link href="/artistes" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
             {t.home.artistsLink}
           </Link>
         </div>
       </section>
 
-      {/* ── GRILLE ŒUVRES — 8 toiles, rotation, full-bleed ───────────── */}
+      {/* ── GRILLE ŒUVRES — 2 × 4, rotation, infos visibles ─────────── */}
       <section aria-label={t.home.selectedWorks}>
         <div className="px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
@@ -345,59 +337,67 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           </h2>
         </div>
         <div
-          className="grid grid-cols-2 gap-px bg-border transition-opacity duration-500"
+          className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4 transition-opacity duration-500"
           style={{ opacity: artworksVisible ? 1 : 0 }}
         >
           {Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
             const artwork = displayedArtworks[i]
             if (!artwork) {
-              return <div key={`ph-w-${i}`} className="bg-placeholder" style={{ aspectRatio: '3/4' }} />
+              return (
+                <div key={`ph-w-${i}`} className="bg-background px-5 py-6 lg:px-6 lg:py-7">
+                  <div className="mb-4 bg-placeholder" style={{ aspectRatio: '3/4' }} />
+                  <div className="h-2.5 w-28 rounded-sm bg-placeholder" />
+                  <div className="mt-1.5 h-2 w-20 rounded-sm bg-placeholder" />
+                </div>
+              )
             }
             const image = artwork.images?.[0]
             return (
               <Link
                 key={artwork._id}
                 href={`/oeuvres/${artwork.slug.current}`}
-                className="group relative block overflow-hidden bg-placeholder"
-                style={{ aspectRatio: '3/4' }}
+                className="group bg-background px-5 py-6 lg:px-6 lg:py-7"
               >
-                {image?.url && (
-                  <Image
-                    src={image.url}
-                    alt={artwork.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    sizes="50vw"
-                  />
-                )}
-                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/55 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-white">
-                    {artwork.title}
-                  </p>
-                  {artwork.artist && (
-                    <p className="mt-0.5 font-sans text-[10px] text-white/60">{artwork.artist.name}</p>
-                  )}
-                  {artwork.available && artwork.price && (
-                    <p className="mt-1 font-sans text-[10px] text-white/50">
-                      {artwork.price.toLocaleString('fr-FR')} €
-                    </p>
+                <div
+                  className="relative mb-4 overflow-hidden bg-placeholder"
+                  style={{ aspectRatio: '3/4' }}
+                >
+                  {image?.url && (
+                    <Image
+                      src={image.url}
+                      alt={artwork.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
                   )}
                 </div>
+                <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground transition-opacity group-hover:opacity-50">
+                  {artwork.title}
+                </p>
+                {artwork.artist && (
+                  <p className="mt-0.5 font-sans text-[11px] text-muted">{artwork.artist.name}</p>
+                )}
+                {artwork.dimensions && (
+                  <p className="mt-0.5 font-sans text-[11px] text-subtle">{artwork.dimensions}</p>
+                )}
+                {artwork.available && artwork.price && (
+                  <p className="mt-1 font-sans text-[11px] text-muted">
+                    {artwork.price.toLocaleString('fr-FR')} €
+                  </p>
+                )}
               </Link>
             )
           })}
         </div>
         <div className="px-6 py-8 lg:px-10 lg:py-12">
-          <Link
-            href="/oeuvres"
-            className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
-          >
+          <Link href="/oeuvres" className="font-sans text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">
             {t.home.artworksLink}
           </Link>
         </div>
       </section>
 
-      {/* ── NEWSLETTER ────────────────────────────────────────────────── */}
+      {/* ── NEWSLETTER ───────────────────────────────────────────────── */}
       <section aria-label="Newsletter" className="px-6 py-28 text-center lg:py-44">
         <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-subtle">
           {t.home.newsletterTitle}
