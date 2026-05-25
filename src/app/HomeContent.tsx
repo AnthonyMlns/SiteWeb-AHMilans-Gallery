@@ -186,7 +186,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                       alt={article.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      sizes="(max-width: 768px) 50vw, 25vw"
+                      sizes="50vw"
                     />
                   )}
                 </div>
@@ -285,7 +285,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             {t.home.sectionArtistsDesc}
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px bg-border">
           {roster.length > 0
             ? roster.map((artist) => {
                 const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
@@ -302,7 +302,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                         alt={artist.name}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        sizes="50vw"
                       />
                     )}
                     <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/55 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -345,7 +345,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           </h2>
         </div>
         <div
-          className="grid grid-cols-2 gap-px bg-border lg:grid-cols-4 transition-opacity duration-500"
+          className="grid grid-cols-2 gap-px bg-border transition-opacity duration-500"
           style={{ opacity: artworksVisible ? 1 : 0 }}
         >
           {Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
@@ -367,7 +367,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                     alt={artwork.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    sizes="50vw"
                   />
                 )}
                 <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/55 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
