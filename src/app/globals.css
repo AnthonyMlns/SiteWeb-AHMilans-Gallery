@@ -8,8 +8,8 @@
   --surface: #f3f1ee;
   --placeholder: #e5e3df;
   --subtle: #b5b3ae;
-  --font-serif: 'Inter', system-ui, sans-serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: var(--font-inter);
+  --font-sans: var(--font-inter);
 }
 
 html.dark {
@@ -70,18 +70,10 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-/* Hairline separators */
+/* Hairline separator utility */
 @layer utilities {
-  .border, .border-t, .border-b, .border-l, .border-r {
+  .border-hairline {
     border-width: 0.5px;
-  }
-  .border-x {
-    border-left-width: 0.5px;
-    border-right-width: 0.5px;
-  }
-  .border-y {
-    border-top-width: 0.5px;
-    border-bottom-width: 0.5px;
   }
 }
 

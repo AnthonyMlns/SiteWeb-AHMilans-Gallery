@@ -201,3 +201,29 @@ export async function getFeaturedArtworks() {
 export async function getHomepageSettings() {
   return client.fetch(homepageSettingsQuery)
 }
+
+// ─── Slug queries for generateStaticParams ────────────────────────────────────
+
+const allArtistSlugsQuery = groq`
+  *[_type == "artist" && defined(slug.current)]{ "slug": slug.current }
+`
+
+const allArticleSlugsQuery = groq`
+  *[_type == "article" && defined(slug.current)]{ "slug": slug.current }
+`
+
+const allArtworkSlugsQuery = groq`
+  *[_type == "artwork" && defined(slug.current)]{ "slug": slug.current }
+`
+
+export async function getAllArtistSlugs(): Promise<{ slug: string }[]> {
+  return client.fetch(allArtistSlugsQuery)
+}
+
+export async function getAllArticleSlugs(): Promise<{ slug: string }[]> {
+  return client.fetch(allArticleSlugsQuery)
+}
+
+export async function getAllArtworkSlugs(): Promise<{ slug: string }[]> {
+  return client.fetch(allArtworkSlugsQuery)
+}
