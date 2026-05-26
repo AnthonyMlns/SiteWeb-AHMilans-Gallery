@@ -66,7 +66,7 @@ Sanity Studio is available at `/studio`.
 ## Design
 
 **Palette — "White Cube"**
-- Background `#faf9f7` (linen white) · text `#0f0f0f` · warm tones on all greys
+- Background `#fcfcfc` (near-white) · text `#0f0f0f` · warm tones on all greys
 - Dark mode via `localStorage` + `html.dark` class
 
 **Typography**
