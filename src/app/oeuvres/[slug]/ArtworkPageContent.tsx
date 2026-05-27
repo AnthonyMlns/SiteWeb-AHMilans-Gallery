@@ -38,7 +38,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-28">
 
           {/* Primary image */}
-          <div className="relative aspect-square overflow-hidden bg-placeholder">
+          <div className="relative aspect-square overflow-hidden">
             {primaryImage?.url && (
               <Image
                 src={primaryImage.url}
@@ -99,10 +99,10 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
         {additionalImages.length > 0 && (
           <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3 lg:mt-24 lg:gap-4">
             {additionalImages.map((img, i) => (
-              <div key={i} className="relative aspect-square overflow-hidden bg-placeholder">
+              <div key={i} className="relative aspect-square overflow-hidden">
                 <Image
                   src={img.url}
-                  alt={img.alt ?? `${artwork.title} — vue ${i + 2}`}
+                  alt={img.alt ?? `${artwork.title} — view ${i + 2}`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 50vw, 33vw"
