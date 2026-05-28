@@ -49,9 +49,9 @@ export default function Header() {
   const { t } = useTranslation()
 
   const leftLinks = [
-    { href: '/articles', label: t.nav.editorial },
     { href: '/artistes', label: t.nav.artists },
     { href: '/oeuvres', label: t.nav.works },
+    { href: '/articles', label: t.nav.editorial },
   ]
 
   const isActive = (href: string) => pathname.startsWith(href)

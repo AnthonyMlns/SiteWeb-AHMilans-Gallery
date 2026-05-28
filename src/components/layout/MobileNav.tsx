@@ -16,9 +16,9 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
   const navItems = [
     { href: '/', label: t.nav.home },
-    { href: '/articles', label: t.nav.editorial },
     { href: '/artistes', label: t.nav.artists },
     { href: '/oeuvres', label: t.nav.works },
+    { href: '/articles', label: t.nav.editorial },
     { href: '/contact', label: t.nav.contact },
     { href: '/newsletter', label: 'Newsletter' },
   ]
