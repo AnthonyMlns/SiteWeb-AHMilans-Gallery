@@ -19,6 +19,10 @@ interface ArtistPageContentProps {
 export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
   const heroImage = artist.featuredImageUrl ?? artist.profileImageUrl
   const artworks: ArtworkPreview[] = artist.artworks ?? []
+  const featured = artworks.filter((aw) => aw.featured)
+  const otherWorks = featured.length > 0
+    ? artworks.filter((aw) => !aw.featured)
+    : artworks
 
   return (
     <MainLayout>
@@ -74,19 +78,35 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
         </section>
       )}
 
-      {/* ── Œuvres ─────────────────────────────────────────────────── */}
-      {artworks.length > 0 && (
+      {/* ── Featured works ─────────────────────────────────────────── */}
+      {featured.length > 0 && (
         <section className="mx-auto max-w-7xl px-6 pb-16 lg:pb-28">
           <div className="mb-10 lg:mb-16">
             <h2 className="font-serif text-3xl text-foreground">
-              Works
+              Featured works
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
+            {featured.map((artwork) => (
+              <ArtworkCard key={artwork._id} artwork={artwork} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ── All works ──────────────────────────────────────────────── */}
+      {otherWorks.length > 0 && (
+        <section className="mx-auto max-w-7xl px-6 pb-16 lg:pb-28">
+          <div className="mb-10 lg:mb-16">
+            <h2 className="font-serif text-3xl text-foreground">
+              {featured.length > 0 ? 'More works' : 'Works'}
               <span className="ml-3 font-sans text-base font-light text-muted">
                 ({artworks.length})
               </span>
             </h2>
           </div>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
-            {artworks.map((artwork) => (
+            {otherWorks.map((artwork) => (
               <ArtworkCard key={artwork._id} artwork={artwork} />
             ))}
           </div>
