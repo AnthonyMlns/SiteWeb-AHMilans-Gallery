@@ -39,7 +39,7 @@ export default function ArticlesContent({ articles }: ArticlesContentProps) {
               return (
                 <Link
                   key={article._id}
-                  href={`/articles/${article.slug.current}`}
+                  href={`/editorial/${article.slug.current}`}
                   className="group flex items-start gap-6 py-8 md:gap-10"
                 >
                   {/* Thumbnail */}

@@ -17,9 +17,9 @@ export default function Footer() {
         </p>
 
         <nav aria-label="Footer" className="flex items-center gap-6">
-          <Link href="/oeuvres"   className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.works}</Link>
-          <Link href="/artistes"  className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.artists}</Link>
-          <Link href="/articles"  className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.editorial}</Link>
+          <Link href="/works"   className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.works}</Link>
+          <Link href="/artists"  className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.artists}</Link>
+          <Link href="/editorial"  className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.editorial}</Link>
           <Link href="/contact"   className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.contact}</Link>
         </nav>
 

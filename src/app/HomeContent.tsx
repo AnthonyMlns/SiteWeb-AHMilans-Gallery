@@ -96,7 +96,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               {t.home.sectionArtistsDesc}
             </h2>
           </div>
-          <SectionLink href="/artistes" label={t.home.artistsLink} />
+          <SectionLink href="/artists" label={t.home.artistsLink} />
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {roster.length > 0
@@ -105,7 +105,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
                 return (
                   <Link
                     key={artist._id}
-                    href={`/artistes/${artist.slug.current}`}
+                    href={`/artists/${artist.slug.current}`}
                     className="group"
                   >
                     <div
@@ -156,7 +156,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               {t.home.sectionWorksDesc}
             </h2>
           </div>
-          <SectionLink href="/oeuvres" label={t.home.artworksLink} />
+          <SectionLink href="/works" label={t.home.artworksLink} />
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {Array.from({ length: ARTWORKS_VISIBLE }).map((_, i) => {
@@ -174,7 +174,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             return (
               <Link
                 key={artwork._id}
-                href={`/oeuvres/${artwork.slug.current}`}
+                href={`/works/${artwork.slug.current}`}
                 className="group"
               >
                 <div
@@ -223,7 +223,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               {t.home.sectionJournalDesc}
             </h2>
           </div>
-          <SectionLink href="/articles" label={`${t.home.readMore} ↗`} />
+          <SectionLink href="/editorial" label={`${t.home.readMore} ↗`} />
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {Array.from({ length: 8 }).map((_, i) => {
@@ -243,7 +243,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             return (
               <Link
                 key={article._id}
-                href={`/articles/${article.slug.current}`}
+                href={`/editorial/${article.slug.current}`}
                 className="group"
               >
                 <div className="relative mb-3 overflow-hidden bg-placeholder" style={{ aspectRatio: '4/3' }}>

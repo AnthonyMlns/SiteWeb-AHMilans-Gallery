@@ -32,7 +32,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
 
         {/* Back link */}
         <Link
-          href="/artistes"
+          href="/artists"
           className="mb-12 block text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground lg:mb-16"
         >
           ← Artists

@@ -54,7 +54,7 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
               <>
                 <span>·</span>
                 <Link
-                  href={`/artistes/${article.relatedArtist.slug.current}`}
+                  href={`/artists/${article.relatedArtist.slug.current}`}
                   className="transition-colors hover:text-foreground"
                 >
                   {article.relatedArtist.name}
@@ -85,7 +85,7 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
               {t.articles.relatedArtist}
             </p>
             <Link
-              href={`/artistes/${article.relatedArtist.slug.current}`}
+              href={`/artists/${article.relatedArtist.slug.current}`}
               className="font-serif text-3xl text-foreground transition-opacity hover:opacity-50"
             >
               {article.relatedArtist.name}
@@ -96,7 +96,7 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
 
         <div className="mt-16">
           <Link
-            href="/articles"
+            href="/editorial"
             className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
           >
             {t.articles.backLink}

@@ -39,7 +39,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
 
         {/* Back */}
         <Link
-          href="/oeuvres"
+          href="/works"
           className="mb-12 block text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground lg:mb-16"
         >
           ← All works
@@ -66,7 +66,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
           <div className="flex flex-col justify-center">
             {artwork.artist && (
               <Link
-                href={`/artistes/${artwork.artist.slug.current}`}
+                href={`/artists/${artwork.artist.slug.current}`}
                 className="mb-4 text-[13px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
               >
                 {artwork.artist.name}

@@ -43,12 +43,12 @@ The AH Milans website (`ahmilans.gallery`) is built with **Next.js** and **Sanit
 | Section | URL | Description |
 |---|---|---|
 | Home | `/` | Editorial hero, featured article, artist portrait, manifesto, artist & artwork grids |
-| Artists | `/artistes` | Full roster â€” all represented artists |
-| Artist page | `/artistes/[slug]` | Artist profile: biography, featured image, full list of works |
-| Works | `/oeuvres` | All available artworks, filterable by artist |
-| Artwork page | `/oeuvres/[slug]` | Full artwork detail: images, medium, dimensions, year, price, acquisition inquiry |
-| Journal | `/articles` | Editorial content: interviews, essays, artist portraits |
-| Article page | `/articles/[slug]` | Full article with body, category, read time |
+| Artists | `/artists` | Full roster — all represented artists |
+| Artist page | `/artists/[slug]` | Artist profile: biography, featured image, full list of works |
+| Works | `/works` | All available artworks, filterable by artist |
+| Artwork page | `/works/[slug]` | Full artwork detail: images, medium, dimensions, year, price, acquisition inquiry |
+| Journal | `/editorial` | Editorial content: interviews, essays, artist portraits |
+| Article page | `/editorial/[slug]` | Full article with body, category, read time |
 | Contact | `/contact` | Contact form, address, email, Instagram |
 
 ---

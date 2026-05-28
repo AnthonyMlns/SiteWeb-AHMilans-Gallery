@@ -14,7 +14,7 @@ export default function ArtworkCard({ artwork }: ArtworkCardProps) {
   const firstImage = artwork.images?.[0]
 
   return (
-    <Link href={`/oeuvres/${artwork.slug.current}`} className="group block">
+    <Link href={`/works/${artwork.slug.current}`} className="group block">
       <div className="relative aspect-[4/5] overflow-hidden bg-placeholder">
         {firstImage?.url ? (
           <Image

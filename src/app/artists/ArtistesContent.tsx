@@ -28,7 +28,7 @@ export default function ArtistesContent({ artists }: ArtistesContentProps) {
 
               return (
                 <div key={artist._id}>
-                  <Link href={`/artistes/${artist.slug.current}`} className="group block">
+                  <Link href={`/artists/${artist.slug.current}`} className="group block">
                     <div className="relative aspect-[3/4] overflow-hidden bg-placeholder">
                       {imageUrl ? (
                         <Image

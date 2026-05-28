@@ -23,9 +23,9 @@ Built with **Next.js** (App Router) and **Sanity v3** as a headless CMS.
 ```
 src/
 ├── app/                  # Pages (App Router)
-│   ├── articles/         # Editorial journal
-│   ├── artistes/         # Roster + artist pages
-│   ├── oeuvres/          # Collection + artwork pages
+│   ├── editorial/        # Editorial journal
+│   ├── artists/          # Roster + artist pages
+│   ├── works/            # Collection + artwork pages
 │   ├── contact/          # Contact form
 │   ├── newsletter/       # Newsletter page
 │   └── signin/           # Authentication (coming soon)
@@ -99,7 +99,7 @@ Sanity Studio is available at `/studio`.
 ## Roadmap
 
 - [x] **v1.0 MVP** — Core gallery site: homepage, artists, artworks, Sanity CMS
-- [ ] **v1.1 UX & Design** — Lightbox, enriched filters, artist page redesign, consistent photography
+- [ ] **v1.1 UX & Design** — Lightbox, enriched filters, artist page redesign, consistent photography, full-screen nav, route migration to English
 - [ ] **v1.2 SEO & Analytics** — GA4, OG tags, JSON-LD, sitemap, cookie consent
 
 > Detailed planning in [GitHub Projects](https://github.com/AnthonyMlns/AH-Milans-SanityCMS/projects) and [Milestones](https://github.com/AnthonyMlns/AH-Milans-SanityCMS/milestones).
