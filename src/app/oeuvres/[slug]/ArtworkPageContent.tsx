@@ -37,6 +37,14 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
     <MainLayout>
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-28">
 
+        {/* Back */}
+        <Link
+          href="/oeuvres"
+          className="mb-12 block text-[10px] uppercase tracking-widest text-muted transition-colors hover:text-foreground lg:mb-16"
+        >
+          ← All works
+        </Link>
+
         {/* Main grid */}
         <FadeIn><div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-28">
 
@@ -129,15 +137,6 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
           </section></FadeIn>
         )}
 
-        {/* Back */}
-        <div className="mt-12 lg:mt-24">
-          <Link
-            href="/oeuvres"
-            className="text-[13px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
-          >
-            ← All works
-          </Link>
-        </div>
       </div>
     </MainLayout>
   )
