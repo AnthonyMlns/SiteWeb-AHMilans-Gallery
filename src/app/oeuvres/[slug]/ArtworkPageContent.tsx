@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer'
+import FadeIn from '@/components/ui/FadeIn'
 import InquireModal from '@/components/artwork/InquireModal'
 import ArtworkCard from '@/components/cards/ArtworkCard'
 import type { ArtworkPreview, SanityImage } from '@/lib/types'
@@ -37,7 +38,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-28">
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-28">
+        <FadeIn><div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-28">
 
           {/* Primary image */}
           <div className="relative aspect-square overflow-hidden">
@@ -95,11 +96,11 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
               />
             )}
           </div>
-        </div>
+        </div></FadeIn>
 
         {/* Additional images */}
         {additionalImages.length > 0 && (
-          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3 lg:mt-24 lg:gap-4">
+          <FadeIn><div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3 lg:mt-24 lg:gap-4">
             {additionalImages.map((img, i) => (
               <div key={i} className="relative aspect-square overflow-hidden">
                 <Image
@@ -111,12 +112,12 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
                 />
               </div>
             ))}
-          </div>
+          </div></FadeIn>
         )}
 
         {/* Related works from the same artist */}
         {artwork.relatedWorks && artwork.relatedWorks.length > 0 && (
-          <section className="mt-16 lg:mt-28">
+          <FadeIn><section className="mt-16 lg:mt-28">
             <h2 className="mb-10 font-serif text-3xl text-foreground lg:mb-16">
               From the same artist
             </h2>
@@ -125,7 +126,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
                 <ArtworkCard key={related._id} artwork={related} />
               ))}
             </div>
-          </section>
+          </section></FadeIn>
         )}
 
         {/* Back */}

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import { Logo } from '@/components/layout/Header'
 import NewsletterForm from '@/components/ui/NewsletterForm'
+import FadeIn from '@/components/ui/FadeIn'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import type { ArtistPreview, ArtworkPreview, ArticlePreview } from '@/lib/types'
 
@@ -84,7 +85,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
       </section>
 
       {/* ── ARTISTS — all, 4 columns ─────────────────────────────────── */}
-      <section aria-label={t.home.theRoster}>
+      <FadeIn><section aria-label={t.home.theRoster}>
         <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.artists}</p>
@@ -141,10 +142,10 @@ export default function HomeContent({ settings, articles, roster, collection }: 
               ))
           }
         </div>
-      </section>
+      </section></FadeIn>
 
       {/* ── WORKS — 2 × 4, single shuffle ────────────────────────────── */}
-      <section aria-label={t.home.selectedWorks}>
+      <FadeIn><section aria-label={t.home.selectedWorks}>
         <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.works}</p>
@@ -208,10 +209,10 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-      </section>
+      </section></FadeIn>
 
       {/* ── EDITORIAL — 2 × 4 ────────────────────────────────────────── */}
-      <section aria-label={t.nav.editorial}>
+      <FadeIn><section aria-label={t.nav.editorial}>
         <div className="flex items-end justify-between px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-36">
           <div>
             <p className="mb-4 font-sans text-[9px] uppercase tracking-[0.22em] text-subtle">{t.nav.editorial}</p>
@@ -273,10 +274,10 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             )
           })}
         </div>
-      </section>
+      </section></FadeIn>
 
       {/* ── MANIFESTE ────────────────────────────────────────────────── */}
-      <section className="px-6 py-24 lg:px-10 lg:py-40">
+      <FadeIn><section className="px-6 py-24 lg:px-10 lg:py-40">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[3fr_2fr] lg:gap-32">
           <p
             className="font-serif text-foreground"
@@ -288,10 +289,10 @@ export default function HomeContent({ settings, articles, roster, collection }: 
             {t.home.manifestoRight}
           </p>
         </div>
-      </section>
+      </section></FadeIn>
 
       {/* ── NEWSLETTER ───────────────────────────────────────────────── */}
-      <section aria-label="Newsletter" className="px-6 py-28 text-center lg:py-44">
+      <FadeIn><section aria-label="Newsletter" className="px-6 py-28 text-center lg:py-44">
         <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-subtle">
           {t.home.newsletterTitle}
         </p>
@@ -302,7 +303,7 @@ export default function HomeContent({ settings, articles, roster, collection }: 
           {t.home.newsletterSubtitle}
         </p>
         <NewsletterForm className="mx-auto mt-10 max-w-xs" />
-      </section>
+      </section></FadeIn>
 
     </MainLayout>
   )

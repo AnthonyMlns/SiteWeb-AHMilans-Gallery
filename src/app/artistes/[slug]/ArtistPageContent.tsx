@@ -3,6 +3,7 @@ import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import ArtworkCard from '@/components/cards/ArtworkCard'
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer'
+import FadeIn from '@/components/ui/FadeIn'
 import type { ArtistPreview, ArtworkPreview } from '@/lib/types'
 
 interface ArtistFull extends ArtistPreview {
@@ -38,7 +39,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
         </Link>
 
         {/* Two-column layout: photo + info | bio */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
+        <FadeIn><div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
 
           {/* ── Left column: photo + contact ──────────────────────────── */}
           <div>
@@ -110,11 +111,11 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
               </p>
             )}
           </div>
-        </div>
+        </div></FadeIn>
 
         {/* ── Featured works ─────────────────────────────────────────── */}
         {featured.length > 0 && (
-          <section className="mt-16 lg:mt-28">
+          <FadeIn><section className="mt-16 lg:mt-28">
             <h2 className="mb-10 font-serif text-3xl text-foreground lg:mb-16">
               Featured works
             </h2>
@@ -123,12 +124,12 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
                 <ArtworkCard key={artwork._id} artwork={artwork} />
               ))}
             </div>
-          </section>
+          </section></FadeIn>
         )}
 
         {/* ── All works ──────────────────────────────────────────────── */}
         {otherWorks.length > 0 && (
-          <section className="mt-16 lg:mt-28">
+          <FadeIn><section className="mt-16 lg:mt-28">
             <h2 className="mb-10 font-serif text-3xl text-foreground lg:mb-16">
               {featured.length > 0 ? 'More works' : 'Works'}
               <span className="ml-3 font-sans text-base font-light text-muted">
@@ -140,7 +141,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
                 <ArtworkCard key={artwork._id} artwork={artwork} />
               ))}
             </div>
-          </section>
+          </section></FadeIn>
         )}
       </div>
     </MainLayout>
