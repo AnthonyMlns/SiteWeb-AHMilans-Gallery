@@ -25,6 +25,13 @@ export const artist = defineType({
       options: { hotspot: true },
     }),
     defineField({
+      name: 'statementCourt',
+      title: 'Short Statement',
+      type: 'text',
+      rows: 3,
+      description: '1–2 sentences for the homepage.',
+    }),
+    defineField({
       name: 'country',
       title: 'Country',
       type: 'string',
@@ -33,6 +40,16 @@ export const artist = defineType({
       name: 'style',
       title: 'Style',
       type: 'string',
+    }),
+    defineField({
+      name: 'instagramUrl',
+      title: 'Instagram URL',
+      type: 'url',
+    }),
+    defineField({
+      name: 'website',
+      title: 'Website',
+      type: 'url',
     }),
     defineField({
       name: 'bio',
@@ -51,23 +68,6 @@ export const artist = defineType({
       title: 'Featured Image',
       type: 'image',
       options: { hotspot: true },
-    }),
-    defineField({
-      name: 'instagramUrl',
-      title: 'Instagram URL',
-      type: 'url',
-    }),
-    defineField({
-      name: 'website',
-      title: 'Website',
-      type: 'url',
-    }),
-    defineField({
-      name: 'statementCourt',
-      title: 'Short Statement',
-      type: 'text',
-      rows: 3,
-      description: '1–2 sentences for the homepage.',
     }),
     defineField({
       name: 'order',

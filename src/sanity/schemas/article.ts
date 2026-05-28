@@ -32,6 +32,17 @@ export const article = defineType({
       },
     }),
     defineField({
+      name: 'publishedAt',
+      title: 'Published At',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+    }),
+    defineField({
+      name: 'readTime',
+      title: 'Read Time (minutes)',
+      type: 'number',
+    }),
+    defineField({
       name: 'thumbnail',
       title: 'Thumbnail',
       type: 'image',
@@ -72,17 +83,6 @@ export const article = defineType({
       title: 'Related Artist',
       type: 'reference',
       to: [{ type: 'artist' }],
-    }),
-    defineField({
-      name: 'publishedAt',
-      title: 'Published At',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-    }),
-    defineField({
-      name: 'readTime',
-      title: 'Read Time (minutes)',
-      type: 'number',
     }),
     defineField({
       name: 'featured',

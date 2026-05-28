@@ -49,20 +49,14 @@ export const artwork = defineType({
       type: 'number',
     }),
     defineField({
-      name: 'dimensions',
-      title: 'Dimensions',
-      type: 'string',
-    }),
-    defineField({
       name: 'medium',
       title: 'Medium',
       type: 'string',
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'array',
-      of: [{ type: 'block' }],
+      name: 'dimensions',
+      title: 'Dimensions',
+      type: 'string',
     }),
     defineField({
       name: 'available',
@@ -71,15 +65,21 @@ export const artwork = defineType({
       initialValue: true,
     }),
     defineField({
+      name: 'price',
+      title: 'Price (€)',
+      type: 'number',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
       name: 'featured',
       title: 'Featured',
       type: 'boolean',
       initialValue: false,
-    }),
-    defineField({
-      name: 'price',
-      title: 'Price (€)',
-      type: 'number',
     }),
   ],
   preview: {
