@@ -14,7 +14,6 @@ export interface Translations {
     allArtists: string
     collection: string
     allWorks: string
-    services: string
     journal: string
     allArticles: string
     heroSubtitle: string
@@ -135,7 +134,6 @@ export const translations: Translations = {
     allArtists: 'All artists →',
     collection: 'Collection',
     allWorks: 'All works →',
-    services: 'Services',
     journal: 'Journal',
     allArticles: 'All articles →',
     heroSubtitle: 'A curatorial label for contemporary abstract art',

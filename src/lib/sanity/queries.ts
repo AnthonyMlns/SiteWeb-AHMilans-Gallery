@@ -148,25 +148,6 @@ export const featuredArtworksQuery = groq`
   }
 `
 
-export const homepageSettingsQuery = groq`
-  *[_type == "settings"][0] {
-    tickerText,
-    "services": services[]{
-      title,
-      description
-    },
-    "heroArtist": heroArtist->{
-      ${artistPreviewFields}
-    },
-    "artistOfTheMonth": artistOfTheMonth->{
-      ${artistPreviewFields}
-    },
-    "featuredArtwork": featuredArtwork->{
-      ${artworkPreviewFields}
-    }
-  }
-`
-
 // ─── Fetch helpers ─────────────────────────────────────────────────────────────
 
 export async function getAllArtists() {
@@ -199,10 +180,6 @@ export async function getArticleBySlug(slug: string) {
 
 export async function getFeaturedArtworks() {
   return client.fetch(featuredArtworksQuery)
-}
-
-export async function getHomepageSettings() {
-  return client.fetch(homepageSettingsQuery)
 }
 
 // ─── Slug queries for generateStaticParams ────────────────────────────────────

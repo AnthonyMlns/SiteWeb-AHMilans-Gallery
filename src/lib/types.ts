@@ -72,15 +72,4 @@ export interface ArticleFull extends ArticlePreview {
   body?: any[]
 }
 
-export interface Service {
-  title: string
-  description?: string
-}
 
-export interface HomepageSettings {
-  tickerText?: string[]
-  heroArtist?: ArtistPreview
-  artistOfTheMonth?: ArtistPreview
-  featuredArtwork?: ArtworkPreview
-  services?: Service[]
-}

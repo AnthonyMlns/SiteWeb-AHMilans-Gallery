@@ -10,12 +10,7 @@ import FadeIn from '@/components/ui/FadeIn'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import type { ArtistPreview, ArtworkPreview, ArticlePreview } from '@/lib/types'
 
-interface HomepageSettings {
-  heroArtist?: ArtistPreview
-}
-
 interface HomeContentProps {
-  settings: HomepageSettings | null
   articles: ArticlePreview[]
   roster: ArtistPreview[]
   collection: ArtworkPreview[]
@@ -47,7 +42,7 @@ function SectionLink({ href, label }: { href: string; label: string }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function HomeContent({ settings, articles, roster, collection }: HomeContentProps) {
+export default function HomeContent({ articles, roster, collection }: HomeContentProps) {
   const { t } = useTranslation()
 
   const gridArticles = articles.slice(0, 8)

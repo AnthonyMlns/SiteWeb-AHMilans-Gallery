@@ -1,6 +1,5 @@
 import HomeContent from './HomeContent'
 import {
-  getHomepageSettings,
   getLatestArticles,
   getAllArtists,
   getAvailableArtworks,
@@ -20,8 +19,7 @@ function shuffle<T>(array: T[]): T[] {
 }
 
 export default async function HomePage() {
-  const [settings, articles, artists, allArtworks] = await Promise.all([
-    getHomepageSettings(),
+  const [articles, artists, allArtworks] = await Promise.all([
     getLatestArticles(),
     getAllArtists(),
     getAvailableArtworks(),
@@ -32,7 +30,6 @@ export default async function HomePage() {
 
   return (
     <HomeContent
-      settings={settings}
       articles={(articles ?? []) as ArticlePreview[]}
       roster={(artists ?? []) as ArtistPreview[]}
       collection={shuffledArtworks}
