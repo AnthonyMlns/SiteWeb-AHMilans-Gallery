@@ -32,6 +32,12 @@ export const artist = defineType({
       description: '1–2 sentences for the homepage.',
     }),
     defineField({
+      name: 'bio',
+      title: 'Bio',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
       name: 'country',
       title: 'Country',
       type: 'string',
@@ -51,37 +57,6 @@ export const artist = defineType({
       title: 'Website',
       type: 'url',
     }),
-    defineField({
-      name: 'bio',
-      title: 'Bio',
-      type: 'array',
-      of: [{ type: 'block' }],
-    }),
-    defineField({
-      name: 'featured',
-      title: 'Featured',
-      type: 'boolean',
-      initialValue: false,
-    }),
-    defineField({
-      name: 'featuredImage',
-      title: 'Featured Image',
-      type: 'image',
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: 'order',
-      title: 'Order',
-      type: 'number',
-      initialValue: 0,
-    }),
-  ],
-  orderings: [
-    {
-      title: 'Order',
-      name: 'orderAsc',
-      by: [{ field: 'order', direction: 'asc' }],
-    },
   ],
   preview: {
     select: {
