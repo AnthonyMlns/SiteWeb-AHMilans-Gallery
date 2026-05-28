@@ -218,7 +218,7 @@ export default function HomeContent({ articles, roster, collection }: HomeConten
               {t.home.sectionJournalDesc}
             </h2>
           </div>
-          <SectionLink href="/editorial" label={`${t.home.readMore} ↗`} />
+          <SectionLink href="/editorial" label={t.home.readMore} />
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 px-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10 lg:px-10">
           {Array.from({ length: 8 }).map((_, i) => {
