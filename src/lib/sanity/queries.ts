@@ -80,6 +80,10 @@ export const artworkBySlugQuery = groq`
     },
     "artist": artist->{
       ${artistPreviewFields}
+    },
+    "artistRef": artist._ref,
+    "relatedWorks": *[_type == "artwork" && artist._ref == ^.artistRef && slug.current != $slug] | order(_createdAt desc) [0..7] {
+      ${artworkPreviewFields}
     }
   }
 `

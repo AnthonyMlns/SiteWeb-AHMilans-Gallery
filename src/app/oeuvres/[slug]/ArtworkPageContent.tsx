@@ -3,6 +3,7 @@ import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer'
 import InquireModal from '@/components/artwork/InquireModal'
+import ArtworkCard from '@/components/cards/ArtworkCard'
 import type { ArtworkPreview, SanityImage } from '@/lib/types'
 
 interface ArtworkFull extends ArtworkPreview {
@@ -10,6 +11,7 @@ interface ArtworkFull extends ArtworkPreview {
   description?: any[]
   medium?: string
   dimensions?: string
+  relatedWorks?: ArtworkPreview[]
 }
 
 interface ArtworkPageContentProps {
@@ -110,6 +112,20 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
               </div>
             ))}
           </div>
+        )}
+
+        {/* Related works from the same artist */}
+        {artwork.relatedWorks && artwork.relatedWorks.length > 0 && (
+          <section className="mt-16 lg:mt-28">
+            <h2 className="mb-10 font-serif text-3xl text-foreground lg:mb-16">
+              From the same artist
+            </h2>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
+              {artwork.relatedWorks.map((related) => (
+                <ArtworkCard key={related._id} artwork={related} />
+              ))}
+            </div>
+          </section>
         )}
 
         {/* Back */}
