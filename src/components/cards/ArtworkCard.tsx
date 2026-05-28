@@ -42,8 +42,10 @@ export default function ArtworkCard({ artwork }: ArtworkCardProps) {
           <p className="text-[13px] text-muted">{artwork.artist.name}</p>
         )}
         <div className="flex items-center justify-between pt-0.5">
-          {artwork.year && (
-            <span className="text-[13px] text-muted">{artwork.year}</span>
+          {artwork.dimensions ? (
+            <span className="text-[13px] text-muted">{artwork.dimensions}</span>
+          ) : (
+            artwork.year && <span className="text-[13px] text-muted">{artwork.year}</span>
           )}
           {artwork.price && artwork.available && (
             <span className="text-[13px] font-medium text-foreground">
