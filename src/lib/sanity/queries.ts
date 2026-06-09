@@ -138,6 +138,9 @@ export const articleBySlugQuery = groq`
     "relatedArtist": relatedArtist->{
       name,
       slug
+    },
+    "relatedArtistArtworks": *[_type == "artwork" && artist._ref == ^.relatedArtist._ref] | order(_createdAt desc) [0..8] {
+      ${artworkPreviewFields}
     }
   }
 `

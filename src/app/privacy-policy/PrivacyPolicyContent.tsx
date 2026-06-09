@@ -10,7 +10,7 @@ function PrivacyContent() {
       <section>
         <h2 className="mb-4 font-serif text-2xl text-foreground">1. Data Controller</h2>
         <p>
-          The controller of personal data collected via this site is Ahmilan&apos;s Gallery, reachable at: <a href={`mailto:${CONTACT_EMAIL}`} className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">{CONTACT_EMAIL}</a>.
+          The controller of personal data collected via this site is AH — Milans, reachable at: <a href={`mailto:${CONTACT_EMAIL}`} className="text-foreground underline underline-offset-2 transition-opacity hover:opacity-60">{CONTACT_EMAIL}</a>.
         </p>
       </section>
       <section>
@@ -38,7 +38,7 @@ function PrivacyContent() {
       </section>
       <section>
         <h2 className="mb-4 font-serif text-2xl text-foreground">6. Data Sharing</h2>
-        <p>Ahmilan&apos;s Gallery <strong className="font-medium text-foreground">does not sell your personal data</strong> to third parties. Your data may be shared with technical service providers strictly within the scope of their services.</p>
+        <p>AH — Milans <strong className="font-medium text-foreground">does not sell your personal data</strong> to third parties. Your data may be shared with technical service providers strictly within the scope of their services.</p>
       </section>
       <section>
         <h2 className="mb-4 font-serif text-2xl text-foreground">7. Your Rights</h2>

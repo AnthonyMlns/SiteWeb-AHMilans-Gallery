@@ -1,6 +1,6 @@
-# AH Milans Gallery
+# AH — Milans Gallery
 
-Website for the curatorial label **AH Milans** — showcasing emerging artists, works available for acquisition, and an editorial programme.
+Website for the curatorial label **AH — Milans** — showcasing emerging artists, works available for acquisition, and an editorial programme.
 
 Built with **Next.js** (App Router) and **Sanity v3** as a headless CMS.
 

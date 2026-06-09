@@ -107,7 +107,7 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
 
             {!artist.bio && (
               <p className="mt-8 text-sm leading-relaxed text-muted">
-                {artist.statementCourt || `${artist.name} is represented by AH Milans.`}
+                {artist.statementCourt || `${artist.name} is represented by AH — Milans.`}
               </p>
             )}
           </div>

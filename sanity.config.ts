@@ -7,7 +7,7 @@ import { schemaTypes } from '@/sanity/schemas'
 
 export default defineConfig({
   name: 'ahmilans-gallery',
-  title: 'Ahmilan\'s Gallery',
+  title: 'AH — Milans',
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,

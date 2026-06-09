@@ -21,7 +21,7 @@ export default function NewsletterContent({ heroImageUrl }: NewsletterContentPro
           {heroImageUrl && (
             <Image
               src={heroImageUrl}
-              alt="AH Milans Gallery"
+              alt="AH — Milans"
               fill
               priority
               className="object-cover"

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import MainLayout from '@/components/layout/MainLayout'
 
 export const metadata: Metadata = {
-  title: "Page Not Found — Ahmilan's Gallery",
+  title: "Page Not Found — AH — Milans",
 }
 
 export default function NotFound() {

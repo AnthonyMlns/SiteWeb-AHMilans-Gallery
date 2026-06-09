@@ -86,6 +86,7 @@ export interface Translations {
     backLink: string
     readTime: (n: number) => string
     relatedArtist: string
+    relatedWorks: string
   }
   categories: {
     interview: string
@@ -148,7 +149,7 @@ export const translations: Translations = {
     selectedWorks: 'Selected works',
     theRoster: 'The roster',
     heroLeft: 'A careful eye on singular practices — artists chosen for the depth and coherence of their work.',
-    heroRight: 'AH Milans champions a focused selection of emerging artists whose practice deserves a closer look. Every representation is a commitment.',
+    heroRight: 'AH — Milans champions a focused selection of emerging artists whose practice deserves a closer look. Every representation is a commitment.',
     heroLink: 'View available artworks →',
     readMore: 'Read More ↗',
     portrait: 'Portrait',
@@ -161,7 +162,7 @@ export const translations: Translations = {
     sectionArtistsDesc: 'A focused roster, built around a single criterion: the singularity of an approach and the coherence of a practice over time.',
     sectionWorksDesc: 'Works chosen for their intrinsic quality, each documented and directly tied to the artist who made them.',
     manifestoLeft: 'We are not a gallery in the traditional sense. We are a curatorial label — a filter, a voice, a commitment to artists who deserve to be seen.',
-    manifestoRight: 'AH Milans identifies emerging artists whose practice deserves sustained attention. We build around them an editorial presence: articles, portraits, contextual writing. Acquisition is just one of the possible forms of a relationship with art that we seek to make more direct, more personal, more honest.',
+    manifestoRight: 'AH — Milans identifies emerging artists whose practice deserves sustained attention. We build around them an editorial presence: articles, portraits, contextual writing. Acquisition is just one of the possible forms of a relationship with art that we seek to make more direct, more personal, more honest.',
   },
   newsletter: {
     placeholder: 'Email address',
@@ -207,6 +208,7 @@ export const translations: Translations = {
     backLink: '← All articles',
     readTime: (n) => `${n} min read`,
     relatedArtist: 'Related artist',
+    relatedWorks: 'Related works',
   },
   categories: {
     interview: 'Interview',

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import SignInContent from './SignInContent'
 
 export const metadata: Metadata = {
-  title: "Sign in — Ahmilan's Gallery",
+  title: "Sign in — AH — Milans",
   description: "Log in or create an account to access exclusive content.",
 }
 

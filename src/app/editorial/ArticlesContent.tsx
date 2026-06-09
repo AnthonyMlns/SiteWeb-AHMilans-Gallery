@@ -43,7 +43,7 @@ export default function ArticlesContent({ articles }: ArticlesContentProps) {
                   className="group flex items-start gap-6 py-8 md:gap-10"
                 >
                   {/* Thumbnail */}
-                  <div className="relative h-24 w-36 shrink-0 overflow-hidden bg-placeholder md:h-28 md:w-44">
+                  <div className="relative w-24 shrink-0 overflow-hidden bg-placeholder aspect-square md:w-44">
                     {article.thumbnailUrl ? (
                       <Image
                         src={article.thumbnailUrl}

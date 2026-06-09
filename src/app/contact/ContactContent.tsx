@@ -25,11 +25,9 @@ export default function ContactContent() {
           {/* Info */}
           <div className="flex flex-col gap-12 lg:pl-8">
             <div>
-              <p className="mb-4 text-[10px] uppercase tracking-widest text-muted">{t.contact.address}</p>
-              <address className="not-italic text-sm leading-loose text-foreground">
-                Ahmilan&apos;s Gallery<br />
-                Paris, France
-              </address>
+              <p className="mb-2 leading-relaxed text-muted text-sm">
+                AH — Milans is a curatorial label based in Paris, connecting collectors directly with emerging contemporary artists.
+              </p>
             </div>
 
             <div>

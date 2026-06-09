@@ -1,15 +1,16 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer'
+import ArtworkCard from '@/components/cards/ArtworkCard'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
-import type { ArticlePreview } from '@/lib/types'
+import type { ArticlePreview, ArtworkPreview } from '@/lib/types'
 
 interface ArticleFull extends ArticlePreview {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: any[]
+  relatedArtistArtworks?: ArtworkPreview[]
 }
 
 interface ArticlePageContentProps {
@@ -64,19 +65,6 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
           </div>
         </header>
 
-        {article.thumbnailUrl && (
-          <div className="relative mb-14 aspect-[16/9] overflow-hidden bg-placeholder">
-            <Image
-              src={article.thumbnailUrl}
-              alt={article.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 768px"
-            />
-          </div>
-        )}
-
         {article.body && <PortableTextRenderer value={article.body} />}
 
         {article.relatedArtist && (
@@ -91,6 +79,19 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
               {article.relatedArtist.name}
               <span className="ml-3 font-sans text-base">→</span>
             </Link>
+          </div>
+        )}
+
+        {article.relatedArtistArtworks && article.relatedArtistArtworks.length > 0 && (
+          <div className="mt-16">
+            <p className="mb-6 text-[10px] uppercase tracking-widest text-muted">
+              {t.articles.relatedWorks}
+            </p>
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+              {article.relatedArtistArtworks.map((artwork) => (
+                <ArtworkCard key={artwork._id} artwork={artwork} />
+              ))}
+            </div>
           </div>
         )}
 

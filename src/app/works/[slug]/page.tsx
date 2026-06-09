@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const artwork = await getArtworkBySlug(slug)
   if (!artwork) return {}
   return {
-    title: `${artwork.title} — Ahmilan's Gallery`,
+    title: `${artwork.title} — AH — Milans`,
     description: artwork.medium
       ? `${artwork.title}, ${artwork.medium}${artwork.year ? `, ${artwork.year}` : ''}.`
       : undefined,

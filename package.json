@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "articles:import": "node scripts/import-articles.mjs"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

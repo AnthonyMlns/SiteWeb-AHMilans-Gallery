@@ -4,7 +4,7 @@ import { getFeaturedArtworks } from '@/lib/sanity/queries'
 import type { ArtworkPreview } from '@/lib/types'
 
 export const metadata: Metadata = {
-  title: "Newsletter — AH Milans",
+  title: "Newsletter — AH — Milans",
   description: "Not your average newsletter. Best emerging artist updates.",
 }
 

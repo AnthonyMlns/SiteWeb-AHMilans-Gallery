@@ -21,7 +21,7 @@ export function Logo({
     <Link
       href="/"
       onClick={onClick}
-      aria-label="AH Milans"
+      aria-label="AH — Milans"
       className={['inline-block transition-opacity hover:opacity-50', className].filter(Boolean).join(' ')}
     >
       <svg
@@ -127,7 +127,7 @@ export default function Header() {
             </button>
           </div>
         </div>
-        <span aria-hidden="true" className="absolute bottom-0 left-1/2 h-px w-screen -translate-x-1/2 bg-border" />
+        <span aria-hidden="true" className="absolute bottom-0 left-0 h-px w-full bg-border" />
       </header>
 
       <MobileNav isOpen={isOpen} onClose={() => setIsOpen(false)} />

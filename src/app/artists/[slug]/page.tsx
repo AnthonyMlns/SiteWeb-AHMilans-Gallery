@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const artist = await getArtistBySlug(slug)
   if (!artist) return {}
   return {
-    title: `${artist.name} — Ahmilan's Gallery`,
+    title: `${artist.name} — AH — Milans`,
     description: `Discover artworks by ${artist.name}${artist.country ? ` (${artist.country})` : ''}.`,
   }
 }

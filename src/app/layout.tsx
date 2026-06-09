@@ -17,7 +17,7 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: "Ahmilan's Gallery",
+  title: "AH — Milans",
   description: 'A curated gallery of contemporary artists.',
 }
 
@@ -31,7 +31,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark')}catch(e){}` }} />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden">
         <Providers>{children}</Providers>
       </body>
     </html>

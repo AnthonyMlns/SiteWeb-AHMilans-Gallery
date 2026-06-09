@@ -7,7 +7,7 @@ import type { ArtworkPreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Works — Ahmilan's Gallery",
+  title: "Works — AH — Milans",
   description: "All works available for acquisition.",
 }
 

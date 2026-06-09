@@ -6,8 +6,8 @@ import type { ArtistPreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Artists — Ahmilan's Gallery",
-  description: "Discover all artists represented by Ahmilan's Gallery.",
+  title: "Artists — AH — Milans",
+  description: "Discover all artists represented by AH — Milans.",
 }
 
 export default async function ArtistesPage() {

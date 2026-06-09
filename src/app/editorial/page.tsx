@@ -6,7 +6,7 @@ import type { ArticlePreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Journal — Ahmilan's Gallery",
+  title: "Journal — AH — Milans",
   description: "Interviews, artist portraits, and reflections on contemporary art.",
 }
 

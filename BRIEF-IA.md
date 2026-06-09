@@ -1,4 +1,4 @@
-# Brief — Gestion IA d'AH Milans Gallery
+# Brief — Gestion IA d'AH — Milans Gallery
 
 > Site entièrement piloté par des agents IA : production éditoriale, curation, newsletter, relation collector, SEO.
 
@@ -165,6 +165,9 @@ Contact Form   → Vercel API Route → Inquiry Agent → Brevo Email
 - [ ] Pipeline article : prompt → Sanity document (draft)
 - [ ] Validation manuelle dans Sanity Studio avant publication
 
+### ✅ Fait
+- Pipeline d'import MD → Sanity (`scripts/import-articles.mjs`)
+
 ### Phase 2 — Automatisation (Semaine 2)
 - [ ] Pipeline newsletter : contenu → Brevo
 - [ ] Agent curateur : rotation featured
@@ -178,6 +181,7 @@ Contact Form   → Vercel API Route → Inquiry Agent → Brevo Email
 
 ### Phase 4 — Optimisation (Semaine 4+)
 - [ ] Agent Analytics : rapport mensuel automatique
+- [ ] Page "link in bio" (mobile uniquement) → `./mobile`
 - [ ] A/B testing de prompts itératif
 - [ ] Fine-tuning éventuel d'un petit modèle sur le ton éditorial
 
@@ -196,6 +200,45 @@ Contact Form   → Vercel API Route → Inquiry Agent → Brevo Email
 | Email transactionnel | Brevo API (existant) |
 | SDK IA | Vercel AI SDK ou OpenAI SDK direct |
 | Monitoring coûts | OpenAI Usage Dashboard + alertes |
+
+---
+
+## Publication d'articles via fichiers Markdown
+
+Les articles peuvent être écrits en local dans `content/articles/` au format Markdown avec frontmatter, puis importés dans Sanity :
+
+```bash
+npm run articles:import
+```
+
+### Format du frontmatter
+
+```yaml
+---
+title: "Titre de l'article"
+slug: "titre-de-larticle"
+category: "interview" | "focus" | "news" | "essay"
+publishedAt: "2026-06-01T10:00:00Z"
+readTime: 6
+excerpt: "Résumé court (affiché dans la liste des articles)"
+featured: true
+relatedArtist: null  # ou le slug d'un artiste existant
+---
+```
+
+### Syntaxe supportée dans le body
+
+- `## Heading` / `### Heading` — titres
+- `> Citation` — blockquote
+- `- Liste` — listes à puces
+- `**gras**`, `*italique*`, `***gras italique***`
+- `[texte](url)` — liens
+- Paragraphes séparés par une ligne vide
+
+### Prérequis
+
+- `SANITY_API_TOKEN` doit être défini dans `.env.local`
+- Le token doit avoir les droits **editor** (création/édition de documents)
 
 ---
 
