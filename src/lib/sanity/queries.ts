@@ -210,3 +210,15 @@ export async function getAllArticleSlugs(): Promise<{ slug: string }[]> {
 export async function getAllArtworkSlugs(): Promise<{ slug: string }[]> {
   return client.fetch(allArtworkSlugsQuery)
 }
+
+export const randomArtworksQuery = groq`
+  *[_type == "artwork" && available == true] | order(_createdAt desc) {
+    ${artworkPreviewFields}
+  }
+`
+
+export async function getRandomArtworks(count = 4) {
+  const all = await client.fetch(randomArtworksQuery)
+  const shuffled = [...all].sort(() => Math.random() - 0.5)
+  return shuffled.slice(0, count)
+}

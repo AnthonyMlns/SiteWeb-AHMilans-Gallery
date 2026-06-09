@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
+import FadeIn from '@/components/ui/FadeIn'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import type { ArticlePreview } from '@/lib/types'
 
@@ -22,6 +23,7 @@ export default function ArticlesContent({ articles }: ArticlesContentProps) {
         </div>
 
         {articles.length > 0 ? (
+          <FadeIn>
           <div className="divide-y divide-transparent">
             {articles.map((article) => {
               const dateStr = article.publishedAt
@@ -85,8 +87,9 @@ export default function ArticlesContent({ articles }: ArticlesContentProps) {
               )
             })}
           </div>
+          </FadeIn>
         ) : (
-          <p className="text-muted">{t.articles.empty}</p>
+          <FadeIn><p className="text-muted">{t.articles.empty}</p></FadeIn>
         )}
       </div>
     </MainLayout>

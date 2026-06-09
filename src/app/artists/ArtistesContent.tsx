@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import MainLayout from '@/components/layout/MainLayout'
+import FadeIn from '@/components/ui/FadeIn'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import type { ArtistPreview } from '@/lib/types'
 
@@ -22,6 +23,7 @@ export default function ArtistesContent({ artists }: ArtistesContentProps) {
         </div>
 
         {artists.length > 0 ? (
+          <FadeIn>
           <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
             {artists.map((artist) => {
               const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
@@ -59,8 +61,9 @@ export default function ArtistesContent({ artists }: ArtistesContentProps) {
               )
             })}
           </div>
+          </FadeIn>
         ) : (
-          <p className="text-muted">{t.artists.empty}</p>
+          <FadeIn><p className="text-muted">{t.artists.empty}</p></FadeIn>
         )}
       </div>
     </MainLayout>

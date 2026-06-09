@@ -2,6 +2,7 @@
 
 import MainLayout from '@/components/layout/MainLayout'
 import ContactForm from '@/components/contact/ContactForm'
+import FadeIn from '@/components/ui/FadeIn'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import { CONTACT_EMAIL } from '@/lib/config'
 
@@ -18,12 +19,12 @@ export default function ContactContent() {
         <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
 
           {/* Form */}
-          <div>
+          <FadeIn><div>
             <ContactForm />
-          </div>
+          </div></FadeIn>
 
           {/* Info */}
-          <div className="flex flex-col gap-12 lg:pl-8">
+          <FadeIn delay={100}><div className="flex flex-col gap-12 lg:pl-8">
             <div>
               <p className="mb-2 leading-relaxed text-muted text-sm">
                 AH — Milans is a curatorial label based in Paris, connecting collectors directly with emerging contemporary artists.
@@ -57,7 +58,7 @@ export default function ContactContent() {
               <p className="mb-4 text-[10px] uppercase tracking-widest text-muted">{t.contact.acquisitions}</p>
               <p className="text-sm leading-relaxed text-muted">{t.contact.acquisitionsText}</p>
             </div>
-          </div>
+          </div></FadeIn>
         </div>
       </div>
     </MainLayout>

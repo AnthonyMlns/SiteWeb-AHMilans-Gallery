@@ -181,7 +181,7 @@ Contact Form   → Vercel API Route → Inquiry Agent → Brevo Email
 
 ### Phase 4 — Optimisation (Semaine 4+)
 - [ ] Agent Analytics : rapport mensuel automatique
-- [ ] Page "link in bio" (mobile uniquement) → `./mobile`
+- [x] Page "link in bio" (mobile uniquement) → `./mobile`
 - [ ] A/B testing de prompts itératif
 - [ ] Fine-tuning éventuel d'un petit modèle sur le ton éditorial
 

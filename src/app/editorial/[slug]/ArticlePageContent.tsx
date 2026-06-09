@@ -4,6 +4,7 @@ import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer'
 import ArtworkCard from '@/components/cards/ArtworkCard'
+import FadeIn from '@/components/ui/FadeIn'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import type { ArticlePreview, ArtworkPreview } from '@/lib/types'
 
@@ -35,6 +36,7 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
   return (
     <MainLayout>
       <article className="mx-auto max-w-3xl px-6 py-16">
+        <FadeIn>
         <header className="mb-12">
           {categoryLabel && (
             <p className="mb-5 text-[10px] uppercase tracking-widest text-muted">{categoryLabel}</p>
@@ -64,11 +66,12 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
             )}
           </div>
         </header>
+        </FadeIn>
 
         {article.body && <PortableTextRenderer value={article.body} />}
 
         {article.relatedArtist && (
-          <div className="mt-20 border-t border-border pt-10">
+          <FadeIn><div className="mt-20 border-t border-border pt-10">
             <p className="mb-3 text-[10px] uppercase tracking-widest text-muted">
               {t.articles.relatedArtist}
             </p>
@@ -79,11 +82,11 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
               {article.relatedArtist.name}
               <span className="ml-3 font-sans text-base">→</span>
             </Link>
-          </div>
+          </div></FadeIn>
         )}
 
         {article.relatedArtistArtworks && article.relatedArtistArtworks.length > 0 && (
-          <div className="mt-16">
+          <FadeIn><div className="mt-16">
             <p className="mb-6 text-[10px] uppercase tracking-widest text-muted">
               {t.articles.relatedWorks}
             </p>
@@ -92,16 +95,18 @@ export default function ArticlePageContent({ article }: ArticlePageContentProps)
                 <ArtworkCard key={artwork._id} artwork={artwork} />
               ))}
             </div>
-          </div>
+          </div></FadeIn>
         )}
 
         <div className="mt-16">
+          <FadeIn>
           <Link
             href="/editorial"
             className="text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
           >
             {t.articles.backLink}
           </Link>
+          </FadeIn>
         </div>
       </article>
     </MainLayout>

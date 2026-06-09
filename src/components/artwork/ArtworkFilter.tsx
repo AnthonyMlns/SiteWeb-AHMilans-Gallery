@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import ArtworkCard from '@/components/cards/ArtworkCard'
+import FadeIn from '@/components/ui/FadeIn'
 import type { ArtworkPreview } from '@/lib/types'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 
@@ -68,14 +69,16 @@ export default function ArtworkFilter({ artworks }: ArtworkFilterProps) {
       <p className="mb-8 text-sm text-muted">{t.works.count(visible.length)}</p>
 
       {/* Grid */}
+      <FadeIn>
       <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
         {visible.map((artwork) => (
           <ArtworkCard key={artwork._id} artwork={artwork} />
         ))}
       </div>
+      </FadeIn>
 
       {visible.length === 0 && (
-        <p className="text-muted">{t.works.emptyFiltered}</p>
+        <FadeIn><p className="text-muted">{t.works.emptyFiltered}</p></FadeIn>
       )}
     </div>
   )

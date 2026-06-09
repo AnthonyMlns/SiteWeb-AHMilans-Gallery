@@ -1,6 +1,7 @@
 'use client'
 
 import MainLayout from '@/components/layout/MainLayout'
+import FadeIn from '@/components/ui/FadeIn'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import { CONTACT_EMAIL } from '@/lib/config'
 
@@ -69,7 +70,7 @@ export default function PrivacyPolicyContent() {
           </p>
         </div>
 
-        <PrivacyContent />
+        <FadeIn><PrivacyContent /></FadeIn>
       </div>
     </MainLayout>
   )

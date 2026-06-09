@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AH — Milans · Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --background:   #fcfcfc;
+      --foreground:   #0f0f0f;
+      --muted:        #888880;
+      --border:       #e8e6e2;
+      --surface:      #f3f1ee;
+      --placeholder:  #e5e3df;
+      --subtle:       #b5b3ae;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: 'Geist', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .wrapper        { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+    .wrapper--wide  { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--background);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.14em;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+    nav { display: flex; gap: 2.5rem; }
+    nav a {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    nav a:hover { color: var(--foreground); }
+
+    /* ─── SIDEBAR + MAIN ─────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      min-height: calc(100vh - 56px);
+    }
+    .sidebar {
+      border-right: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      position: sticky;
+      top: 56px;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
+    }
+    .sidebar-title {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--subtle);
+      margin-bottom: 1.25rem;
+    }
+    .sidebar ul { list-style: none; display: flex; flex-direction: column; gap: 0.1rem; }
+    .sidebar ul li a {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.35rem 0;
+      transition: color 200ms;
+    }
+    .sidebar ul li a:hover { color: var(--foreground); }
+
+    main { padding: 3.5rem 3rem 6rem; }
+
+    /* ─── SECTION ────────────────────────────────────────── */
+    .ds-section { margin-bottom: 5rem; }
+    .section-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--subtle);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── COLORS ─────────────────────────────────────────── */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.75rem;
+    }
+    .color-swatch {
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .swatch-block { height: 52px; }
+    .swatch-info { padding: 0.5rem 0.6rem; background: var(--surface); }
+    .swatch-token { font-size: 11px; font-weight: 500; font-family: monospace; }
+    .swatch-hex   { font-size: 10px; color: var(--muted); margin-top: 1px; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .type-scale { display: flex; flex-direction: column; }
+    .type-row {
+      display: grid;
+      grid-template-columns: 52px 130px 110px 1fr 130px;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .type-px    { font-size: 11px; font-family: monospace; color: var(--foreground); font-weight: 500; }
+    .type-class { font-size: 10px; font-family: monospace; color: var(--muted); }
+    .type-font  { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--subtle); }
+    .type-meta  { font-size: 10px; color: var(--subtle); text-align: right; }
+
+    /* ─── GRIDS ──────────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+    /* ─── ARTWORK CARD ───────────────────────────────────── */
+    .artwork-card { cursor: pointer; }
+    .artwork-card .img-wrap {
+      aspect-ratio: 4 / 5;
+      background: var(--placeholder);
+      overflow: hidden;
+    }
+    .artwork-card .img-inner {
+      width: 100%; height: 100%;
+      background: var(--placeholder);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 700ms ease;
+    }
+    .artwork-card:hover .img-inner { transform: scale(1.05); }
+    .artwork-card .card-body { padding: 0.6rem 0 0; }
+    .artwork-card .card-cat  { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); }
+    .artwork-card .card-title{ font-family: 'Crimson Text', serif; font-size: 1rem; margin-top: 2px; }
+    .artwork-card .card-price{ font-size: 13px; margin-top: 4px; }
+
+    /* ─── ARTIST CARD ────────────────────────────────────── */
+    .artist-card { cursor: pointer; }
+    .artist-card .img-wrap {
+      aspect-ratio: 3 / 4;
+      background: var(--placeholder);
+      overflow: hidden;
+    }
+    .artist-card .img-inner {
+      width: 100%; height: 100%;
+      background: var(--placeholder);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 700ms ease;
+    }
+    .artist-card:hover .img-inner { transform: scale(1.05); }
+    .artist-card .artist-name    { font-size: 1rem; letter-spacing: 0.1em; margin-top: 0.6rem; }
+    .artist-card .artist-country { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-top: 2px; }
+
+    /* ─── ARTICLE CARD ───────────────────────────────────── */
+    .article-card { cursor: pointer; }
+    .article-card .img-wrap {
+      aspect-ratio: 4 / 3;
+      background: var(--placeholder);
+      overflow: hidden;
+    }
+    .article-card .img-inner {
+      width: 100%; height: 100%;
+      background: var(--placeholder);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 500ms ease;
+    }
+    .article-card:hover .img-inner { transform: scale(1.05); }
+    .article-card .art-tag     { font-size: 9px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--subtle); margin-top: 0.75rem; }
+    .article-card .art-title   { font-family: 'Crimson Text', serif; font-size: 1.25rem; line-height: 1.3; margin-top: 0.2rem; }
+    .article-card .art-excerpt { font-size: 13px; color: var(--muted); margin-top: 0.35rem; }
+    .article-card .art-meta    { font-size: 11px; color: var(--subtle); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ─── BADGE ──────────────────────────────────────────── */
+    .badge-sold {
+      display: inline-block;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      background: var(--foreground);
+      color: var(--background);
+      padding: 2px 7px;
+    }
+
+    /* ─── PLACEHOLDER LABEL ──────────────────────────────── */
+    .ph-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--subtle); }
+
+    /* ─── BUTTONS ────────────────────────────────────────── */
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid var(--foreground);
+      padding: 1rem 2rem;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: transparent;
+      color: var(--foreground);
+      font-family: 'Geist', sans-serif;
+      cursor: pointer;
+      transition: opacity 200ms;
+    }
+    .btn-outline:hover { opacity: 0.4; }
+
+    .btn-filled {
+      display: block;
+      width: 100%;
+      background: var(--foreground);
+      color: var(--background);
+      padding: 0.875rem 1.5rem;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border: none;
+      cursor: pointer;
+      font-family: 'Geist', sans-serif;
+      transition: opacity 200ms;
+    }
+    .btn-filled:hover { opacity: 0.75; }
+
+    .btn-filter {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Geist', sans-serif;
+      cursor: pointer;
+      transition: all 200ms;
+    }
+    .btn-filter:hover,
+    .btn-filter.active { border-color: var(--foreground); color: var(--foreground); }
+
+    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ─── LINKS ──────────────────────────────────────────── */
+    .link-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--foreground);
+      text-decoration: none;
+      transition: opacity 200ms;
+    }
+    .link-cta:hover { opacity: 0.4; }
+    .link-cta::after { content: '→'; }
+
+    .link-back {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    .link-back:hover { color: var(--foreground); }
+    .link-back::before { content: '← '; }
+
+    .link-social {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    .link-social:hover { color: var(--foreground); }
+
+    /* ─── FORMS ──────────────────────────────────────────── */
+    .form-field  { display: flex; flex-direction: column; gap: 0.3rem; }
+    .form-label  {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      padding: 0.875rem 0;
+      font-size: 14px;
+      font-family: 'Geist', sans-serif;
+      color: var(--foreground);
+      outline: none;
+      transition: border-color 200ms;
+    }
+    .form-input:focus,
+    .form-textarea:focus { border-color: var(--foreground); }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: var(--subtle); }
+    .form-textarea { resize: none; }
+
+    .form-grid { display: grid; gap: 0.5rem; max-width: 420px; }
+
+    /* ─── NEWSLETTER ─────────────────────────────────────── */
+    .newsletter-box { max-width: 320px; margin: 0 auto; text-align: center; }
+    .newsletter-heading {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .newsletter-sub {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .newsletter-box .form-input { text-align: left; }
+    .newsletter-box .btn-filled { margin-top: 1rem; }
+
+    /* ─── SPACING TABLE ──────────────────────────────────── */
+    .token-table { width: 100%; border-collapse: collapse; }
+    .token-table th {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--subtle);
+      text-align: left;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .token-table td {
+      font-size: 12px;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--foreground);
+      vertical-align: middle;
+    }
+    .token-table td:first-child { font-family: monospace; font-size: 12px; }
+    .token-table td.muted { color: var(--muted); }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    .fadein-demo {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .fadein-demo.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer .footer-brand { font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    .footer-links a:hover { color: var(--foreground); }
+
+    /* ─── UTILITIES ──────────────────────────────────────── */
+    .mt-4  { margin-top: 1rem; }
+    .mt-6  { margin-top: 1.5rem; }
+    .mt-8  { margin-top: 2rem; }
+    .gap-4 { gap: 1rem; }
+    .flex  { display: flex; }
+    .flex-wrap { flex-wrap: wrap; }
+    .items-center { align-items: center; }
+
+    /* ─── HERO DEMO ──────────────────────────────────────── */
+    .hero-demo {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--subtle);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: 'Crimson Text', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      max-width: 720px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-body {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .color-grid { grid-template-columns: repeat(4, 1fr); }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      main { padding: 2rem 1.25rem 4rem; }
+      nav { display: none; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .color-grid { grid-template-columns: repeat(2, 1fr); }
+      .type-row { grid-template-columns: 40px 100px 1fr; }
+      .type-meta, .type-font { display: none; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="nav-brand">AH — Milans</a>
+      <nav>
+        <a href="#">Artists</a>
+        <a href="#">Works</a>
+        <a href="#">Journal</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <p class="sidebar-title">Design System</p>
+      <ul>
+        <li><a href="#couleurs">01 — Couleurs</a></li>
+        <li><a href="#typographie">02 — Typographie</a></li>
+        <li><a href="#hero">03 — Hero</a></li>
+        <li><a href="#oeuvres">04 — Oeuvres</a></li>
+        <li><a href="#artistes">05 — Artistes</a></li>
+        <li><a href="#journal">06 — Journal</a></li>
+        <li><a href="#boutons">07 — Boutons</a></li>
+        <li><a href="#liens">08 — Liens</a></li>
+        <li><a href="#formulaire">09 — Formulaire</a></li>
+        <li><a href="#newsletter">10 — Newsletter</a></li>
+        <li><a href="#espacements">11 — Espacements</a></li>
+        <li><a href="#animations">12 — Animations</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+
+      <!-- 01 COULEURS -->
+      <section class="ds-section" id="couleurs">
+        <p class="section-label">01 — Couleurs</p>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="swatch-block" style="background:#fcfcfc; border-bottom:1px solid var(--border);"></div>
+            <div class="swatch-info">
+              <div class="swatch-token">--background</div>
+              <div class="swatch-hex">#fcfcfc · Fond de page</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-block" style="background:#0f0f0f;"></div>
+            <div class="swatch-info">
+              <div class="swatch-token">--foreground</div>
+              <div class="swatch-hex">#0f0f0f · Texte principal</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-block" style="background:#888880;"></div>
+            <div class="swatch-info">
+              <div class="swatch-token">--muted</div>
+              <div class="swatch-hex">#888880 · Texte secondaire</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-block" style="background:#e8e6e2;"></div>
+            <div class="swatch-info">
+              <div class="swatch-token">--border</div>
+              <div class="swatch-hex">#e8e6e2 · Bordures</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-block" style="background:#f3f1ee;"></div>
+            <div class="swatch-info">
+              <div class="swatch-token">--surface</div>
+              <div class="swatch-hex">#f3f1ee · Fond cartes</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-block" style="background:#e5e3df;"></div>
+            <div class="swatch-info">
+              <div class="swatch-token">--placeholder</div>
+              <div class="swatch-hex">#e5e3df · Skeleton</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-block" style="background:#b5b3ae;"></div>
+            <div class="swatch-info">
+              <div class="swatch-token">--subtle</div>
+              <div class="swatch-hex">#b5b3ae · Labels discrets</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 TYPOGRAPHIE -->
+      <section class="ds-section" id="typographie">
+        <p class="section-label">02 — Typographie</p>
+
+        <!-- Familles -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2.5rem;">
+          <div style="padding:1.5rem; background:var(--surface); border:1px solid var(--border);">
+            <p style="font-size:9px; text-transform:uppercase; letter-spacing:0.22em; color:var(--subtle); margin-bottom:1rem;">Serif — Crimson Text</p>
+            <p style="font-family:'Crimson Text',serif; font-size:2rem; font-weight:400; line-height:1.1; margin-bottom:0.25rem;">Regular 400</p>
+            <p style="font-family:'Crimson Text',serif; font-size:2rem; font-weight:600; line-height:1.1; margin-bottom:0.25rem;">SemiBold 600</p>
+            <p style="font-family:'Crimson Text',serif; font-size:2rem; font-weight:700; line-height:1.1; margin-bottom:0.5rem;">Bold 700</p>
+            <p style="font-family:'Crimson Text',serif; font-size:1.1rem; font-style:italic; color:var(--muted); margin-top:0.75rem;">Titres, hero, manifeste</p>
+          </div>
+          <div style="padding:1.5rem; background:var(--surface); border:1px solid var(--border);">
+            <p style="font-size:9px; text-transform:uppercase; letter-spacing:0.22em; color:var(--subtle); margin-bottom:1rem;">Sans-serif — Geist</p>
+            <p style="font-family:'Geist',sans-serif; font-size:1.5rem; font-weight:300; line-height:1.2; margin-bottom:0.25rem;">Light 300</p>
+            <p style="font-family:'Geist',sans-serif; font-size:1.5rem; font-weight:400; line-height:1.2; margin-bottom:0.25rem;">Regular 400</p>
+            <p style="font-family:'Geist',sans-serif; font-size:1.5rem; font-weight:500; line-height:1.2; margin-bottom:0.5rem;">Medium 500</p>
+            <p style="font-family:'Geist',sans-serif; font-size:1.1rem; color:var(--muted); margin-top:0.75rem;">Body, nav, labels</p>
+          </div>
+        </div>
+
+        <!-- En-têtes du tableau -->
+        <div style="display:grid; grid-template-columns:52px 130px 110px 1fr 130px; gap:1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+          <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:var(--subtle);">px</span>
+          <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:var(--subtle);">Tailwind</span>
+          <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:var(--subtle);">Fonte</span>
+          <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:var(--subtle);">Aperçu</span>
+          <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:var(--subtle); text-align:right;">Usage</span>
+        </div>
+
+        <div class="type-scale">
+          <div class="type-row">
+            <span class="type-px">32–56</span>
+            <span class="type-class">clamp(2rem,5vw,3.5rem)</span>
+            <span class="type-font">Crimson Text</span>
+            <span style="font-family:'Crimson Text',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:600; line-height:1.05;">Exhibition Catalogue</span>
+            <span class="type-meta">Hero, titre artiste, œuvre</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">48px</span>
+            <span class="type-class">text-5xl</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:2.25rem; font-weight:500; letter-spacing:-0.01em;">Artists</span>
+            <span class="type-meta">Titres de page</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">30px</span>
+            <span class="type-class">text-3xl</span>
+            <span class="type-font">Crimson Text</span>
+            <span style="font-family:'Crimson Text',serif; font-size:1.75rem; font-weight:600;">Nouvelles acquisitions</span>
+            <span class="type-meta">H2 Portable Text</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">24px</span>
+            <span class="type-class">text-2xl</span>
+            <span class="type-font">Crimson Text</span>
+            <span style="font-family:'Crimson Text',serif; font-size:1.35rem; font-weight:600;">Entre matière et lumière</span>
+            <span class="type-meta">H3 Portable Text</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">20px</span>
+            <span class="type-class">text-xl</span>
+            <span class="type-font">Crimson Text</span>
+            <span style="font-family:'Crimson Text',serif; font-size:1.2rem;">Une galerie dédiée à la recherche artistique</span>
+            <span class="type-meta">Titre article (liste)</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">18px</span>
+            <span class="type-class">text-lg</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:1.05rem; letter-spacing:0.1em;">Marta Horvat</span>
+            <span class="type-meta">Nom artiste grille</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">16px</span>
+            <span class="type-class">text-base</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:16px; color:var(--muted); line-height:1.7;">Une galerie dédiée à la diffusion de l'art contemporain.</span>
+            <span class="type-meta">Corps de texte</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">14px</span>
+            <span class="type-class">text-sm</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:14px; color:var(--muted);">Métadonnées · excerpts · formulaires</span>
+            <span class="type-meta">Métadonnées</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">13px</span>
+            <span class="type-class">text-[13px]</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted);">Artists — Works — Journal</span>
+            <span class="type-meta">Nav, infos œuvre, prix</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">12px</span>
+            <span class="type-class">text-[12px]</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:0.15em; color:var(--muted);">Privacy · Instagram · Contact</span>
+            <span class="type-meta">Footer</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">11px</span>
+            <span class="type-class">text-[11px]</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.15em; color:var(--muted);">Back to artists · Inquire</span>
+            <span class="type-meta">Boutons, back links</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">10px</span>
+            <span class="type-class">text-[10px]</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:0.2em; color:var(--subtle);">Painting · 2024 · France</span>
+            <span class="type-meta">Catégories, labels</span>
+          </div>
+          <div class="type-row">
+            <span class="type-px">9px</span>
+            <span class="type-class">text-[9px]</span>
+            <span class="type-font">Geist</span>
+            <span style="font-family:'Geist',sans-serif; font-size:9px; text-transform:uppercase; letter-spacing:0.25em; color:var(--subtle);">Section — Works</span>
+            <span class="type-meta">Labels section, badge sold</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 HERO DEMO -->
+      <section class="ds-section" id="hero">
+        <p class="section-label">03 — Hero</p>
+        <div class="hero-demo fadein-demo">
+          <p class="hero-eyebrow">AH — Milans · Gallery</p>
+          <h1 class="hero-title">Un regard singulier sur la création contemporaine</h1>
+          <p class="hero-body">
+            Galerie dédiée à la recherche artistique internationale, AH — Milans accompagne des artistes dont le travail questionne les frontières entre matière, espace et récit.
+          </p>
+          <a href="#" class="link-cta">Discover the artists</a>
+        </div>
+      </section>
+
+      <!-- 04 OEUVRES -->
+      <section class="ds-section" id="oeuvres">
+        <p class="section-label">04 — Cards Oeuvres</p>
+        <div class="grid-4">
+          <div class="artwork-card">
+            <div class="img-wrap">
+              <div class="img-inner"><span class="ph-label">4:5</span></div>
+            </div>
+            <div class="card-body">
+              <p class="card-cat">Painting · 2024</p>
+              <p class="card-title">Lumière I</p>
+              <p class="card-price">€ 4 200</p>
+            </div>
+          </div>
+          <div class="artwork-card">
+            <div class="img-wrap" style="background:#e2dfdb;">
+              <div class="img-inner" style="background:#e2dfdb;"><span class="ph-label">4:5</span></div>
+            </div>
+            <div class="card-body">
+              <p class="card-cat">Sculpture · 2023</p>
+              <p class="card-title">Érosion douce</p>
+              <p class="card-price"><span class="badge-sold">Sold</span></p>
+            </div>
+          </div>
+          <div class="artwork-card">
+            <div class="img-wrap" style="background:#ece9e4;">
+              <div class="img-inner" style="background:#ece9e4;"><span class="ph-label">4:5</span></div>
+            </div>
+            <div class="card-body">
+              <p class="card-cat">Works on paper · 2024</p>
+              <p class="card-title">Sans titre III</p>
+              <p class="card-price">€ 1 800</p>
+            </div>
+          </div>
+          <div class="artwork-card">
+            <div class="img-wrap" style="background:#d8d6d2;">
+              <div class="img-inner" style="background:#d8d6d2;"><span class="ph-label">4:5</span></div>
+            </div>
+            <div class="card-body">
+              <p class="card-cat">Photography · 2022</p>
+              <p class="card-title">Paysage intérieur</p>
+              <p class="card-price">€ 3 500</p>
+            </div>
+          </div>
+        </div>
+        <div class="filters">
+          <button class="btn-filter active" onclick="setFilter(this)">All</button>
+          <button class="btn-filter" onclick="setFilter(this)">Painting</button>
+          <button class="btn-filter" onclick="setFilter(this)">Sculpture</button>
+          <button class="btn-filter" onclick="setFilter(this)">Photography</button>
+          <button class="btn-filter" onclick="setFilter(this)">Works on paper</button>
+        </div>
+      </section>
+
+      <!-- 05 ARTISTES -->
+      <section class="ds-section" id="artistes">
+        <p class="section-label">05 — Cards Artistes</p>
+        <div class="grid-4">
+          <div class="artist-card">
+            <div class="img-wrap">
+              <div class="img-inner"><span class="ph-label">3:4</span></div>
+            </div>
+            <p class="artist-name">Marta Horvat</p>
+            <p class="artist-country">Slovenia</p>
+          </div>
+          <div class="artist-card">
+            <div class="img-wrap" style="background:#e8e5e0;">
+              <div class="img-inner" style="background:#e8e5e0;"><span class="ph-label">3:4</span></div>
+            </div>
+            <p class="artist-name">Olu Fadipe</p>
+            <p class="artist-country">Nigeria</p>
+          </div>
+          <div class="artist-card">
+            <div class="img-wrap" style="background:#ece9e5;">
+              <div class="img-inner" style="background:#ece9e5;"><span class="ph-label">3:4</span></div>
+            </div>
+            <p class="artist-name">Yuki Tanaka</p>
+            <p class="artist-country">Japan</p>
+          </div>
+          <div class="artist-card">
+            <div class="img-wrap" style="background:#dedad5;">
+              <div class="img-inner" style="background:#dedad5;"><span class="ph-label">3:4</span></div>
+            </div>
+            <p class="artist-name">Sofia Méndez</p>
+            <p class="artist-country">Mexico</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 JOURNAL -->
+      <section class="ds-section" id="journal">
+        <p class="section-label">06 — Journal</p>
+        <div class="grid-2">
+          <div class="article-card">
+            <div class="img-wrap">
+              <div class="img-inner"><span class="ph-label">4:3</span></div>
+            </div>
+            <p class="art-tag">Interview · May 2025</p>
+            <p class="art-title">La matière comme langage : rencontre avec Marta Horvat</p>
+            <p class="art-excerpt">Comment la sculpture contemporaine dialogue-t-elle avec l'espace naturel ?</p>
+            <p class="art-meta">5 min read</p>
+          </div>
+          <div class="article-card">
+            <div class="img-wrap" style="background:#e8e5e0;">
+              <div class="img-inner" style="background:#e8e5e0;"><span class="ph-label">4:3</span></div>
+            </div>
+            <p class="art-tag">Exhibition · April 2025</p>
+            <p class="art-title">Nouvelles œuvres sur papier : une cartographie de l'invisible</p>
+            <p class="art-excerpt">Du dessin à l'installation, cinq artistes explorent les frontières du visible.</p>
+            <p class="art-meta">3 min read</p>
+          </div>
+        </div>
+        <div class="mt-6">
+          <a href="#" class="link-cta">All articles</a>
+        </div>
+      </section>
+
+      <!-- 07 BOUTONS -->
+      <section class="ds-section" id="boutons">
+        <p class="section-label">07 — Boutons</p>
+        <div class="flex flex-wrap items-center gap-4 mt-4">
+          <button class="btn-outline">Inquire</button>
+          <div style="width:180px;"><button class="btn-filled">Subscribe</button></div>
+        </div>
+        <div class="flex flex-wrap gap-4 mt-6" style="align-items:center;">
+          <button class="btn-filter active">All</button>
+          <button class="btn-filter">Painting</button>
+          <button class="btn-filter">Sculpture</button>
+          <button class="btn-filter">Photography</button>
+        </div>
+      </section>
+
+      <!-- 08 LIENS -->
+      <section class="ds-section" id="liens">
+        <p class="section-label">08 — Liens</p>
+        <div class="flex flex-wrap gap-4 mt-4" style="align-items:center; row-gap:1.25rem;">
+          <a href="#" class="link-cta">View all works</a>
+          <a href="#" class="link-back">Back to artists</a>
+          <a href="#" class="link-social">Instagram</a>
+          <a href="#" style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); text-decoration:none; transition:color 200ms;" onmouseover="this.style.color='var(--foreground)'" onmouseout="this.style.color='var(--muted)'">Nav header link</a>
+          <a href="#" style="font-size:12px; text-transform:uppercase; letter-spacing:0.15em; color:var(--muted); text-decoration:none; transition:color 200ms;" onmouseover="this.style.color='var(--foreground)'" onmouseout="this.style.color='var(--muted)'">Footer link</a>
+        </div>
+      </section>
+
+      <!-- 09 FORMULAIRE -->
+      <section class="ds-section" id="formulaire">
+        <p class="section-label">09 — Formulaire</p>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label">Full name</label>
+            <input class="form-input" type="text" placeholder="Your name" />
+          </div>
+          <div class="form-field" style="margin-top:0.5rem;">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-field" style="margin-top:0.5rem;">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" rows="3" placeholder="Your message…"></textarea>
+          </div>
+          <div style="margin-top:1rem;">
+            <button class="btn-filled">Send message</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 NEWSLETTER -->
+      <section class="ds-section" id="newsletter">
+        <p class="section-label">10 — Newsletter</p>
+        <div class="newsletter-box">
+          <p class="newsletter-heading">Stay informed</p>
+          <p class="newsletter-sub">New works · exhibitions · journal</p>
+          <div class="form-field">
+            <label class="form-label" style="text-align:left;">Email address</label>
+            <input class="form-input" type="email" placeholder="your@email.com" />
+          </div>
+          <button class="btn-filled">Subscribe</button>
+        </div>
+      </section>
+
+      <!-- 11 ESPACEMENTS -->
+      <section class="ds-section" id="espacements">
+        <p class="section-label">11 — Espacements & Layout</p>
+        <table class="token-table">
+          <thead>
+            <tr>
+              <th style="width:220px;">Classe</th>
+              <th>Valeur</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>max-w-[1120px]</td><td class="muted">1120px</td><td class="muted">MainLayout wrapper</td></tr>
+            <tr><td>max-w-7xl</td><td class="muted">1280px</td><td class="muted">Artistes, Works, détail artiste</td></tr>
+            <tr><td>max-w-5xl</td><td class="muted">1024px</td><td class="muted">Articles list, Contact</td></tr>
+            <tr><td>max-w-3xl</td><td class="muted">768px</td><td class="muted">Article détail, Privacy</td></tr>
+            <tr><td>max-w-sm</td><td class="muted">384px</td><td class="muted">Newsletter form, Sign-in</td></tr>
+            <tr><td>px-6 py-16 lg:px-10 lg:py-28</td><td class="muted">—</td><td class="muted">Padding pages standard</td></tr>
+            <tr><td>2 cols gap-x-4 gap-y-8 lg:4</td><td class="muted">—</td><td class="muted">Grille homepage</td></tr>
+            <tr><td>2 cols gap-5 md:3 lg:4</td><td class="muted">—</td><td class="muted">Liste artistes</td></tr>
+            <tr><td>2 cols gap-8 md:3 lg:4</td><td class="muted">—</td><td class="muted">Works filtrés</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 12 ANIMATIONS -->
+      <section class="ds-section" id="animations">
+        <p class="section-label">12 — Animations</p>
+        <table class="token-table" style="margin-bottom:2rem;">
+          <thead>
+            <tr>
+              <th style="width:120px;">Durée</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>300ms</td><td class="muted">Mobile nav, filtres</td></tr>
+            <tr><td>500ms</td><td class="muted">Image hover (grilles homepage)</td></tr>
+            <tr><td>600ms</td><td class="muted">FadeIn component (opacity + translateY 24px → 0)</td></tr>
+            <tr><td>700ms</td><td class="muted">Image hover (cards détail)</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:1rem;">FadeIn demo — scroll vers ce bloc pour déclencher :</p>
+        <div class="fadein-demo" style="background:var(--surface); padding:2rem; max-width:360px;">
+          <p style="font-family:'Crimson Text',serif; font-size:1.25rem; margin-bottom:0.4rem;">Fade in · 600ms</p>
+          <p style="font-size:13px; color:var(--muted);">opacity 0→1 + translateY(24px→0) via Intersection Observer.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">AH — Milans © 2025</span>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Instagram</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Filter buttons
+    function setFilter(el) {
+      document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // FadeIn via Intersection Observer
+    const fadeEls = document.querySelectorAll('.fadein-demo');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Smooth active sidebar link
+    const sections = document.querySelectorAll('.ds-section[id]');
+    const sideLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      sideLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--foreground)' : '';
+      });
+    });
+  </script>
+
+</body>
+</html>

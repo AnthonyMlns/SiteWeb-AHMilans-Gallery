@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import MainLayout from '@/components/layout/MainLayout'
 import NewsletterForm from '@/components/ui/NewsletterForm'
+import FadeIn from '@/components/ui/FadeIn'
 
 interface NewsletterContentProps {
   heroImageUrl: string | null
@@ -14,6 +15,7 @@ export default function NewsletterContent({ heroImageUrl }: NewsletterContentPro
       <div className="flex flex-col items-center px-6 py-28 lg:py-36">
 
         {/* ── Hero image ──────────────────────────────────────────────── */}
+        <FadeIn>
         <div
           className="relative w-full max-w-md overflow-hidden bg-placeholder"
           style={{ aspectRatio: '3/4' }}
@@ -29,8 +31,10 @@ export default function NewsletterContent({ heroImageUrl }: NewsletterContentPro
             />
           )}
         </div>
+        </FadeIn>
 
         {/* ── Newsletter copy + form ───────────────────────────────────── */}
+        <FadeIn delay={100}>
         <div className="mt-20 flex flex-col items-center">
           <p className="text-center font-sans text-[10px] uppercase tracking-[0.25em] text-muted">
             Not your average newsletter
@@ -40,6 +44,7 @@ export default function NewsletterContent({ heroImageUrl }: NewsletterContentPro
           </p>
           <NewsletterForm className="mt-7 w-full max-w-xs" />
         </div>
+        </FadeIn>
 
       </div>
     </MainLayout>

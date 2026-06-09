@@ -4,7 +4,11 @@ import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n/LanguageContext'
 import { CONTACT_EMAIL } from '@/lib/config'
 
-export default function Footer() {
+interface FooterProps {
+  hideAdmin?: boolean
+}
+
+export default function Footer({ hideAdmin }: FooterProps = {}) {
   const { t } = useTranslation()
 
   return (
@@ -36,12 +40,14 @@ export default function Footer() {
           >
             {t.footer.privacy}
           </Link>
+          {!hideAdmin && (
           <Link
             href="/studio"
             className="font-sans text-[12px] uppercase tracking-widest text-[#888]/40 transition-colors hover:text-[#888]"
           >
             Admin
           </Link>
+          )}
         </div>
 
       </div>

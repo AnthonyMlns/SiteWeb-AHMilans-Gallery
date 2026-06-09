@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import MainLayout from '@/components/layout/MainLayout'
 import NewsletterForm from '@/components/ui/NewsletterForm'
+import FadeIn from '@/components/ui/FadeIn'
 
 type Tab = 'login' | 'join'
 
@@ -22,6 +23,7 @@ export default function SignInContent() {
   return (
     <MainLayout>
 
+      <FadeIn>
       <div className="mx-auto max-w-sm px-6 py-28 lg:py-36">
 
         {/* Tabs */}
@@ -113,8 +115,10 @@ export default function SignInContent() {
           )}
         </form>
       </div>
+      </FadeIn>
 
       {/* Newsletter */}
+      <FadeIn>
       <section aria-label="Newsletter" className="px-6 py-28 text-center lg:py-36">
         <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-subtle">
           Not your average newsletter
@@ -127,6 +131,7 @@ export default function SignInContent() {
         </p>
         <NewsletterForm className="mx-auto mt-10 max-w-xs" />
       </section>
+      </FadeIn>
 
     </MainLayout>
   )
