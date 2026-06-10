@@ -126,14 +126,15 @@ function mdToPortableText(md) {
         i++
       }
       for (const itemText of listItems) {
+        const { children, markDefs } = parseInline(itemText)
         blocks.push({
           _type: 'block',
           _key: nextKey(),
           style: 'normal',
           level: 1,
           listItem: 'bullet',
-          children: parseInline(itemText),
-          markDefs: [],
+          children,
+          markDefs,
         })
       }
       continue
@@ -154,12 +155,13 @@ function mdToPortableText(md) {
     }
     if (paraLines.length > 0) {
       const text = paraLines.join(' ')
+      const { children, markDefs } = parseInline(text)
       blocks.push({
         _type: 'block',
         _key: nextKey(),
         style: 'normal',
-        children: parseInline(text),
-        markDefs: [],
+        children,
+        markDefs,
       })
     } else {
       i++
@@ -171,6 +173,7 @@ function mdToPortableText(md) {
 
 function parseInline(text) {
   const children = []
+  const markDefs = []
   let remaining = text
 
   while (remaining.length > 0) {
@@ -225,9 +228,7 @@ function parseInline(text) {
         marks: [markKey],
         text: linkText,
       })
-      children[children.length - 1]._key = nextKey()
-      children[children.length - 1].marks = [markKey]
-      children[children.length - 1].text = linkText
+      markDefs.push({ _key: markKey, _type: 'link', href })
 
       remaining = remaining.slice(linkMatch[0].length)
       continue
@@ -255,7 +256,7 @@ function parseInline(text) {
     }
   }
 
-  return children
+  return { children, markDefs }
 }
 
 async function importArticles() {

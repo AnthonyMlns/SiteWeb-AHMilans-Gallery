@@ -48,21 +48,33 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
         {/* Main grid */}
         <FadeIn><div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-28">
 
-          {/* Primary image */}
-          <div className="relative aspect-square overflow-hidden">
-            {primaryImage?.url && (
-              <Image
-                src={primaryImage.url}
-                alt={primaryImage.alt ?? artwork.title}
-                fill
-                className="object-contain"
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            )}
+          {/* Left: image + specs */}
+          <div>
+            <div className="relative aspect-square overflow-hidden">
+              {primaryImage?.url && (
+                <Image
+                  src={primaryImage.url}
+                  alt={primaryImage.alt ?? artwork.title}
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              )}
+            </div>
+
+            {/* Specs below image */}
+            <div className="mt-8 divide-y divide-transparent">
+              {specs.map(({ label, value }) => (
+                <div key={label} className="flex items-baseline justify-between py-3 text-sm">
+                  <span className="text-muted">{label}</span>
+                  <span className="text-right text-foreground">{value}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Info panel */}
+          {/* Right: info panel */}
           <div className="flex flex-col justify-center">
             {artwork.artist && (
               <Link
@@ -79,16 +91,6 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
             >
               {artwork.title}
             </h1>
-
-            {/* Specs */}
-            <div className="mt-10 divide-y divide-transparent">
-              {specs.map(({ label, value }) => (
-                <div key={label} className="flex items-baseline justify-between py-3 text-sm">
-                  <span className="text-muted">{label}</span>
-                  <span className="text-right text-foreground">{value}</span>
-                </div>
-              ))}
-            </div>
 
             {/* Description */}
             {artwork.description && (
