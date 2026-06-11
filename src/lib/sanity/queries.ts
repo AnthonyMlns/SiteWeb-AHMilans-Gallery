@@ -211,6 +211,94 @@ export async function getAllArtworkSlugs(): Promise<{ slug: string }[]> {
   return client.fetch(allArtworkSlugsQuery)
 }
 
+// ─── Curates queries ────────────────────────────────────────────────────────────
+
+export const allCuratesQuery = groq`
+  *[_type == "article" && category == "curates"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    category,
+    excerpt,
+    publishedAt,
+    readTime,
+    featured,
+    "thumbnailUrl": thumbnail.asset->url,
+    "relatedArtist": relatedArtist->{
+      name,
+      slug
+    },
+    "relatedArtwork": relatedArtwork->{
+      title,
+      slug,
+      medium,
+      dimensions,
+      year,
+      "images": images[]{
+        "url": asset->url,
+        "alt": alt
+      },
+      "artist": artist->{
+        name,
+        slug
+      }
+    }
+  }
+`
+
+export const curateBySlugQuery = groq`
+  *[_type == "article" && slug.current == $slug && category == "curates"][0] {
+    _id,
+    title,
+    slug,
+    category,
+    excerpt,
+    body,
+    publishedAt,
+    readTime,
+    featured,
+    "thumbnailUrl": thumbnail.asset->url,
+    "relatedArtist": relatedArtist->{
+      name,
+      slug
+    },
+    "relatedArtwork": relatedArtwork->{
+      title,
+      slug,
+      medium,
+      dimensions,
+      year,
+      "images": images[]{
+        "url": asset->url,
+        "alt": alt
+      },
+      "artist": artist->{
+        name,
+        slug
+      }
+    },
+    "relatedArtistArtworks": *[_type == "artwork" && artist._ref == ^.relatedArtist._ref] | order(_createdAt desc) [0..3] {
+      ${artworkPreviewFields}
+    }
+  }
+`
+
+const allCuratesSlugsQuery = groq`
+  *[_type == "article" && category == "curates" && defined(slug.current)]{ "slug": slug.current }
+`
+
+export async function getAllCurates() {
+  return client.fetch(allCuratesQuery)
+}
+
+export async function getCurateBySlug(slug: string) {
+  return client.fetch(curateBySlugQuery, { slug })
+}
+
+export async function getAllCuratesSlugs(): Promise<{ slug: string }[]> {
+  return client.fetch(allCuratesSlugsQuery)
+}
+
 export const randomArtworksQuery = groq`
   *[_type == "artwork" && available == true] | order(_createdAt desc) {
     ${artworkPreviewFields}

@@ -28,6 +28,7 @@ export const article = defineType({
           { title: 'Focus', value: 'focus' },
           { title: 'News', value: 'news' },
           { title: 'Essay', value: 'essay' },
+          { title: 'Curates', value: 'curates' },
         ],
       },
     }),
@@ -83,6 +84,12 @@ export const article = defineType({
       title: 'Related Artist',
       type: 'reference',
       to: [{ type: 'artist' }],
+    }),
+    defineField({
+      name: 'relatedArtwork',
+      title: 'Related Artwork',
+      type: 'reference',
+      to: [{ type: 'artwork' }],
     }),
     defineField({
       name: 'featured',

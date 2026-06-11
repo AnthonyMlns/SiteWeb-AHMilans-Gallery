@@ -24,6 +24,7 @@ export default function Footer({ hideAdmin }: FooterProps = {}) {
           <Link href="/works"   className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.works}</Link>
           <Link href="/artists"  className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.artists}</Link>
           <Link href="/editorial"  className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.editorial}</Link>
+          <Link href="/curates"   className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">Curates</Link>
           <Link href="/contact"   className="font-sans text-[12px] uppercase tracking-widest text-muted transition-colors hover:text-foreground">{t.nav.contact}</Link>
         </nav>
 
