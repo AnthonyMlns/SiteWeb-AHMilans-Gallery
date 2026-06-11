@@ -172,7 +172,9 @@ export default function MobileContent({ artists, randomWorks, latestArticles }: 
       {/* Contact */}
       <FadeIn>
       <section className="mb-14 border-t border-border pt-8">
-        <SectionLabel>Contact</SectionLabel>
+        <p className="mb-5 text-center text-sm leading-relaxed text-muted">
+          Want to know more about an artwork or an artist?
+        </p>
         <div className="text-center">
           <Link
             href="/contact"

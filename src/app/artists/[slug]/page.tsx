@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!artist) return {}
   return {
     title: `${artist.name} — AH — Milans`,
-    description: `Discover artworks by ${artist.name}${artist.country ? ` (${artist.country})` : ''}.`,
+    description: artist.statementCourt || `${artist.name} is a ${artist.style || 'contemporary'} artist represented by AH — Milans.`,
   }
 }
 

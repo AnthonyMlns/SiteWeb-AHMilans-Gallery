@@ -104,6 +104,7 @@ Sanity Studio is available at `/studio`.
 - [x] **Artwork descriptions** — Import pipeline MD → Sanity, harmonised 3-paragraph format, specs moved below image
 - [x] **Curates** — `/curates` section with schema, queries, routes, and sample article
 - [ ] **v1.2 SEO & Analytics** — GA4, OG tags, JSON-LD, sitemap, cookie consent
+- [ ] **Maintenance** — Mettre à jour le sitemap et le `LLM.md` à chaque ajout de page ou contenu
 
 > Detailed planning in [GitHub Projects](https://github.com/AnthonyMlns/AH-Milans-SanityCMS/projects) and [Milestones](https://github.com/AnthonyMlns/AH-Milans-SanityCMS/milestones).
 

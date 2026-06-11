@@ -48,7 +48,7 @@ export default function ArtistPageContent({ artist, curateCount = 0 }: ArtistPag
               <div className="relative aspect-[3/4] overflow-hidden bg-placeholder">
                 <Image
                   src={imageUrl}
-                  alt={artist.name}
+                  alt={`${artist.name} — ${artist.style ? artist.style + ' artist' : 'contemporary artist'}${artist.country ? ', ' + artist.country : ''}`}
                   fill
                   className="object-cover"
                   priority
