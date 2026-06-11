@@ -299,6 +299,41 @@ export async function getAllCuratesSlugs(): Promise<{ slug: string }[]> {
   return client.fetch(allCuratesSlugsQuery)
 }
 
+export const artistCuratesQuery = groq`
+  *[_type == "curate" && relatedArtist->slug.current == $slug] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    publishedAt
+  }
+`
+
+export async function getArtistCurates(slug: string) {
+  return client.fetch(artistCuratesQuery, { slug })
+}
+
+export const prevCurateQuery = groq`
+  *[_type == "curate" && publishedAt < $publishedAt] | order(publishedAt desc) [0] {
+    title,
+    "slug": slug.current
+  }
+`
+
+export const nextCurateQuery = groq`
+  *[_type == "curate" && publishedAt > $publishedAt] | order(publishedAt asc) [0] {
+    title,
+    "slug": slug.current
+  }
+`
+
+export async function getAdjacentCurates(publishedAt: string) {
+  const [prev, next] = await Promise.all([
+    client.fetch(prevCurateQuery, { publishedAt }),
+    client.fetch(nextCurateQuery, { publishedAt }),
+  ])
+  return { prev, next }
+}
+
 export const randomArtworksQuery = groq`
   *[_type == "artwork" && available == true] | order(_createdAt desc) {
     ${artworkPreviewFields}

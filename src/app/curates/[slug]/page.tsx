@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import CuratePageContent from './CuratePageContent'
-import { getCurateBySlug, getAllCuratesSlugs } from '@/lib/sanity/queries'
+import { getCurateBySlug, getAllCuratesSlugs, getAdjacentCurates } from '@/lib/sanity/queries'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -32,5 +32,6 @@ export default async function CuratePage({ params }: Props) {
   const { slug } = await params
   const curate = await getCurateBySlug(slug)
   if (!curate) notFound()
-  return <CuratePageContent curate={curate} />
+  const adjacent = curate.publishedAt ? await getAdjacentCurates(curate.publishedAt) : { prev: null, next: null }
+  return <CuratePageContent curate={curate} prev={adjacent.prev} next={adjacent.next} />
 }

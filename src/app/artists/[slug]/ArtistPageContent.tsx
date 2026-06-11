@@ -16,9 +16,10 @@ interface ArtistFull extends ArtistPreview {
 
 interface ArtistPageContentProps {
   artist: ArtistFull
+  curateCount?: number
 }
 
-export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
+export default function ArtistPageContent({ artist, curateCount = 0 }: ArtistPageContentProps) {
   const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
   const artworks: ArtworkPreview[] = artist.artworks ?? []
   const featured = artworks.filter((aw) => aw.featured)
@@ -87,6 +88,16 @@ export default function ArtistPageContent({ artist }: ArtistPageContentProps) {
                   </a>
                 )}
               </div>
+
+              {curateCount > 0 && (
+                <Link
+                  href="/curates"
+                  className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-muted transition-colors hover:text-foreground"
+                >
+                  Curates ({curateCount})
+                  <span className="text-xs">→</span>
+                </Link>
+              )}
             </div>
           </div>
 

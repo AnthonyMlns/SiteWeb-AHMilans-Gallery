@@ -38,6 +38,8 @@ interface CurateFull {
 
 interface CuratePageContentProps {
   curate: CurateFull
+  prev?: { title: string; slug: string } | null
+  next?: { title: string; slug: string } | null
 }
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
@@ -62,7 +64,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   )
 }
 
-export default function CuratePageContent({ curate }: CuratePageContentProps) {
+export default function CuratePageContent({ curate, prev, next }: CuratePageContentProps) {
   const dateStr = curate.publishedAt
     ? new Date(curate.publishedAt).toLocaleDateString('en-GB', {
         day: 'numeric',
@@ -228,7 +230,37 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
         </div>
         </FadeIn>
 
-        <div className="mt-16">
+        {/* Prev / Next navigation */}
+        {(prev || next) && (
+          <FadeIn>
+          <div className="mt-16 flex items-center justify-between gap-4 border-t border-border pt-8">
+            <div>
+              {prev && (
+                <Link
+                  href={`/curates/${prev.slug}`}
+                  className="group block text-left"
+                >
+                  <p className="text-[10px] uppercase tracking-widest text-subtle">Previous</p>
+                  <p className="mt-1 font-serif text-lg text-foreground transition-opacity group-hover:opacity-50">{prev.title}</p>
+                </Link>
+              )}
+            </div>
+            <div className="text-right">
+              {next && (
+                <Link
+                  href={`/curates/${next.slug}`}
+                  className="group block text-right"
+                >
+                  <p className="text-[10px] uppercase tracking-widest text-subtle">Next</p>
+                  <p className="mt-1 font-serif text-lg text-foreground transition-opacity group-hover:opacity-50">{next.title}</p>
+                </Link>
+              )}
+            </div>
+          </div>
+          </FadeIn>
+        )}
+
+        <div className="mt-8">
           <FadeIn>
           <Link
             href="/curates"

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import ArtistPageContent from './ArtistPageContent'
-import { getArtistBySlug, getAllArtistSlugs } from '@/lib/sanity/queries'
+import { getArtistBySlug, getAllArtistSlugs, getArtistCurates } from '@/lib/sanity/queries'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -30,7 +30,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArtistePage({ params }: Props) {
   const { slug } = await params
-  const artist = await getArtistBySlug(slug)
+  const [artist, curates] = await Promise.all([
+    getArtistBySlug(slug),
+    getArtistCurates(slug),
+  ])
   if (!artist) notFound()
-  return <ArtistPageContent artist={artist} />
+  return <ArtistPageContent artist={artist} curateCount={curates.length} />
 }
