@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import CuratesContent from './CuratesContent'
 import { getAllCurates } from '@/lib/sanity/queries'
-import type { ArticlePreview } from '@/lib/types'
 
 export const revalidate = 60
 
@@ -11,6 +10,6 @@ export const metadata: Metadata = {
 }
 
 export default async function CuratesPage() {
-  const curates: ArticlePreview[] = (await getAllCurates()) ?? []
+  const curates = (await getAllCurates()) ?? []
   return <CuratesContent curates={curates} />
 }

@@ -253,6 +253,7 @@ export const curateBySlugQuery = groq`
     slug,
     excerpt,
     body,
+    faq,
     publishedAt,
     readTime,
     "thumbnailUrl": thumbnail.asset->url,

@@ -4,6 +4,7 @@ import { join, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { dirname } from 'node:path'
 import { config } from 'dotenv'
+import yaml from 'js-yaml'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -33,22 +34,7 @@ function nextKey() { return `k${++keyCounter}` }
 function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
   if (!match) return null
-  const frontmatter = {}
-  const lines = match[1].split('\n')
-  for (const line of lines) {
-    const sep = line.indexOf(': ')
-    if (sep === -1) continue
-    const key = line.slice(0, sep).trim()
-    let value = line.slice(sep + 2).trim()
-    if (typeof value === 'string' && value.startsWith('"') && value.endsWith('"')) {
-      value = value.slice(1, -1)
-    }
-    if (value === '' || value === 'null') value = null
-    else if (value === 'true') value = true
-    else if (value === 'false') value = false
-    else if (/^\d+$/.test(value)) value = Number(value)
-    frontmatter[key] = value
-  }
+  const frontmatter = yaml.load(match[1])
   const body = match[2].trim()
   return { frontmatter, body }
 }
@@ -145,6 +131,15 @@ async function importCurates() {
     if (frontmatter.relatedArtwork && frontmatter.relatedArtwork !== 'null') {
       const artwork = await client.fetch(`*[_type == "artwork" && slug.current == $slug][0]{_id}`, { slug: frontmatter.relatedArtwork })
       if (artwork) document.relatedArtwork = { _type: 'reference', _ref: artwork._id }
+    }
+
+    if (Array.isArray(frontmatter.faq)) {
+      document.faq = frontmatter.faq.map((item, i) => ({
+        _key: `faq${i}`,
+        _type: 'faqItem',
+        question: item.question,
+        answer: item.answer,
+      }))
     }
 
     const existing = await client.fetch(`*[_type == "curate" && slug.current == $slug][0]{_id}`, { slug: frontmatter.slug })

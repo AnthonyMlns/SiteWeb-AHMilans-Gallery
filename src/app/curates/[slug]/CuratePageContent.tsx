@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
@@ -32,10 +33,33 @@ interface CurateFull {
     artist?: { name: string; slug: { current: string } }
   }
   relatedArtistArtworks?: ArtworkPreview[]
+  faq?: { _key: string; question: string; answer: string }[]
 }
 
 interface CuratePageContentProps {
   curate: CurateFull
+}
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="border-b border-border last:border-b-0">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between py-4 text-left text-sm text-foreground transition-colors hover:opacity-70"
+      >
+        <span className="font-medium">{question}</span>
+        <span className={`ml-4 shrink-0 transition-transform duration-200 ${open ? 'rotate-45' : ''}`}>
+          +
+        </span>
+      </button>
+      {open && (
+        <div className="pb-4 text-sm leading-relaxed text-muted">
+          {answer}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export default function CuratePageContent({ curate }: CuratePageContentProps) {
@@ -48,6 +72,7 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
     : null
 
   const artwork = curate.relatedArtwork
+  const artworkHref = artwork ? `/works/${artwork.slug.current}` : null
   const artworkImage = artwork?.images?.[0]
 
   return (
@@ -67,31 +92,30 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
 
           <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-muted">
             {dateStr && <span>{dateStr}</span>}
-            {curate.readTime && <span>· {curate.readTime} min read</span>}
+            {curate.readTime && <span className="before:mr-2 before:content-['·']">{curate.readTime} min read</span>}
             {artwork?.artist && (
-              <>
-                <span> · </span>
-                <Link
-                  href={`/artists/${artwork.artist.slug.current}`}
-                  className="transition-colors hover:text-foreground"
-                >
-                  {artwork.artist.name}
-                </Link>
-              </>
+              <Link
+                href={`/artists/${artwork.artist.slug.current}`}
+                className="before:mr-2 before:content-['·'] transition-colors hover:text-foreground"
+              >
+                {artwork.artist.name}
+              </Link>
             )}
           </div>
 
-          {artworkImage?.url && (
-            <div className="relative mt-10 aspect-square overflow-hidden md:aspect-[4/3]">
-              <Image
-                src={artworkImage.url}
-                alt={artworkImage.alt ?? artwork?.title ?? curate.title}
-                fill
-                className="object-contain"
-                priority
-                sizes="(max-width: 768px) 100vw, 768px"
-              />
-            </div>
+          {artworkImage?.url && artworkHref && (
+            <Link href={artworkHref} className="group mt-10 block">
+              <div className="relative aspect-square overflow-hidden md:aspect-[4/3]">
+                <Image
+                  src={artworkImage.url}
+                  alt={artworkImage.alt ?? artwork?.title ?? curate.title}
+                  fill
+                  className="object-contain transition-opacity duration-500 group-hover:opacity-80"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
+              </div>
+            </Link>
           )}
         </header>
         </FadeIn>
@@ -140,6 +164,25 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
                 </div>
               )}
             </div>
+            {artworkHref && (
+              <Link
+                href={artworkHref}
+                className="mt-4 inline-block text-[11px] uppercase tracking-widest text-foreground transition-opacity hover:opacity-40"
+              >
+                View artwork →
+              </Link>
+            )}
+          </div>
+          </FadeIn>
+        )}
+
+        {curate.faq && curate.faq.length > 0 && (
+          <FadeIn>
+          <div className="mt-12 border-t border-border pt-8">
+            <h2 className="mb-4 font-serif text-2xl text-foreground">FAQs</h2>
+            {curate.faq.map((item) => (
+              <FAQItem key={item._key} question={item.question} answer={item.answer} />
+            ))}
           </div>
           </FadeIn>
         )}
@@ -156,7 +199,7 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
               <span className="ml-3 font-sans text-base">→</span>
             </Link>
             {curate.relatedArtist.statementCourt && (
-              <p className="mt-4 text-sm leading-relaxed text-muted max-w-prose">
+              <p className="mt-4 text-sm leading-relaxed text-muted">
                 {curate.relatedArtist.statementCourt}
               </p>
             )}
@@ -166,9 +209,9 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
 
         {curate.relatedArtistArtworks && curate.relatedArtistArtworks.length > 0 && (
           <FadeIn>
-          <div className="mt-16 border-t border-border pt-10">
+          <div className="mt-10">
             <p className="mb-6 text-[10px] uppercase tracking-widest text-muted">More works by this artist</p>
-            <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
               {curate.relatedArtistArtworks.map((artwork) => (
                 <ArtworkCard key={artwork._id} artwork={artwork} />
               ))}

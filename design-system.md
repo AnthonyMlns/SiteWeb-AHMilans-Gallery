@@ -109,6 +109,7 @@ px-6 py-16 lg:px-10 lg:py-28
 | --------------- | ----------------------------------------------------------------------------------- |
 | Outline primary | `border border-foreground px-8 py-4 text-[11px] uppercase tracking-widest`          |
 | Filled primary  | `w-full bg-foreground px-6 py-3.5 text-[11px] uppercase tracking-widest text-background` |
+| Filled rounded  | `rounded-full bg-foreground px-6 py-3 text-[11px] uppercase tracking-widest text-background hover:opacity-80` |
 | Filter tag      | `border px-4 py-1.5 text-[10px] uppercase tracking-widest`                          |
 
 ### Formulaires
@@ -130,9 +131,16 @@ px-6 py-16 lg:px-10 lg:py-28
 
 Hover : `group-hover:scale-105` avec `duration-700`.
 
----
+### Accordéon (FAQ)
 
-## 5. Animations
+| Élément | Classes |
+| ------- | ------- |
+| Conteneur | `divide-y divide-border` |
+| Question | `flex w-full items-center justify-between py-4 text-left text-sm text-foreground hover:opacity-70` |
+| Réponse | `pb-4 text-sm leading-relaxed text-muted` |
+| Icône | `+` rotate-45 à l'ouverture, transition `duration-200` |
+
+---
 
 | Transition | Usage                        |
 | ---------- | ---------------------------- |

@@ -1,36 +1,26 @@
 ---
-title: "AH Milans Curates #1 — WABI SABI 23092023 by Sébastien Chéramy"
+title: "AH Milans Curates #1: WABI SABI 23092023 by Sébastien Cheramy"
 slug: "ah-milans-curates-1-wabi-sabi-23092023"
-publishedAt: "2026-06-12T10:00:00Z"
+publishedAt: "2026-06-16T10:00:00Z"
 readTime: 3
-excerpt: "A large-scale mixed media canvas where raw gestural energy meets calligraphic precision."
-relatedArtist: sebastien-cheramy
-relatedArtwork: wabi-sabi-23092023
+excerpt: "A large-scale mixed media canvas where raw gestural energy meets calligraphic precision — the first in our weekly series."
+relatedArtist: "sebastien-cheramy"
+relatedArtwork: "wabi-sabi-23092023"
+faq:
+  - question: "What makes WABI SABI 23092023 unique?"
+    answer: "It captures Cheramy's signature tension between control and accident — every mark is both deliberate and surrendered, embodying the wabi-sabi philosophy rather than illustrating it."
+  - question: "Where can I see more works by Sébastien Cheramy?"
+    answer: "View the full collection on Sébastien Cheramy's artist page."
+  - question: "How can I acquire WABI SABI 23092023?"
+    answer: "Contact AH Milans Gallery for pricing and availability."
 ---
 
 ## What Makes This Work Compelling
 
-Sébastien Chéramy's *WABI SABI 23092023* is not a painting that yields itself easily. It demands to be met — not with passive looking, but with attention. On first encounter, what strikes you is the tension: a field of deep charcoal and soft grey, bisected by a surge of electric pink and acid yellow that seems to have been applied in a single, held breath.
+Sébastien Cheramy's "WABI SABI 23092023" is a mixed media canvas that captures the tension between order and dissolution. Rendered in a charged palette of neon pink, acid yellow, and deep charcoal, the composition surges from raw darkness toward open light. Gestural marks sweep across a softly veiled ground of greys and pale blues, while fluid calligraphic lines anchor the centre, holding the work's volatile energy in check.
 
-This is a work that operates on opposing forces. The lower register is dense, almost saturated — layers of black and grey that feel excavated rather than applied. Above, the canvas opens into pale blue-green veils, as though a fog were lifting. And cutting across both registers, a series of calligraphic marks in black and pink — fluid, precise, irreversible. Chéramy does not overwork his surfaces. He commits, and moves on.
+The title invokes the Japanese aesthetic of *wabi-sabi* — beauty found in impermanence and imperfection. Cheramy does not illustrate the concept. He embodies it: every mark is both deliberate and surrendered. This piece belongs to his ongoing Wabi Sabi series, where gestural expressionism meets calligraphic precision in a sustained inquiry into movement and transience.
 
-What makes this piece compelling is not simply its visual impact, but the way that impact is earned. Every mark reads as a decision. The white spaces — the silences between gestures — are as active as the paint itself. The painting breathes because Chéramy has learned when to stop.
+### Why This Piece Matters
 
-## Why This Piece Matters
-
-*WABI SABI 23092023* belongs to a series that takes its name from the Japanese aesthetic of impermanence and imperfection. But Chéramy does not illustrate wabi-sabi — he performs it. The cracks, drips, and erasures are not decorative. They are the content.
-
-In an art world increasingly driven by polished surfaces and conceptual safety, this painting feels genuinely risky. It is large (150 × 160 cm), unapologetically physical, and refuses to resolve into a comfortable image. It remains, stubbornly, what it is: a record of a process, a moment of decision-making made visible.
-
-For collectors who value paintings that hold their power over time — works that reveal new details on each viewing — this piece represents an opportunity to acquire a work of real substance from an artist at the top of his form.
-
-## FAQs
-
-**What makes this work unique?**
-Its combination of scale, immediacy, and restraint. Chéramy balances explosive gesture with disciplined composition, creating a painting that feels both spontaneous and inevitable.
-
-**How can I acquire this work?**
-Contact AH Milans Gallery for pricing and availability.
-
-**Where can I see more works by this artist?**
-Visit the Sébastien Chéramy page on AH Milans Gallery.
+This work represents Cheramy at his most visceral and precise. For collectors of bold contemporary abstraction, "WABI SABI 23092023" is a statement work — large in scale, immediate in impact, and conceptually anchored. It rewards sustained attention, revealing new tensions with each viewing.

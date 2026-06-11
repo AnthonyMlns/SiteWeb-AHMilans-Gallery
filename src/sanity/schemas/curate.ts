@@ -77,6 +77,24 @@ export const curate = defineType({
       type: 'reference',
       to: [{ type: 'artwork' }],
     }),
+    defineField({
+      name: 'faq',
+      title: 'FAQ',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'faqItem',
+          fields: [
+            defineField({ name: 'question', title: 'Question', type: 'string' }),
+            defineField({ name: 'answer', title: 'Answer', type: 'text', rows: 3 }),
+          ],
+          preview: {
+            select: { title: 'question' },
+          },
+        },
+      ],
+    }),
   ],
   orderings: [
     {

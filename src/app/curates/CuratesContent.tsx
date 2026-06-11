@@ -4,10 +4,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
 import FadeIn from '@/components/ui/FadeIn'
-import type { ArticlePreview } from '@/lib/types'
+
+interface CuratePreview {
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt?: string
+  publishedAt?: string
+  readTime?: number
+  relatedArtwork?: {
+    title: string
+    slug: { current: string }
+    images?: { url: string; alt: string }[]
+    artist?: { name: string; slug: { current: string } }
+  }
+}
 
 interface CuratesContentProps {
-  curates: ArticlePreview[]
+  curates: CuratePreview[]
 }
 
 export default function CuratesContent({ curates }: CuratesContentProps) {
@@ -33,17 +47,19 @@ export default function CuratesContent({ curates }: CuratesContentProps) {
                   })
                 : null
 
+              const artworkImage = curate.relatedArtwork?.images?.[0]
+
               return (
                 <Link
                   key={curate._id}
                   href={`/curates/${curate.slug.current}`}
                   className="group flex items-start gap-6 py-8 md:gap-10"
                 >
-                  <div className="relative w-24 shrink-0 overflow-hidden bg-placeholder aspect-square md:w-44">
-                    {curate.thumbnailUrl ? (
+                  <div className="relative w-24 shrink-0 overflow-hidden bg-placeholder aspect-[3/4] md:w-32">
+                    {artworkImage?.url ? (
                       <Image
-                        src={curate.thumbnailUrl}
-                        alt={curate.title}
+                        src={artworkImage.url}
+                        alt={artworkImage.alt ?? curate.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 144px, 176px"
