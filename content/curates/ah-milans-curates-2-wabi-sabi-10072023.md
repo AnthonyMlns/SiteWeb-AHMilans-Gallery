@@ -17,7 +17,7 @@ faq:
 
 ## What Makes This Work Compelling
 
-Sébastien Cheramy's "WABI SABI 10072023" is a large mixed media canvas where electric pink gestures collide with deep navy grounds. Bold, directional arcs sweep across the surface as dark weighted forms anchor the lower register while luminous passages dissolve upward into near-white air. The composition is at once explosive and resolved — an exercise in controlled release on an ambitious 200 × 120 cm scale.
+[Sébastien Cheramy](/artists/sebastien-cheramy)'s "WABI SABI 10072023" is a large mixed media canvas where electric pink gestures collide with deep navy grounds. Bold, directional arcs sweep across the surface as dark weighted forms anchor the lower register while luminous passages dissolve upward into near-white air. The composition is at once explosive and resolved — an exercise in controlled release on an ambitious 200 × 120 cm scale.
 
 The work belongs to Cheramy's ongoing Wabi Sabi series and exemplifies his method of layering spray, brushwork, and drip into a single, cohesive tension. Every gesture reads as both spontaneous and inevitable. The palette — electric pink, soft white, deep navy — translates an ancient Eastern sensibility into raw, contemporary visual energy.
 

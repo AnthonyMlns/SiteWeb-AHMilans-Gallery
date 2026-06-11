@@ -201,12 +201,6 @@ export default function MobileContent({ artists, randomWorks, latestArticles }: 
           © 2018—{new Date().getFullYear()} AH — Milans
         </p>
         <div className="mt-3 flex items-center justify-center gap-5">
-          <a
-            href="mailto:ahmilans.gallery@gmail.com"
-            className="font-sans text-[12px] text-muted transition-colors hover:text-foreground"
-          >
-            ahmilans.gallery@gmail.com
-          </a>
           <Link
             href="/privacy-policy"
             className="font-sans text-[12px] uppercase tracking-widest text-subtle transition-colors hover:text-muted"

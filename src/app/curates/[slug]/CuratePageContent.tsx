@@ -90,16 +90,11 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
             <p className="mt-5 text-lg leading-relaxed text-muted">{curate.excerpt}</p>
           )}
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-muted">
+          <div className="mt-6 flex flex-wrap items-center gap-x-1 text-[11px] text-muted">
             {dateStr && <span>{dateStr}</span>}
-            {curate.readTime && <span className="before:mr-2 before:content-['·']">{curate.readTime} min read</span>}
+            {curate.readTime && <><span className="mx-1">·</span><span>{curate.readTime} min read</span></>}
             {artwork?.artist && (
-              <Link
-                href={`/artists/${artwork.artist.slug.current}`}
-                className="before:mr-2 before:content-['·'] transition-colors hover:text-foreground"
-              >
-                {artwork.artist.name}
-              </Link>
+              <><span className="mx-1">·</span><Link href={`/artists/${artwork.artist.slug.current}`} className="transition-colors hover:text-foreground">{artwork.artist.name}</Link></>
             )}
           </div>
 
@@ -134,7 +129,7 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
               {artwork.title && (
                 <div className="flex items-baseline justify-between py-3 text-sm">
                   <span className="text-muted">Title</span>
-                  <span className="text-foreground">{artwork.title}</span>
+                  <Link href={artworkHref!} className="text-foreground underline transition-colors hover:opacity-50">{artwork.title}</Link>
                 </div>
               )}
               {artwork.artist?.name && (

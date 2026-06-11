@@ -17,7 +17,7 @@ faq:
 
 ## What Makes This Work Compelling
 
-Sébastien Cheramy's "WABI SABI 05102023" is a mixed media work that divides the eye between stillness and disruption. Soft teal and white gestures drift through the upper register, evoking breath and open sky. Below, the surface fractures: black calligraphic strokes, hot pink spray bursts, and acid-green drips collide with raw kinetic force across the 145 × 130 cm canvas.
+[Sébastien Cheramy](/artists/sebastien-cheramy)'s "WABI SABI 05102023" is a mixed media work that divides the eye between stillness and disruption. Soft teal and white gestures drift through the upper register, evoking breath and open sky. Below, the surface fractures: black calligraphic strokes, hot pink spray bursts, and acid-green drips collide with raw kinetic force across the 145 × 130 cm canvas.
 
 The contrast is deliberate — not chaos for its own sake, but a precise meditation on *wabi-sabi*, the Japanese aesthetic of imperfection and transience. Each mark feels both spontaneous and earned. The work belongs to Cheramy's ongoing dialogue between urban energy and contemplative abstraction, where gestural expressionism meets street-art vocabulary.
 

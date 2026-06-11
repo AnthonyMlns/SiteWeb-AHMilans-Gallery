@@ -17,7 +17,7 @@ faq:
 
 ## What Makes This Work Compelling
 
-Sébastien Cheramy's "WABI SABI 23092023" is a mixed media canvas that captures the tension between order and dissolution. Rendered in a charged palette of neon pink, acid yellow, and deep charcoal, the composition surges from raw darkness toward open light. Gestural marks sweep across a softly veiled ground of greys and pale blues, while fluid calligraphic lines anchor the centre, holding the work's volatile energy in check.
+[Sébastien Cheramy](/artists/sebastien-cheramy)'s "WABI SABI 23092023" is a mixed media canvas that captures the tension between order and dissolution. Rendered in a charged palette of neon pink, acid yellow, and deep charcoal, the composition surges from raw darkness toward open light. Gestural marks sweep across a softly veiled ground of greys and pale blues, while fluid calligraphic lines anchor the centre, holding the work's volatile energy in check.
 
 The title invokes the Japanese aesthetic of *wabi-sabi* — beauty found in impermanence and imperfection. Cheramy does not illustrate the concept. He embodies it: every mark is both deliberate and surrendered. This piece belongs to his ongoing Wabi Sabi series, where gestural expressionism meets calligraphic precision in a sustained inquiry into movement and transience.
 
