@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
-export const article = defineType({
-  name: 'article',
-  title: 'Article',
+export const curate = defineType({
+  name: 'curate',
+  title: 'Curate',
   type: 'document',
   fields: [
     defineField({
@@ -17,19 +17,6 @@ export const article = defineType({
       type: 'slug',
       options: { source: 'title', maxLength: 96 },
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Interview', value: 'interview' },
-          { title: 'Focus', value: 'focus' },
-          { title: 'News', value: 'news' },
-          { title: 'Essay', value: 'essay' },
-        ],
-      },
     }),
     defineField({
       name: 'publishedAt',
@@ -85,10 +72,10 @@ export const article = defineType({
       to: [{ type: 'artist' }],
     }),
     defineField({
-      name: 'featured',
-      title: 'Featured',
-      type: 'boolean',
-      initialValue: false,
+      name: 'relatedArtwork',
+      title: 'Related Artwork',
+      type: 'reference',
+      to: [{ type: 'artwork' }],
     }),
   ],
   orderings: [
@@ -101,7 +88,7 @@ export const article = defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'category',
+      subtitle: 'relatedArtist.name',
       media: 'thumbnail',
     },
   },

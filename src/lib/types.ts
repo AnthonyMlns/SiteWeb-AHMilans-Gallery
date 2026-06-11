@@ -65,11 +65,6 @@ export interface ArticlePreview {
     name: string
     slug: Slug
   }
-  relatedArtwork?: {
-    _id?: string
-    title: string
-    slug: Slug
-  }
 }
 
 export interface ArticleFull extends ArticlePreview {

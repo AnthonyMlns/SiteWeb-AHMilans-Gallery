@@ -102,6 +102,7 @@ Sanity Studio is available at `/studio`.
 - [x] **v1.1 UX & Design** — Lightbox, enriched filters, artist page redesign, consistent photography, full-screen nav, route migration to English
 - [x] **Link in bio** — `/mobile` page for mobile audiences
 - [x] **Artwork descriptions** — Import pipeline MD → Sanity, harmonised 3-paragraph format, specs moved below image
+- [x] **Curates** — `/curates` section with schema, queries, routes, and sample article
 - [ ] **v1.2 SEO & Analytics** — GA4, OG tags, JSON-LD, sitemap, cookie consent
 
 > Detailed planning in [GitHub Projects](https://github.com/AnthonyMlns/AH-Milans-SanityCMS/projects) and [Milestones](https://github.com/AnthonyMlns/AH-Milans-SanityCMS/milestones).

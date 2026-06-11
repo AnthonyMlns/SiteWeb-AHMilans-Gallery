@@ -20,6 +20,7 @@ interface CurateFull {
   relatedArtist?: {
     name: string
     slug: { current: string }
+    statementCourt?: string
   }
   relatedArtwork?: {
     title: string
@@ -69,7 +70,7 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
             {curate.readTime && <span>· {curate.readTime} min read</span>}
             {artwork?.artist && (
               <>
-                <span>·</span>
+                <span> · </span>
                 <Link
                   href={`/artists/${artwork.artist.slug.current}`}
                   className="transition-colors hover:text-foreground"
@@ -154,6 +155,11 @@ export default function CuratePageContent({ curate }: CuratePageContentProps) {
               {curate.relatedArtist.name}
               <span className="ml-3 font-sans text-base">→</span>
             </Link>
+            {curate.relatedArtist.statementCourt && (
+              <p className="mt-4 text-sm leading-relaxed text-muted max-w-prose">
+                {curate.relatedArtist.statementCourt}
+              </p>
+            )}
           </div>
           </FadeIn>
         )}

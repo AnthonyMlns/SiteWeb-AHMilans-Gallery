@@ -309,15 +309,6 @@ async function importArticles() {
       }
     }
 
-    if (frontmatter.relatedArtwork && frontmatter.relatedArtwork !== 'null') {
-      const artwork = await client.fetch(`*[_type == "artwork" && slug.current == $slug][0]{_id}`, {
-        slug: frontmatter.relatedArtwork,
-      })
-      if (artwork) {
-        document.relatedArtwork = { _type: 'reference', _ref: artwork._id }
-      }
-    }
-
     // Check if article already exists
     const existing = await client.fetch(`*[_type == "article" && slug.current == $slug][0]{_id}`, {
       slug: frontmatter.slug,

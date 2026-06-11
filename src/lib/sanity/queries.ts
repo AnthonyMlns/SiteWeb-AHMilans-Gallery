@@ -137,7 +137,8 @@ export const articleBySlugQuery = groq`
     "thumbnailUrl": thumbnail.asset->url,
     "relatedArtist": relatedArtist->{
       name,
-      slug
+      slug,
+      statementCourt
     },
     "relatedArtistArtworks": *[_type == "artwork" && artist._ref == ^.relatedArtist._ref] | order(_createdAt desc) [0..8] {
       ${artworkPreviewFields}
@@ -214,19 +215,18 @@ export async function getAllArtworkSlugs(): Promise<{ slug: string }[]> {
 // ─── Curates queries ────────────────────────────────────────────────────────────
 
 export const allCuratesQuery = groq`
-  *[_type == "article" && category == "curates"] | order(publishedAt desc) {
+  *[_type == "curate"] | order(publishedAt desc) {
     _id,
     title,
     slug,
-    category,
     excerpt,
     publishedAt,
     readTime,
-    featured,
     "thumbnailUrl": thumbnail.asset->url,
     "relatedArtist": relatedArtist->{
       name,
-      slug
+      slug,
+      statementCourt
     },
     "relatedArtwork": relatedArtwork->{
       title,
@@ -247,20 +247,19 @@ export const allCuratesQuery = groq`
 `
 
 export const curateBySlugQuery = groq`
-  *[_type == "article" && slug.current == $slug && category == "curates"][0] {
+  *[_type == "curate" && slug.current == $slug][0] {
     _id,
     title,
     slug,
-    category,
     excerpt,
     body,
     publishedAt,
     readTime,
-    featured,
     "thumbnailUrl": thumbnail.asset->url,
     "relatedArtist": relatedArtist->{
       name,
-      slug
+      slug,
+      statementCourt
     },
     "relatedArtwork": relatedArtwork->{
       title,
@@ -284,7 +283,7 @@ export const curateBySlugQuery = groq`
 `
 
 const allCuratesSlugsQuery = groq`
-  *[_type == "article" && category == "curates" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "curate" && defined(slug.current)]{ "slug": slug.current }
 `
 
 export async function getAllCurates() {

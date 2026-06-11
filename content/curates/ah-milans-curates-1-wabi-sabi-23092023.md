@@ -1,11 +1,9 @@
 ---
 title: "AH Milans Curates #1 — WABI SABI 23092023 by Sébastien Chéramy"
 slug: "ah-milans-curates-1-wabi-sabi-23092023"
-category: "curates"
 publishedAt: "2026-06-12T10:00:00Z"
 readTime: 3
 excerpt: "A large-scale mixed media canvas where raw gestural energy meets calligraphic precision."
-featured: false
 relatedArtist: sebastien-cheramy
 relatedArtwork: wabi-sabi-23092023
 ---
