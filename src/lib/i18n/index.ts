@@ -7,32 +7,9 @@ export interface Translations {
     contact: string
   }
   home: {
-    discover: string
-    artistOfMonth: string
-    viewPortfolio: string
-    artists: string
-    allArtists: string
-    collection: string
-    allWorks: string
-    journal: string
-    allArticles: string
-    heroSubtitle: string
-    discoverRoster: string
-    whyTitle: string
-    whyCol1Title: string
-    whyCol1Desc: string
-    whyCol2Title: string
-    whyCol2Desc: string
-    whyCol3Title: string
-    whyCol3Desc: string
     selectedWorks: string
     theRoster: string
-    heroLeft: string
-    heroRight: string
-    heroLink: string
     readMore: string
-    portrait: string
-    readNow: string
     artistsLink: string
     artworksLink: string
     newsletterTitle: string
@@ -52,8 +29,6 @@ export interface Translations {
     title: string
     count: (n: number) => string
     empty: string
-    backLink: string
-    worksHeading: string
   }
   works: {
     title: string
@@ -96,7 +71,6 @@ export interface Translations {
   }
   contact: {
     title: string
-    address: string
     email: string
     follow: string
     acquisitions: string
@@ -128,32 +102,9 @@ export const translations: Translations = {
     contact: 'Contact',
   },
   home: {
-    discover: 'Discover',
-    artistOfMonth: 'Artist of the Month',
-    viewPortfolio: 'View portfolio',
-    artists: 'Artists',
-    allArtists: 'All artists →',
-    collection: 'Collection',
-    allWorks: 'All works →',
-    journal: 'Journal',
-    allArticles: 'All articles →',
-    heroSubtitle: 'A curatorial label for contemporary abstract art',
-    discoverRoster: 'Discover the roster',
-    whyTitle: 'A more intentional way to collect art',
-    whyCol1Title: 'A carefully selected roster',
-    whyCol1Desc: 'Each artist is chosen for the coherence and singularity of their practice.',
-    whyCol2Title: 'Direct access to the artists',
-    whyCol2Desc: 'We bridge the gap between collectors and creators, without intermediaries.',
-    whyCol3Title: 'Works that last',
-    whyCol3Desc: 'Pieces made to stand the test of time — and grow in value.',
     selectedWorks: 'Selected works',
     theRoster: 'The roster',
-    heroLeft: 'A careful eye on singular practices — artists chosen for the depth and coherence of their work.',
-    heroRight: 'AH — Milans champions a focused selection of emerging artists whose practice deserves a closer look. Every representation is a commitment.',
-    heroLink: 'View available artworks →',
     readMore: 'Read More ↗',
-    portrait: 'Portrait',
-    readNow: 'Read Now ↗',
     artistsLink: 'Artists ↗',
     artworksLink: 'Artworks ↗',
     newsletterTitle: 'Not your average newsletter',
@@ -173,8 +124,6 @@ export const translations: Translations = {
     title: 'Artists',
     count: (n) => `${n} artist${n !== 1 ? 's' : ''}`,
     empty: 'No artists yet.',
-    backLink: '← Artists',
-    worksHeading: 'Works',
   },
   works: {
     title: 'Works',
@@ -218,7 +167,6 @@ export const translations: Translations = {
   },
   contact: {
     title: 'Contact',
-    address: 'Address',
     email: 'Email',
     follow: 'Follow the gallery',
     acquisitions: 'Acquisitions',
