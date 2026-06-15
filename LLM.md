@@ -50,6 +50,12 @@ The AH — Milans website (`ahmilans.gallery`) is built with **Next.js** and **S
 | Journal | `/editorial` | Editorial content: interviews, essays, artist portraits |
 | Article page | `/editorial/[slug]` | Full article with body, category, read time |
 | Contact | `/contact` | Contact form, address, email, Instagram |
+| Curates | `/curates` | Curatorial selections — weekly curated picks with FAQ accordion and prev/next navigation |
+| Curate page | `/curates/[slug]` | Full curate entry: editorial body, FAQ accordion, related artist, featured artwork |
+| Newsletter | `/newsletter` | Newsletter signup with hero artwork from featured collection |
+| Mobile / Link-in-bio | `/mobile` | Mobile-optimized link-in-bio page for Instagram: artist roster, random works, latest articles |
+| Privacy Policy | `/privacy-policy` | GDPR-compliant privacy policy and data processing information |
+| Sign In | `/signin` | Authentication page for exclusive content and collector account |
 
 ---
 

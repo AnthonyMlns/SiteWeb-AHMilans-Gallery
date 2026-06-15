@@ -7,8 +7,20 @@ import type { ArtworkPreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Works — AH — Milans",
+  title: "Works \u2014 AH \u2014 Milans",
   description: "All works available for acquisition.",
+  openGraph: {
+    title: "Works \u2014 AH \u2014 Milans",
+    description: "All works available for acquisition.",
+    url: "https://ahmilans.gallery/works",
+  },
+  twitter: {
+    title: "Works \u2014 AH \u2014 Milans",
+    description: "All works available for acquisition.",
+  },
+  alternates: {
+    canonical: "https://ahmilans.gallery/works",
+  },
 }
 
 export default async function OeuvresPage() {

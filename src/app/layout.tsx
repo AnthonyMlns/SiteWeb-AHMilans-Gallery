@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Crimson_Text, Geist } from 'next/font/google'
 import Providers from '@/components/layout/Providers'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/config'
 import './globals.css'
 
 const crimson = Crimson_Text({
@@ -17,8 +18,25 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: "AH — Milans",
-  description: 'A curated gallery of contemporary artists.',
+  title: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
+  openGraph: {
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 }
 
 export default function RootLayout({

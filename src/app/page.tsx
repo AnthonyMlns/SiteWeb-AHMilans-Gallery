@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import HomeContent from './HomeContent'
 import {
   getLatestArticles,
@@ -7,6 +8,23 @@ import {
 import type { ArtistPreview, ArtworkPreview, ArticlePreview } from '@/lib/types'
 
 export const revalidate = 60
+
+export const metadata: Metadata = {
+  title: 'AH \u2014 Milans | A curated gallery of contemporary artists',
+  description: 'Discover emerging and established contemporary artists. AH \u2014 Milans connects collectors with a curated selection of original artworks.',
+  openGraph: {
+    title: 'AH \u2014 Milans | A curated gallery of contemporary artists',
+    description: 'Discover emerging and established contemporary artists. AH \u2014 Milans connects collectors with a curated selection of original artworks.',
+    url: 'https://ahmilans.gallery',
+  },
+  twitter: {
+    title: 'AH \u2014 Milans | A curated gallery of contemporary artists',
+    description: 'Discover emerging and established contemporary artists. AH \u2014 Milans connects collectors with a curated selection of original artworks.',
+  },
+  alternates: {
+    canonical: 'https://ahmilans.gallery',
+  },
+}
 
 /** Fisher-Yates shuffle — runs server-side, safe for SSR */
 function shuffle<T>(array: T[]): T[] {

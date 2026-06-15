@@ -10,11 +10,12 @@ Built with **Next.js** (App Router) and **Sanity v3** as a headless CMS.
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 16 (App Router) |
+| Framework | Next.js 16 (App Router, Turbopack) |
 | CMS | Sanity v3 |
 | Styles | Tailwind CSS v4 |
-| Typography | Crimson Text (headings) + Geist (body) |
-| Deployment | Vercel |
+| Typography | Crimson Text (serif headings) + Geist (sans body) — via `next/font` |
+| Deployment | Vercel (ISR, 60s revalidation) |
+| SEO | OG tags + Twitter cards, sitemap.xml, robots.txt, canonical URLs, metadataBase |
 
 ---
 
@@ -26,18 +27,23 @@ src/
 │   ├── editorial/        # Editorial journal
 │   ├── artists/          # Roster + artist pages
 │   ├── works/            # Collection + artwork pages
+│   ├── curates/          # Curatorial selections + FAQ
 │   ├── contact/          # Contact form
 │   ├── newsletter/       # Newsletter page
-│   └── signin/           # Authentication (coming soon)
+│   ├── mobile/           # Link-in-bio page
+│   ├── signin/           # Authentication (coming soon)
+│   ├── privacy-policy/   # GDPR privacy policy
+│   ├── sitemap.ts        # Dynamic XML sitemap
+│   └── robots.ts         # Crawl rules
 ├── components/
 │   ├── layout/           # Header, Footer, MobileNav, MainLayout
 │   ├── artwork/          # ArtworkFilter, InquireModal
 │   ├── contact/          # ContactForm
 │   └── ui/               # NewsletterForm, PortableTextRenderer
 └── lib/
-    ├── sanity/           # Client, queries, types
+    ├── sanity/           # Client, queries, groq
     ├── i18n/             # Translations (EN)
-    ├── config.ts         # Global constants (CONTACT_EMAIL…)
+    ├── config.ts         # Global constants (SITE_NAME, SITE_URL, CONTACT_EMAIL…)
     └── ThemeContext.tsx  # Dark / Light mode
 ```
 
@@ -94,6 +100,8 @@ Sanity Studio is available at `/studio`.
 
 **Contact email** — centralised in `src/lib/config.ts` via `NEXT_PUBLIC_CONTACT_EMAIL`
 
+**SEO metadata** — centralized config (`SITE_NAME`, `SITE_URL`) in `src/lib/config.ts`. All dynamic pages have OG images (artwork/artist/article thumbnails), Twitter cards, and canonical URLs. Sitemap at `/sitemap.xml`, crawl rules at `/robots.txt`. Root layout sets `metadataBase` for absolute URL resolution.
+
 ---
 
 ## Roadmap
@@ -103,11 +111,13 @@ Sanity Studio is available at `/studio`.
 - [x] **Link in bio** — `/mobile` page for mobile audiences
 - [x] **Artwork descriptions** — Import pipeline MD → Sanity, harmonised 3-paragraph format, specs moved below image
 - [x] **Curates** — `/curates` section with schema, queries, routes, and sample article
-- [ ] **v1.2 SEO & Analytics** — GA4, OG tags, JSON-LD, sitemap, cookie consent
-- [ ] **Maintenance** — Mettre à jour le sitemap et le `LLM.md` à chaque ajout de page ou contenu
+- [x] **Phase 1 SEO** — OG tags + images, sitemap, robots.txt, canonical URLs, metadata homepage, title harmonization
+- [ ] **Phase 2 SEO** — JSON-LD structured data, tarteaucitron (cookie consent), GA4
+- [ ] **High-value features** — Backend inquiry, real-time availability, richer filters, "Why Collect This Work", zoom HD, lightbox
+- [ ] **Maintenance** — Update sitemap and `LLM.md` with each new page or content addition
 - [ ] **Auction** — `/auction` page with lot listings and detail pages (mockup ready, pending implementation)
 
-> Detailed planning in [GitHub Projects](https://github.com/AnthonyMlns/AH-Milans-SanityCMS/projects) and [Milestones](https://github.com/AnthonyMlns/AH-Milans-SanityCMS/milestones).
+> Detailed planning in [ROADMAP-FEATURES.md](./ROADMAP-FEATURES.md) and [GitHub Issues](https://github.com/AnthonyMlns/SiteWeb-AHMilans-Gallery/issues).
 
 ## Deployment
 

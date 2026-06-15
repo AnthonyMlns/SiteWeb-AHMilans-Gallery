@@ -22,11 +22,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const artwork = await getArtworkBySlug(slug)
   if (!artwork) return {}
+  const imageUrl = artwork.images?.[0]?.url
+  const title = `${artwork.title} \u2014 AH \u2014 Milans`
+  const description = artwork.medium
+    ? `${artwork.title}, ${artwork.medium}${artwork.year ? `, ${artwork.year}` : ''}.`
+    : undefined
   return {
-    title: `${artwork.title} — AH — Milans`,
-    description: artwork.medium
-      ? `${artwork.title}, ${artwork.medium}${artwork.year ? `, ${artwork.year}` : ''}.`
-      : undefined,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://ahmilans.gallery/works/${artwork.slug.current}`,
+      images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630 }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+    alternates: {
+      canonical: `https://ahmilans.gallery/works/${artwork.slug.current}`,
+    },
   }
 }
 

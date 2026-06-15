@@ -5,8 +5,20 @@ import { getAllArtists, getRandomArtworks, getLatestArticles } from '@/lib/sanit
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "AH — Milans",
-  description: "Link in bio — AH Milans",
+  title: "AH \u2014 Milans",
+  description: "Link in bio \u2014 AH Milans",
+  openGraph: {
+    title: "AH \u2014 Milans",
+    description: "Link in bio \u2014 AH Milans",
+    url: "https://ahmilans.gallery/mobile",
+  },
+  twitter: {
+    title: "AH \u2014 Milans",
+    description: "Link in bio \u2014 AH Milans",
+  },
+  alternates: {
+    canonical: "https://ahmilans.gallery/mobile",
+  },
 }
 
 export default async function MobilePage() {

@@ -14,6 +14,7 @@
 | **Application / Submission** | Page de soumission pour artistes émergents (formulaire + critères de curation). Pipeline de recrutement ouvert et transparent. | ⭐ |
 | **Archives des œuvres vendues** | Œuvres passées toujours visibles sur le site (badge "Sold" + prix historique). Trace du parcours de l'artiste dans le temps. | ⭐⭐ |
 | **Éditorial automatique** | Agent IA (BRIEF-IA Phase 1) : à chaque nouvel artiste, génération automatique d'un article "Focus" ou "Portrait" en draft Sanity, validation humaine avant publication. | ⭐⭐ |
+| **Distinction Exhibited / Represented** | Distinguer les artistes "Exhibited" (exposés par la galerie) des "Represented" (représentés de manière continue). Nouveau champ dans le schéma Sanity `artist` + badge visuel sur les pages artiste et cards. Clarifie le positionnement curatorial pour les collectionneurs. | ⭐⭐⭐ |
 
 ---
 
@@ -75,8 +76,10 @@
 | **Bilingual content FR/EN** | Compléter le framework i18n existant — chaque article en deux langues avec détection navigateur + sélecteur. Portée internationale. | ⭐⭐⭐ |
 | **Curated collections** | Playlists d'œuvres autour d'un thème ("Abstract Landscapes", "Works on Paper", "Sous 5000€"). Cross-selling éditorial. | ⭐⭐ |
 | **Archive newsletter visible** | Rendre les newsletters passées accessibles sur le site (page `/newsletter/archive`). Réutilise le contenu envoyé par mail pour le SEO et la rétention. | ⭐⭐ |
+| **Import articles depuis Webflow** | Migrer les meilleurs articles de blog depuis Webflow vers Sanity. Script d'import + mapping des contenus existants pour enrichir le journal éditorial sans réécriture. | ⭐⭐⭐ |
 | **Agent curateur actif** | Implémenter l'agent BRIEF-IA Phase 2 : rotation automatique des `featured`, sélection de l'œuvre du mois, suggestion de rotation des articles en home. Site vivant sans effort humain. | ⭐⭐⭐ |
 | **Lightbox** | Roadmap v1.1 — visionneuse plein écran pour les images d'œuvres. Manquant actuellement. | ⭐⭐⭐ |
+| **Description enrichie des œuvres** | Ajouter une description éditoriale/curatoriale pour chaque œuvre (contexte, inspiration, technique). Actuellement les œuvres n'ont pas de texte dédié — essentiel pour le SEO et l'argumentaire collector. | ⭐⭐⭐ |
 
 ---
 
@@ -96,17 +99,17 @@
 
 ### ❌ Ce qui manque — par priorité
 
-| Priorité | Action | Impact | Effort |
-|----------|--------|--------|--------|
-| 🔴 **1** | **OG tags + image sur toutes les pages** — `openGraph` + `twitter:card` dans chaque `generateMetadata`. Les images existent déjà dans Sanity (thumbnailUrl, profileImageUrl, images[0].url). | Partage réseaux sociaux (Instagram, WhatsApp, X) | Moyen |
-| 🔴 **2** | **Sitemap** — `src/app/sitemap.ts` avec toutes les routes dynamiques (déjà en `generateStaticParams`, trivial à générer). | Indexation Google | Faible |
-| 🔴 **3** | **robots.ts** — `src/app/robots.ts` pour contrôler le crawl. | Contrôle crawl | Très faible |
-| 🟡 **4** | **JSON-LD structured data** — Injecter les types pertinents : `VisualArtwork` (works), `Person` (artists), `Article` (editorial), `Article` + `ItemList` (curates). | Rich snippets Google Search | Moyen |
-| 🟡 **5** | **URL canonique** — `alternates.canonical` dans les metadata pour éviter la duplication (www/non-www, HTTP/HTTPS). | Déduplication SEO | Faible |
-| 🟢 **6** | **Metadata homepage enrichie** — Actuellement héritée du root layout ("A curated gallery of contemporary artists."). À personnaliser avec le nom de marque et le positionnement. | Branding dans les SERP | Très faible |
-| 🟢 **7** | **Harmonisation des titres** — Incohérences : `/curates` → "AH Milans Curates — AH — Milans" (redondant), séparateur non unifié (— vs -). | Cohérence | Très faible |
-| 🟢 **8** | **Cookie consent banner** — La Privacy Policy existe mais pas de bannière de consentement RGPD. | Conformité légale | Moyen |
-| 🟢 **9** | **GA4 / Analytics** — Intégration Google Analytics 4. | Mesure d'audience | Faible |
+| Priorité | Action | Impact | Effort | Statut |
+|----------|--------|--------|--------|--------|
+| 🔴 **1** | **OG tags + image sur toutes les pages** — `openGraph` + `twitter:card` dans chaque `generateMetadata`. Les images existent déjà dans Sanity (thumbnailUrl, profileImageUrl, images[0].url). | Partage réseaux sociaux (Instagram, WhatsApp, X) | Moyen | ✅ |
+| 🔴 **2** | **Sitemap** — `src/app/sitemap.ts` avec toutes les routes dynamiques (déjà en `generateStaticParams`, trivial à générer). | Indexation Google | Faible | ✅ |
+| 🔴 **3** | **robots.ts** — `src/app/robots.ts` pour contrôler le crawl. | Contrôle crawl | Très faible | ✅ |
+| 🟡 **4** | **JSON-LD structured data** — Injecter les types pertinents : `VisualArtwork` (works), `Person` (artists), `Article` (editorial), `Article` + `ItemList` (curates). | Rich snippets Google Search | Moyen | ❌ |
+| 🟡 **5** | **URL canonique** — `alternates.canonical` dans les metadata pour éviter la duplication (www/non-www, HTTP/HTTPS). | Déduplication SEO | Faible | ✅ |
+| 🟢 **6** | **Metadata homepage enrichie** — Actuellement héritée du root layout ("A curated gallery of contemporary artists."). À personnaliser avec le nom de marque et le positionnement. | Branding dans les SERP | Très faible | ✅ |
+| 🟢 **7** | **Harmonisation des titres** — Incohérences : `/curates` → "AH Milans Curates — AH — Milans" (redondant), séparateur non unifié (— vs -). | Cohérence | Très faible | ✅ |
+| 🟢 **8** | **tarteaucitron** — Intégrer la bannière de consentement RGPD tarteaucitron.js. La Privacy Policy existe mais pas de bannière. | Conformité légale | Moyen | ❌ |
+| 🟢 **9** | **GA4 / Analytics** — Intégration Google Analytics 4. | Mesure d'audience | Faible | ❌ |
 
 ### OG metadata — détail par route
 
@@ -158,11 +161,14 @@ twitter: {
 ## Priorisation recommandée
 
 ### 🔥 Phase 1 — SEO blast (crawlable, partageable, indexable)
-1. OG tags + images sur toutes les pages
-2. Sitemap + robots.ts
-3. Metadata homepage enrichie
-4. Harmonisation des titres
-5. URL canonique
+- [x] OG tags + images sur toutes les pages
+- [x] Sitemap + robots.ts
+- [x] Metadata homepage enrichie
+- [x] Harmonisation des titres
+- [x] URL canonique
+- [ ] JSON-LD structured data
+- [ ] tarteaucitron (cookie consent)
+- [ ] GA4 / Analytics
 
 ### 🔥 Phase 2 — Haute valeur métier
 6. Backend inquiry (remplace `mailto:`)
