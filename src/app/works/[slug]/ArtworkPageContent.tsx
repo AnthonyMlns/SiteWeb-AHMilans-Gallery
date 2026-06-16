@@ -19,6 +19,15 @@ interface ArtworkFull extends ArtworkPreview {
   relatedWorks?: ArtworkPreview[]
 }
 
+function linkify(text: string) {
+  const parts = text.split(/(\[.+?\]\(.+?\))/g)
+  return parts.map((part, i) => {
+    const m = part.match(/^\[(.+?)\]\((.+?)\)$/)
+    if (m) return <Link key={i} href={m[2]} className="underline underline-offset-2 transition-opacity hover:opacity-50">{m[1]}</Link>
+    return <span key={i}>{part}</span>
+  })
+}
+
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false)
   return (
@@ -28,7 +37,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         <span className="font-medium">{question}</span>
         <span className={`ml-4 shrink-0 transition-transform duration-200 ${open ? 'rotate-45' : ''}`}>+</span>
       </button>
-      {open && <div className="pb-4 text-sm leading-relaxed text-muted">{answer}</div>}
+      {open && <div className="pb-4 text-sm leading-relaxed text-muted">{linkify(answer)}</div>}
     </div>
   )
 }

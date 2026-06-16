@@ -10,11 +10,9 @@
 
 Here the field is denser, the marks more compacted. The CAPTCHA character does not float — it emerges, as if surfacing from layers of accumulated gesture. The ground is not background at all but the residue of decisions, marks laid down and allowed to remain.
 
-Benka's work stages a collision between two kinds of making: the algorithmic generation of the CAPTCHA and the physical accumulation of paint. The character is rendered with enough clarity to be recognised, but its edges bleed into the surrounding gesture. It belongs to the surface as much as it stands out from it.
+[Benka](/artists/benka)'s work stages a collision between two kinds of making: the algorithmic generation of the CAPTCHA and the physical accumulation of paint. The character is rendered with enough clarity to be recognised, but its edges bleed into the surrounding gesture. It belongs to the surface as much as it stands out from it.
 
 At 180 × 140 cm, this is a work that draws you close — you need to see how the layers build, how the character relates to the marks around it.
-
-**Details:** 180 × 140 cm, Mixed Media on Canvas, 2023 — [Benka](/artists/benka) | [View more works](/artists/benka)
 
 ---
 
@@ -24,4 +22,4 @@ At 180 × 140 cm, this is a work that draws you close — you need to see how th
 A: The CAPTCHA character appears to emerge from the material rather than being placed on it, creating a more intimate fusion of code and gesture.
 
 **Q: Where to see more works by Benka?**
-A: At the [gallery](/artists/benka).
+A: [AH Milans](/works) — on [Benka's page](/artists/benka).

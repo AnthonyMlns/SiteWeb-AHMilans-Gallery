@@ -31,6 +31,7 @@ export default async function OeuvresPage() {
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-28">
         <div className="mb-10 lg:mb-20">
           <h1 className="font-serif text-5xl text-foreground">Works</h1>
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted">Works chosen for their intrinsic quality, each documented and directly tied to the artist who made them.</p>
         </div>
         <ArtworkFilter artworks={artworks} />
       </div>
