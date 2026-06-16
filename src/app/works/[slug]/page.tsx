@@ -23,23 +23,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const artwork = await getArtworkBySlug(slug)
   if (!artwork) return {}
   const imageUrl = artwork.images?.[0]?.url
-  const title = `${artwork.title} \u2014 AH \u2014 Milans`
-  const description = artwork.medium
-    ? `${artwork.title}, ${artwork.medium}${artwork.year ? `, ${artwork.year}` : ''}.`
-    : undefined
+  const artistName = artwork.artist?.name || ''
+  const mediumShort = artwork.medium?.replace(' on Canvas', '') || ''
+  const metaTitle = `"${artwork.title}"${artistName ? ` by ${artistName}` : ''}${mediumShort ? ` — ${mediumShort}` : ''}${artwork.year ? `, ${artwork.year}` : ''} | AH Milans`
+  const firstDescText = artwork.description?.[0]?.children?.[0]?.text || ''
+  const cleanDesc = firstDescText.replace(/^["']|["']$/g, '').trim()
+  const metaDesc = cleanDesc
+    ? `${cleanDesc} Available at AH Milans Gallery.`
+    : `"${artwork.title}" by ${artistName}${artwork.year ? ` (${artwork.year})` : ''}${mediumShort ? ` — ${mediumShort}` : ''}. Available at AH Milans Gallery.`
   return {
-    title,
-    description,
+    title: metaTitle,
+    description: metaDesc,
     openGraph: {
-      title,
-      description,
+      title: metaTitle,
+      description: metaDesc,
       url: `https://ahmilans.gallery/works/${artwork.slug.current}`,
       images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630 }] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: metaTitle,
+      description: metaDesc,
       images: imageUrl ? [imageUrl] : undefined,
     },
     alternates: {

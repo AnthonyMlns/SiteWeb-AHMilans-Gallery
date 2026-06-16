@@ -6,16 +6,16 @@ import type { ArticlePreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Journal \u2014 AH \u2014 Milans",
-  description: "Interviews, artist portraits, and reflections on contemporary art.",
+  title: "Editorial \u2014 AH Milans Gallery | Contemporary Art Journal & Collector Guides",
+  description: "Discover the AH Milans editorial program \u2014 artist profiles, collector guides, and essays on contemporary abstract art.",
   openGraph: {
-    title: "Journal \u2014 AH \u2014 Milans",
-    description: "Interviews, artist portraits, and reflections on contemporary art.",
+    title: "Editorial \u2014 AH Milans Gallery | Contemporary Art Journal & Collector Guides",
+    description: "Discover the AH Milans editorial program \u2014 artist profiles, collector guides, and essays on contemporary abstract art.",
     url: "https://ahmilans.gallery/editorial",
   },
   twitter: {
-    title: "Journal \u2014 AH \u2014 Milans",
-    description: "Interviews, artist portraits, and reflections on contemporary art.",
+    title: "Editorial \u2014 AH Milans Gallery | Contemporary Art Journal & Collector Guides",
+    description: "Discover the AH Milans editorial program \u2014 artist profiles, collector guides, and essays on contemporary abstract art.",
   },
   alternates: {
     canonical: "https://ahmilans.gallery/editorial",

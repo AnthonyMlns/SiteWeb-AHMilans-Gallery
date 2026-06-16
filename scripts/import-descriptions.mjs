@@ -182,34 +182,22 @@ function parseInline(text) {
 }
 
 function extractSlugFromFilename(filename) {
-  // Ex: "wabi-sabi-05102023-sebastien-cheramy.md" → "wabi-sabi-05102023"
-  // Remove extension, then remove the artist name suffix (last 2-3 segments)
   const name = filename.replace(/\.[^.]+$/, '')
-
-  // Try to match common patterns: slug-artist-name → slug
-  // The slug is everything before the last 2 hyphen-segments (artist name)
-  const parts = name.split('-')
-
-  // The slug is typically the first part (title-date segments)
-  // We need to figure out where the slug ends and artist name begins
-  // Strategy: try to match known suffixes like artist names
-  const knownArtists = ['sebastien-cheramy', 'sebastien-cheramy']
+  const knownArtists = ['sebastien-cheramy', 'benka']
   for (const artist of knownArtists) {
     if (name.endsWith('-' + artist)) {
       return name.slice(0, -(artist.length + 1))
     }
   }
-
-  // Fallback: take everything except last 2 segments (firstname-lastname)
+  const parts = name.split('-')
   if (parts.length > 2) {
     return parts.slice(0, -2).join('-')
   }
-
   return name
 }
 
 async function importDescriptions() {
-  const sourceDir = 'C:\\Users\\milan\\Desktop\\Projects\\AgentIA-SEOWriterAHMilans\\content-library\\published'
+  const sourceDir = join(__dirname, '..', 'content', 'descriptions')
 
   if (!existsSync(sourceDir)) {
     console.error('Dossier introuvable:', sourceDir)

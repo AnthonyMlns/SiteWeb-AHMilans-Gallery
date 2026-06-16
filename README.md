@@ -110,9 +110,12 @@ Sanity Studio is available at `/studio`.
 - [x] **v1.1 UX & Design** — Lightbox, enriched filters, artist page redesign, consistent photography, full-screen nav, route migration to English
 - [x] **Link in bio** — `/mobile` page for mobile audiences
 - [x] **Artwork descriptions** — Import pipeline MD → Sanity, harmonised 3-paragraph format, specs moved below image
-- [x] **Curates** — `/curates` section with schema, queries, routes, and sample article
+- [x] **Curates** — `/curates` section with schema, queries, routes, import pipeline, FAQ accordion
+- [x] **Editorial journal** — `/editorial` section with articles + artist profiles, MD import pipeline, FAQ accordion, table rendering
+- [x] **Artist profiles** — Long-form editorial content for each artist with citation styling, artwork backlinks
 - [x] **Phase 1 SEO** — OG tags + images, sitemap, robots.txt, canonical URLs, metadata homepage, title harmonization
-- [ ] **Phase 2 SEO** — JSON-LD structured data, tarteaucitron (cookie consent), GA4
+- [x] **Phase 2 SEO (partial)** — List page metadata enriched, home page meta description, artist meta desc truncated to 155c, OG image fallback in layout
+- [ ] **Phase 2 SEO (remaining)** — JSON-LD structured data, tarteaucitron (cookie consent), GA4
 - [ ] **High-value features** — Backend inquiry, real-time availability, richer filters, "Why Collect This Work", zoom HD, lightbox
 - [ ] **Maintenance** — Update sitemap and `LLM.md` with each new page or content addition
 - [ ] **Auction** — `/auction` page with lot listings and detail pages (mockup ready, pending implementation)

@@ -24,7 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!artist) return {}
   const imageUrl = artist.profileImageUrl ?? artist.featuredImageUrl
   const title = `${artist.name} \u2014 AH \u2014 Milans`
-  const description = artist.statementCourt || `${artist.name} is a ${artist.style || 'contemporary'} artist represented by AH \u2014 Milans.`
+  const rawDesc = artist.statementCourt || `${artist.name} is a ${artist.style || 'contemporary'} artist represented by AH Milans Gallery.`
+  const description = rawDesc.length > 160 ? rawDesc.slice(0, rawDesc.lastIndexOf(' ', 157)) + '...' : rawDesc
   return {
     title,
     description,

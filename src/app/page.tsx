@@ -10,16 +10,16 @@ import type { ArtistPreview, ArtworkPreview, ArticlePreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: 'AH \u2014 Milans | A curated gallery of contemporary artists',
-  description: 'Discover emerging and established contemporary artists. AH \u2014 Milans connects collectors with a curated selection of original artworks.',
+  title: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art',
+  description: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art. Discover a focused roster of emerging artists, weekly curates, and collector guides.',
   openGraph: {
-    title: 'AH \u2014 Milans | A curated gallery of contemporary artists',
-    description: 'Discover emerging and established contemporary artists. AH \u2014 Milans connects collectors with a curated selection of original artworks.',
+    title: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art',
+    description: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art. Discover a focused roster of emerging artists, weekly curates, and collector guides.',
     url: 'https://ahmilans.gallery',
   },
   twitter: {
-    title: 'AH \u2014 Milans | A curated gallery of contemporary artists',
-    description: 'Discover emerging and established contemporary artists. AH \u2014 Milans connects collectors with a curated selection of original artworks.',
+    title: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art',
+    description: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art. Discover a focused roster of emerging artists, weekly curates, and collector guides.',
   },
   alternates: {
     canonical: 'https://ahmilans.gallery',

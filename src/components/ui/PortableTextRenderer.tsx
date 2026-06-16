@@ -28,8 +28,13 @@ export default function PortableTextRenderer({ value }: PortableTextRendererProp
               <h3 className="mb-3 mt-8 font-serif text-2xl text-foreground">{children}</h3>
             ),
             blockquote: ({ children }) => (
-              <blockquote className="my-8 border-l border-foreground pl-5 font-serif text-xl text-muted">
-                {children}
+              <blockquote className="relative my-10 pl-10">
+                <span className="absolute left-0 top-0 select-none font-serif text-6xl leading-none text-muted/15">
+                  &ldquo;
+                </span>
+                <div className="font-serif text-xl leading-relaxed text-muted italic">
+                  {children}
+                </div>
               </blockquote>
             ),
           },
@@ -50,6 +55,38 @@ export default function PortableTextRenderer({ value }: PortableTextRendererProp
             ),
           },
           types: {
+            table: ({ value: v }) => {
+              if (!v?.rows?.length) return null
+              const [header, ...body] = v.rows
+              return (
+                <div className="my-8 overflow-x-auto">
+                  <table className="w-full border-collapse text-left text-sm">
+                    {header && (
+                      <thead>
+                        <tr>
+                          {header.cells.map((cell: string, i: number) => (
+                            <th key={i} className="border border-border px-4 py-3 font-medium text-foreground">
+                              {cell}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                    )}
+                    <tbody>
+                      {body.map((row: { cells: string[] }, ri: number) => (
+                        <tr key={ri}>
+                          {row.cells.map((cell: string, ci: number) => (
+                            <td key={ci} className="border border-border px-4 py-3 text-muted">
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )
+            },
             image: ({ value: v }) => {
               if (!v?.asset) return null
               const url = urlFor(v).width(1200).url()

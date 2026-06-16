@@ -7,16 +7,16 @@ import type { ArtworkPreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Works \u2014 AH \u2014 Milans",
-  description: "All works available for acquisition.",
+  title: "Artworks \u2014 Contemporary Abstract Art Collection | AH Milans Gallery",
+  description: "Browse the AH Milans collection \u2014 original contemporary abstract paintings and mixed media works by emerging and mid-career artists.",
   openGraph: {
-    title: "Works \u2014 AH \u2014 Milans",
-    description: "All works available for acquisition.",
+    title: "Artworks \u2014 Contemporary Abstract Art Collection | AH Milans Gallery",
+    description: "Browse the AH Milans collection \u2014 original contemporary abstract paintings and mixed media works by emerging and mid-career artists.",
     url: "https://ahmilans.gallery/works",
   },
   twitter: {
-    title: "Works \u2014 AH \u2014 Milans",
-    description: "All works available for acquisition.",
+    title: "Artworks \u2014 Contemporary Abstract Art Collection | AH Milans Gallery",
+    description: "Browse the AH Milans collection \u2014 original contemporary abstract paintings and mixed media works by emerging and mid-career artists.",
   },
   alternates: {
     canonical: "https://ahmilans.gallery/works",

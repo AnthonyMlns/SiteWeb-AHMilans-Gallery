@@ -70,6 +70,7 @@ export interface ArticlePreview {
 export interface ArticleFull extends ArticlePreview {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: any[]
+  faq?: { _key: string; question: string; answer: string }[]
   relatedArtistArtworks?: ArtworkPreview[]
 }
 

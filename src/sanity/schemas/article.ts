@@ -76,6 +76,32 @@ export const article = defineType({
             }),
           ],
         },
+        defineField({
+          name: 'table',
+          title: 'Table',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'rows',
+              title: 'Rows',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  name: 'tableRow',
+                  fields: [
+                    defineField({
+                      name: 'cells',
+                      title: 'Cells',
+                      type: 'array',
+                      of: [{ type: 'string' }],
+                    }),
+                  ],
+                },
+              ],
+            }),
+          ],
+        }),
       ],
     }),
     defineField({
@@ -83,6 +109,24 @@ export const article = defineType({
       title: 'Related Artist',
       type: 'reference',
       to: [{ type: 'artist' }],
+    }),
+    defineField({
+      name: 'faq',
+      title: 'FAQ',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'faqItem',
+          fields: [
+            defineField({ name: 'question', title: 'Question', type: 'string' }),
+            defineField({ name: 'answer', title: 'Answer', type: 'text', rows: 3 }),
+          ],
+          preview: {
+            select: { title: 'question' },
+          },
+        },
+      ],
     }),
     defineField({
       name: 'featured',

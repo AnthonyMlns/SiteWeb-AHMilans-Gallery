@@ -5,16 +5,16 @@ import { getAllCurates } from '@/lib/sanity/queries'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Curates \u2014 AH \u2014 Milans",
-  description: "A weekly curated selection of artworks from AH \u2014 Milans.",
+  title: "AH Milans Curates \u2014 Weekly Artwork Selection | AH Milans Gallery",
+  description: "A weekly curated selection of artworks from AH Milans Gallery \u2014 one artwork, one story, every Friday.",
   openGraph: {
-    title: "Curates \u2014 AH \u2014 Milans",
-    description: "A weekly curated selection of artworks from AH \u2014 Milans.",
+    title: "AH Milans Curates \u2014 Weekly Artwork Selection | AH Milans Gallery",
+    description: "A weekly curated selection of artworks from AH Milans Gallery \u2014 one artwork, one story, every Friday.",
     url: "https://ahmilans.gallery/curates",
   },
   twitter: {
-    title: "Curates \u2014 AH \u2014 Milans",
-    description: "A weekly curated selection of artworks from AH \u2014 Milans.",
+    title: "AH Milans Curates \u2014 Weekly Artwork Selection | AH Milans Gallery",
+    description: "A weekly curated selection of artworks from AH Milans Gallery \u2014 one artwork, one story, every Friday.",
   },
   alternates: {
     canonical: "https://ahmilans.gallery/curates",

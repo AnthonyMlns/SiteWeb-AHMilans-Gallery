@@ -140,6 +140,17 @@ Hover : `group-hover:scale-105` avec `duration-700`.
 | Réponse | `pb-4 text-sm leading-relaxed text-muted` |
 | Icône | `+` rotate-45 à l'ouverture, transition `duration-200` |
 
+### Citation (blockquote)
+
+| Élément | Classes |
+| ------- | ------- |
+| Conteneur | `relative my-10 pl-10` |
+| Guillemet | `absolute left-0 top-0 select-none font-serif text-6xl leading-none text-muted/15` avec `&ldquo;` |
+| Texte | `font-serif text-xl leading-relaxed text-muted italic` |
+| Markdown | `> **"citation"**` |
+
+Le guillemet décoratif est positionné en absolute à gauche. Le texte est en serif italique. Utiliser `>` en markdown pour générer le bloc.
+
 ---
 
 | Transition | Usage                        |

@@ -4,6 +4,7 @@ import { join, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { dirname } from 'node:path'
 import { config } from 'dotenv'
+import yaml from 'js-yaml'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -35,27 +36,13 @@ function nextKey() {
 function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
   if (!match) return null
-  const frontmatter = {}
-  const lines = match[1].split('\n')
-  for (const line of lines) {
-    const sep = line.indexOf(': ')
-    if (sep === -1) continue
-    const key = line.slice(0, sep).trim()
-    let value = line.slice(sep + 2).trim()
-
-    // Strip surrounding quotes
-    if (typeof value === 'string' && value.startsWith('"') && value.endsWith('"')) {
-      value = value.slice(1, -1)
-    }
-    if (value === '' || value === 'null') value = null
-    else if (value === 'true') value = true
-    else if (value === 'false') value = false
-    else if (/^\d+$/.test(value)) value = Number(value)
-
-    frontmatter[key] = value
+  try {
+    const frontmatter = yaml.load(match[1])
+    const body = match[2].trim()
+    return { frontmatter, body }
+  } catch {
+    return null
   }
-  const body = match[2].trim()
-  return { frontmatter, body }
 }
 
 function mdToPortableText(md) {
@@ -75,12 +62,13 @@ function mdToPortableText(md) {
     // Heading h2: ## text
     if (/^## (.+)/.test(line)) {
       const text = line.replace(/^## /, '')
+      const { children, markDefs } = parseInline(text)
       blocks.push({
         _type: 'block',
         _key: nextKey(),
         style: 'h2',
-        children: [{ _type: 'span', _key: nextKey(), marks: [], text }],
-        markDefs: [],
+        children,
+        markDefs,
       })
       i++
       continue
@@ -89,12 +77,13 @@ function mdToPortableText(md) {
     // Heading h3: ### text
     if (/^### (.+)/.test(line)) {
       const text = line.replace(/^### /, '')
+      const { children, markDefs } = parseInline(text)
       blocks.push({
         _type: 'block',
         _key: nextKey(),
         style: 'h3',
-        children: [{ _type: 'span', _key: nextKey(), marks: [], text }],
-        markDefs: [],
+        children,
+        markDefs,
       })
       i++
       continue
@@ -108,13 +97,35 @@ function mdToPortableText(md) {
         i++
       }
       const text = quoteLines.join(' ')
+      const { children, markDefs } = parseInline(text)
       blocks.push({
         _type: 'block',
         _key: nextKey(),
         style: 'blockquote',
-        children: [{ _type: 'span', _key: nextKey(), marks: [], text }],
-        markDefs: [],
+        children,
+        markDefs,
       })
+      continue
+    }
+
+    // Table: | ... | ... |
+    if (/^\|.+\|$/.test(line.trim()) && /^\|([ :-]+\|)+$/.test(lines[i + 1]?.trim() ?? '')) {
+      const tableRows = []
+      while (i < lines.length && /^\|.+\|$/.test(lines[i].trim())) {
+        // Skip separator row (| --- | --- |)
+        if (!/^\|([ :-]+\|)+$/.test(lines[i].trim())) {
+          const cells = lines[i].trim().split('|').filter(c => c.trim() !== '').map(c => c.trim().replace(/\*\*(.+?)\*\*/g, '$1'))
+          tableRows.push({ _type: 'tableRow', cells })
+        }
+        i++
+      }
+      if (tableRows.length > 0) {
+        blocks.push({
+          _type: 'table',
+          _key: nextKey(),
+          rows: tableRows,
+        })
+      }
       continue
     }
 
@@ -140,6 +151,12 @@ function mdToPortableText(md) {
       continue
     }
 
+    // Horizontal rule: --- (skip)
+    if (/^---+$/.test(line.trim())) {
+      i++
+      continue
+    }
+
     // Paragraph (collect until blank line or next block element)
     const paraLines = []
     while (
@@ -148,7 +165,9 @@ function mdToPortableText(md) {
       !/^##/.test(lines[i]) &&
       !/^###/.test(lines[i]) &&
       !/^>\s?/.test(lines[i]) &&
-      !/^[-*]\s/.test(lines[i])
+      !/^[-*]\s/.test(lines[i]) &&
+      !/^\|/.test(lines[i]) &&
+      !/^---+$/.test(lines[i].trim())
     ) {
       paraLines.push(lines[i].trim())
       i++
@@ -298,6 +317,15 @@ async function importArticles() {
       excerpt: frontmatter.excerpt || null,
       featured: frontmatter.featured || false,
       body: mdToPortableText(body),
+    }
+
+    if (Array.isArray(frontmatter.faq)) {
+      document.faq = frontmatter.faq.map((item, i) => ({
+        _key: `faq${i}`,
+        _type: 'faqItem',
+        question: item.question,
+        answer: item.answer,
+      }))
     }
 
     if (frontmatter.relatedArtist && frontmatter.relatedArtist !== 'null') {

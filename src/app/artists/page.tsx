@@ -6,16 +6,16 @@ import type { ArtistPreview } from '@/lib/types'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Artists \u2014 AH \u2014 Milans",
-  description: "Discover all artists represented by AH \u2014 Milans.",
+  title: "Artists \u2014 Contemporary Abstract Painters | AH Milans Gallery Roster",
+  description: "Explore AH Milans Gallery\u2019s curated roster of contemporary abstract artists from France, Germany, the US, and beyond.",
   openGraph: {
-    title: "Artists \u2014 AH \u2014 Milans",
-    description: "Discover all artists represented by AH \u2014 Milans.",
+    title: "Artists \u2014 Contemporary Abstract Painters | AH Milans Gallery Roster",
+    description: "Explore AH Milans Gallery\u2019s curated roster of contemporary abstract artists from France, Germany, the US, and beyond.",
     url: "https://ahmilans.gallery/artists",
   },
   twitter: {
-    title: "Artists \u2014 AH \u2014 Milans",
-    description: "Discover all artists represented by AH \u2014 Milans.",
+    title: "Artists \u2014 Contemporary Abstract Painters | AH Milans Gallery Roster",
+    description: "Explore AH Milans Gallery\u2019s curated roster of contemporary abstract artists from France, Germany, the US, and beyond.",
   },
   alternates: {
     canonical: "https://ahmilans.gallery/artists",

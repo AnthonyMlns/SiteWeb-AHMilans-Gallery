@@ -131,6 +131,7 @@ export const articleBySlugQuery = groq`
     category,
     excerpt,
     body,
+    faq,
     publishedAt,
     readTime,
     featured,
