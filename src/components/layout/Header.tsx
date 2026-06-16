@@ -120,7 +120,7 @@ export default function Header() {
               onClick={() => setIsOpen(true)}
               aria-label="Open menu"
               aria-expanded={isOpen}
-              className="flex h-10 w-10 items-center justify-center gap-[5px] lg:hidden"
+              className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] lg:hidden"
             >
               <span className="block h-px w-5 bg-foreground" />
               <span className="block h-px w-5 bg-foreground" />
