@@ -75,7 +75,7 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
         {/* Main grid */}
         <FadeIn><div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-28">
 
-          {/* Left: image + specs */}
+          {/* Image — first on mobile */}
           <div>
             <div className="relative aspect-square overflow-hidden">
               {primaryImage?.url && (
@@ -89,19 +89,9 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
                 />
               )}
             </div>
-
-            {/* Specs below image */}
-            <div className="mt-8 divide-y divide-transparent">
-              {specs.map(({ label, value }) => (
-                <div key={label} className="flex items-baseline justify-between py-3 text-sm">
-                  <span className="text-muted">{label}</span>
-                  <span className="text-right text-foreground">{value}</span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Right: info panel */}
+          {/* Info panel — second on mobile, right column on desktop */}
           <div className="flex flex-col justify-center">
             {artwork.artist && (
               <Link
@@ -125,6 +115,16 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
                 <PortableTextRenderer value={artwork.description} />
               </div>
             )}
+
+            {/* Specs — between description and FAQ */}
+            <div className="mt-8 divide-y divide-transparent">
+              {specs.map(({ label, value }) => (
+                <div key={label} className="flex items-baseline justify-between py-3 text-sm">
+                  <span className="text-muted">{label}</span>
+                  <span className="text-right text-foreground">{value}</span>
+                </div>
+              ))}
+            </div>
 
             {artwork.faq && artwork.faq.length > 0 && (
               <div className="mt-10 border-t border-border pt-8">
