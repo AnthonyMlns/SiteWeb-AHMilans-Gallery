@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import MainLayout from '@/components/layout/MainLayout'
@@ -10,9 +13,24 @@ import type { ArtworkPreview, SanityImage } from '@/lib/types'
 interface ArtworkFull extends ArtworkPreview {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   description?: any[]
+  faq?: { _key: string; question: string; answer: string }[]
   medium?: string
   dimensions?: string
   relatedWorks?: ArtworkPreview[]
+}
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="border-b border-border last:border-b-0">
+      <button onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between py-4 text-left text-sm text-foreground transition-colors hover:opacity-70">
+        <span className="font-medium">{question}</span>
+        <span className={`ml-4 shrink-0 transition-transform duration-200 ${open ? 'rotate-45' : ''}`}>+</span>
+      </button>
+      {open && <div className="pb-4 text-sm leading-relaxed text-muted">{answer}</div>}
+    </div>
+  )
 }
 
 interface ArtworkPageContentProps {
@@ -96,6 +114,15 @@ export default function ArtworkPageContent({ artwork }: ArtworkPageContentProps)
             {artwork.description && (
               <div className="mt-8">
                 <PortableTextRenderer value={artwork.description} />
+              </div>
+            )}
+
+            {artwork.faq && artwork.faq.length > 0 && (
+              <div className="mt-10 border-t border-border pt-8">
+                <h2 className="mb-4 font-serif text-2xl text-foreground">FAQs</h2>
+                {artwork.faq.map((item) => (
+                  <FAQItem key={item._key} question={item.question} answer={item.answer} />
+                ))}
               </div>
             )}
 

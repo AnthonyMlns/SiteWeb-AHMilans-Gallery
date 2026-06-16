@@ -74,6 +74,7 @@ export const artworkBySlugQuery = groq`
     featured,
     price,
     description,
+    faq,
     "images": images[]{
       "url": asset->url,
       "alt": alt

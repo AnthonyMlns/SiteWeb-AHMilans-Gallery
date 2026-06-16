@@ -1,11 +1,25 @@
 # "CAPTCHA #240" by Benka — Mixed Media on Canvas, 2023
 
-![CAPTCHA #240 by Benka — large mixed media canvas with a vivid CAPTCHA character emerging from dense black and grey gestural marks, abstract street art aesthetic, layered paint surface, tension between legibility and dissolution](https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/65a82805ed38f76756ac9a3f_327016556.jpg)
+![CAPTCHA #240 by Benka — large vertical canvas, dense black and grey gesture with a single vivid orange-red CAPTCHA character](https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/65a82805ed38f76756ac9a3f_327016556.jpg)
 
-## About This Work
+> **Meta:** CAPTCHA #240 by Benka (2023) — a monumental mixed media canvas where a single vivid CAPTCHA character emerges from dense layers of black and grey gesture.
+> **Keywords:** "CAPTCHA #240" Benka, Benka CAPTCHA series, large abstract painting
+> **Published:** 2026-06-22
 
-"CAPTCHA #240" (200 × 150 cm) is the highest-numbered work in the current selection, and one of the most resolved. A single vivid verification character holds the centre of the composition, pressing against a dense accumulation of black and grey gestural marks. The surface records multiple interventions — thick impasto, scraping, layering — giving the work a physical weight that reproduces poorly at small scale and rewards direct encounter.
+---
 
-[Benka](/artists/benka)'s CAPTCHA series turns the ubiquitous anti-bot verification test into a sustained artistic and philosophical argument. Each numbered work is an iteration of the same question: where does the human mark end and the algorithmic prompt begin? "CAPTCHA #240" carries the full conceptual weight of the series, reinforced by a decade of [Benka](/artists/benka)'s thinking across music, clinical psychology, and self-taught painterly practice. The high number signals maturity within a long, consistent body of work.
+Of all the works in Benka's CAPTCHA series, this one states its case most directly. The character sits near the centre, intact, isolated, rendered in a vivid orange-red that seems to glow from within the accumulated darkness. Around it, the surface is dense — blacks and greys built in layers, a topography of marks that suggests both a graffiti wall and something more ancient.
 
-As the most recent work in this selection, "CAPTCHA #240" occupies an important position in [Benka](/artists/benka)'s trajectory. Collectors entering the series now will find in this canvas both formal confidence and conceptual clarity. [Benka](/artists/benka) exhibits internationally across Europe and the US, and the large 200 × 150 cm format places this work among his most significant statements to date.
+The scale (200 × 150 cm) is the first statement. The character — warped, oblique, digitally sourced — reads as a fragment of code made physical. Benka's background in clinical psychology and his concern with the robotisation of society give the work a conceptual weight that does not sacrifice its visual presence. It holds the wall and asks a question that lingers.
+
+**Details:** 200 × 150 cm, Mixed Media on Canvas, 2023 — [Benka](/artists/benka) | [View more works](/artists/benka)
+
+---
+
+## FAQ
+
+**Q: What makes CAPTCHA #240 unique within the series?**
+A: Its central character and the orange-red colour that seems to ignite from within the layered darkness.
+
+**Q: Where to see more works by Benka?**
+A: At the [gallery](/artists/benka).

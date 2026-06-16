@@ -1,11 +1,27 @@
 # "CAPTCHA #121" by Benka — Mixed Media on Canvas, 2023
 
-![CAPTCHA #121 by Benka — large mixed media canvas with fragmented CAPTCHA character dissolving into dense black gestural marks, abstract street art, paint and mixed media on canvas, tension between algorithm and human hand](https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/65a8263757b92fc0d2def3eb_327016546.jpg)
+![CAPTCHA #121 by Benka — large mixed media canvas, fragmented CAPTCHA character emerging from layered black and grey abstraction](https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/65a8263757b92fc0d2def3eb_327016546.jpg)
 
-## About This Work
+> **Meta:** CAPTCHA #121 by Benka (2023) — a large mixed media work where layered gesture and a fragmented CAPTCHA character question the boundary between algorithm and hand.
+> **Keywords:** "CAPTCHA #121" Benka, Benka artwork, mixed media abstract art
+> **Published:** 2026-06-16
 
-"CAPTCHA #121" (190 × 160 cm) is among the most layered works in [Benka](/artists/benka)'s series. Across a near-square format, black gestural marks build up in strata — evidence of repeated intervention, erasure, and return. A fragmented CAPTCHA character persists at the centre, neither fully readable nor fully dissolved, caught between the logic of the machine and the pressure of the painter's hand.
+---
 
-In the CAPTCHA series, [Benka](/artists/benka) recasts a routine digital interaction — the verification test that separates human users from bots — as a site of philosophical confrontation. "CAPTCHA #121" takes this further through its accumulated surface: the marks do not merely surround the character, they seem to generate it and threaten it simultaneously. The tension is both formal and conceptual, informed by [Benka](/artists/benka)'s research into clinical psychology and the social effects of AI dependency.
+The character here is more fragmented, less intact — as if the system that generated it is breaking down. The marks around it are restless, overlapping, competing. The canvas feels like a moment of interference, a glitch rendered in physical material.
 
-"CAPTCHA #121" holds particular significance as an early-numbered work in a series now running past 240. It documents [Benka](/artists/benka)'s practice at a formative moment, with a compositional directness that later works develop further. For collectors seeking a historically situated entry into the CAPTCHA series, this canvas offers clear value. [Benka](/artists/benka) is internationally exhibited, with growing institutional recognition across Europe and the US.
+Benka's work has always been about the space between authentication and anonymity. The CAPTCHA is supposed to prove you are human. But in his hands, it becomes something else — a sign that has slipped its meaning, a code that no longer decodes. His practice draws on his training as a musician and clinical psychologist, but the work itself resists explanation. It asks to be felt first.
+
+At 190 × 160 cm, this is one of the largest works in the series. The scale amplifies the tension between the digital source and the physical surface.
+
+**Details:** 190 × 160 cm, Mixed Media on Canvas, 2023 — [Benka](/artists/benka) | [View more works](/artists/benka)
+
+---
+
+## FAQ
+
+**Q: What makes CAPTCHA #121 unique?**
+A: Its fragmented character and the sense of interference between digital code and painted gesture.
+
+**Q: Where to see more works by Benka?**
+A: At the [gallery](/artists/benka).

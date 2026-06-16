@@ -1,11 +1,27 @@
 # "CAPTCHA #223" by Benka — Mixed Media on Canvas, 2023
 
-![CAPTCHA #223 by Benka — large-scale mixed media canvas with distorted CAPTCHA character emerging from layered black and grey gestural abstraction, street art influence, raw texture](https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/65a828cd0079bca367996e7b_327016561.jpg)
+![CAPTCHA #223 by Benka — large mixed media canvas, a single distorted CAPTCHA character emerging from layered black and grey gestural abstraction](https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/65a828cd0079bca367996e7b_327016561.jpg)
 
-## About This Work
+> **Meta:** CAPTCHA #223 by Benka (2023) — a large mixed media canvas where a single verification character rises from layers of black and grey gesture, caught between code and hand.
+> **Keywords:** "CAPTCHA #223" Benka, Benka CAPTCHA series, mixed media abstract art
+> **Published:** 2026-06-16
 
-At 200 × 150 cm, "CAPTCHA #223" commands attention through scale and density. A single distorted verification character rises from a field of accumulated gestural marks — thick black strokes, layered paint, and raw mixed media collide across the canvas surface. The composition is centered yet unstable, held together by the tension between figuration and abstraction.
+---
 
-This work belongs to [Benka](/artists/benka)'s ongoing CAPTCHA series, begun in 2015. The series uses the CAPTCHA symbol — that familiar anti-bot test — as a pivot point between human identity and machine logic. Each canvas encodes a quiet provocation: the character that proves you are human becomes, in [Benka](/artists/benka)'s hands, a fractured, almost illegible sign. His background in clinical psychology, particularly around smartphone addiction, informs this investigation into digital control.
+At 200 × 150 cm, it meets you first as a wall of accumulated gesture — thick black strokes, layered paint, a topography of marks that suggests something between a graffiti wall and a palimpsest. Then the eye catches it: a single CAPTCHA character, warped, oblique, intact. It floats in the density like a message from another system.
 
-"CAPTCHA #223" represents [Benka](/artists/benka) at his most resolved. The large format amplifies the existential stakes of the series. It suits collectors drawn to work that engages contemporary urgency without sacrificing painterly complexity. As an internationally exhibited artist shown across Europe and the US, [Benka](/artists/benka)'s market is growing — and this scale is rare in the series.
+Benka works with the tension between digital authentication and physical mark-making. The CAPTCHA — that familiar anti-bot test designed to prove you are human — becomes, in his hands, a fractured almost illegible sign. A former clinical psychologist who researched smartphone addiction, he brings an unusual conceptual depth to abstraction. His work questions what happens when the mechanism that proves our humanity becomes the subject of art.
+
+This piece belongs to his ongoing CAPTCHA series, begun in 2015. Benka now exhibits across Europe and the US.
+
+**Details:** 200 × 150 cm, Mixed Media on Canvas, 2023 — [Benka](/artists/benka) | [View more works](/artists/benka)
+
+---
+
+## FAQ
+
+**Q: What makes CAPTCHA #223 unique?**
+A: The confrontation between a digital motif (the CAPTCHA) and a fully physical surface built through accumulated gesture.
+
+**Q: Where to see more works by Benka?**
+A: At the [gallery](/artists/benka).

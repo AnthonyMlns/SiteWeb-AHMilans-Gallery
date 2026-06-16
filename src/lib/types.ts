@@ -48,6 +48,7 @@ export interface ArtworkPreview {
 export interface ArtworkFull extends ArtworkPreview {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   description?: any[]
+  faq?: { _key: string; question: string; answer: string }[]
   artist?: ArtistPreview
 }
 

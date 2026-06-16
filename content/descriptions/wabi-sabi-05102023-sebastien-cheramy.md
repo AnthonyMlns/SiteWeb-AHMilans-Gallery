@@ -1,52 +1,27 @@
 # "WABI SABI 05102023" by Sébastien Cheramy — Mixed Media on Canvas, 2023
 
-![WABI SABI 05102023 by Sébastien Cheramy — mixed media on canvas, 2023, 145 x 130 cm — teal, black, hot pink, acid green, abstract expressionism, urban calligraphy](https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/6570d89a1f3935205e625e33_327016522.jpg)
-*[WABI SABI 05102023](/artworks/wabi-sabi-05102023), Sébastien Cheramy, mixed media on canvas, 2023. © Sébastien Cheramy. Courtesy of AH Milans Gallery.*
+![WABI SABI 05102023 by Sébastien Cheramy — horizontal canvas, muted ochre and pale grey surface with dark calligraphic marks, drips, and scratches](https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/6570d89a1f3935205e625e33_327016522.jpg)
 
-> **Target words:** 180-220 | **Read time:** <1 min | **Category:** Art
-> **Primary keyword:** "WABI SABI 05102023" Sébastien Cheramy
-> **Secondary keywords:** Sébastien Cheramy artwork, abstract expressionism painting, mixed media art, contemporary art 2023, Sébastien Cheramy for sale, original mixed media artwork, buy abstract expressionist art online, AH Milans Gallery
-> **Meta description:** "WABI SABI 05102023" by Sébastien Cheramy (2023) — a large-scale mixed media canvas where airy gestural sweeps collide with raw calligraphic marks and neon bursts. Available at AH Milans Gallery.
-> **Canonical:** https://www.ahmilans.gallery/artworks/wabi-sabi-05102023
-> **OG Image:** https://cdn.prod.website-files.com/635e4fa10b918d8093148df1/6570d89a1f3935205e625e33_327016522.jpg | **OG Title:** "WABI SABI 05102023" — Sébastien Cheramy at AH Milans Gallery | **OG Description:** "WABI SABI 05102023" by Sébastien Cheramy (2023) — a large-scale mixed media canvas where airy gestural sweeps collide with raw calligraphic marks and neon bursts. Available at AH Milans Gallery.
+> **Meta:** "WABI SABI 05102023" by Sébastien Cheramy (2023) — a weathered earth-toned canvas where calligraphic marks and layered texture embody the beauty of impermanence.
+> **Keywords:** "WABI SABI 05102023" Sébastien Cheramy, Wabi Sabi series, abstract expressionism
+> **Published:** 2026-06-11
 
 ---
 
-## About This Work
+It operates in a quieter register than its series counterparts. Where other works in the Wabi Sabi series erupt into electric colour, this canvas stays with earth — ochres, off-whites, greys that read like stone or weathered plaster. The surface is dense but not aggressive: layers upon layers, scraped back, overpainted, marked by a restrained calligraphic hand.
 
-[Sébastien Cheramy](/artists/sebastien-cheramy)'s "WABI SABI 05102023" (2023) is a mixed media work that divides the eye between stillness and disruption. Soft teal and white gestures drift through the upper register, evoking breath and open sky. Below, the surface fractures: black calligraphic strokes, hot pink spray bursts, and acid-green drips collide with raw kinetic force across the 145 × 130 cm canvas.
+The title names an aesthetic that finds beauty in impermanence. Cheramy does not illustrate the philosophy — he enacts it through process. The painting looks as though it has existed for decades, exposed to elements, bearing the physical record of time. The dark marks that traverse the surface carry the weight of writing, of a language approached but never decoded.
 
-The contrast is deliberate — not chaos for its own sake, but a precise meditation on *wabi-sabi*, the Japanese aesthetic of imperfection and transience. Each mark feels both spontaneous and earned. The work belongs to Cheramy's ongoing dialogue between urban energy and contemplative abstraction, where gestural expressionism meets street-art vocabulary.
+At 145 × 130 cm, this is a work that asks for proximity. The details — the scratches, the thin drips, the places where the underlayer shows through — only reveal themselves up close.
 
-"WABI SABI 05102023" brings chromatic drama and conceptual depth to any serious collection of contemporary abstract painting. It is Cheramy at his most dynamic — a painter unafraid of tension, equally fluent in restraint and eruption.
-
-## Quick Facts
-
-| Aspect | Detail |
-|--------|--------|
-| **Artist** | [Sébastien Cheramy](/artists/sebastien-cheramy) |
-| **Title** | WABI SABI 05102023 |
-| **Medium** | Mixed Media on Canvas |
-| **Year** | 2023 |
-| **Dimensions** | 145 × 130 cm |
-| **Style** | Abstract Expressionism |
-| **Framing** | Unframed |
-| **Certificate of Authenticity** | Yes |
-
-## About the Artist
-
-Sébastien Cheramy is a contemporary French artist whose practice explores the intersection of gestural abstraction, calligraphy, and urban visual culture. His large-scale mixed media works are defined by layered materiality, energetic mark-making, and a sustained inquiry into impermanence and emotional tension. His work has been exhibited in galleries across Europe and Asia.
-
-[Read the full artist profile →](/artists/sebastien-cheramy)
-
-## Explore More
-
-- [View all artworks by Sébastien Cheramy](/artists/sebastien-cheramy/artworks)
-- [AH Milans Curates: WABI SABI 05102023](/curates/wabi-sabi-05102023)
-- [Read the Sébastien Cheramy artist profile](/artists/sebastien-cheramy)
-- [Browse similar abstract expressionist works](/artworks?style=abstract-expressionism)
-- [Contact AH Milans Gallery](https://www.ahmilans.gallery/contact)
+**Details:** 145 × 130 cm, Mixed Media on Canvas, 2023 — [Sébastien Cheramy](/artists/sebastien-cheramy) | [View more works](/artists/sebastien-cheramy)
 
 ---
 
-*Artwork Description | Published on AH Milans Gallery | [Contemporary Art](/artworks)*
+## FAQ
+
+**Q: What makes WABI SABI 05102023 unique?**
+A: Its restrained earth palette — ochres, greys, off-whites — which contrasts with the more chromatic works in the series, and a surface that seems to have travelled through time.
+
+**Q: Where to see more works by Cheramy?**
+A: At the [gallery](/artists/sebastien-cheramy).
