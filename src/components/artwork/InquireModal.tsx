@@ -42,7 +42,7 @@ export default function InquireModal({ artworkTitle, artistName }: InquireModalP
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="mt-10 w-full border border-foreground px-6 py-3.5 text-[11px] uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background"
+        className="mt-10 w-full border border-foreground px-6 py-3 text-[11px] uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background min-h-[44px]"
       >
         {t.works.inquireTrigger}
       </button>
@@ -67,7 +67,7 @@ export default function InquireModal({ artworkTitle, artistName }: InquireModalP
               <button
                 onClick={close}
                 aria-label="Fermer"
-                className="relative ml-4 flex h-8 w-8 shrink-0 items-center justify-center text-muted hover:text-foreground"
+                className="relative ml-4 flex h-11 w-11 shrink-0 items-center justify-center text-muted hover:text-foreground"
               >
                 <span className="absolute block h-px w-4 origin-center rotate-45 bg-current" />
                 <span className="absolute block h-px w-4 origin-center -rotate-45 bg-current" />
@@ -75,7 +75,7 @@ export default function InquireModal({ artworkTitle, artistName }: InquireModalP
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label className="mb-1.5 block text-[10px] uppercase tracking-widest text-muted">
                     {t.works.namePlaceholder} *
@@ -117,7 +117,7 @@ export default function InquireModal({ artworkTitle, artistName }: InquireModalP
 
               <button
                 type="submit"
-                className="w-full bg-foreground px-6 py-3.5 text-[11px] uppercase tracking-widest text-background transition-opacity hover:opacity-70"
+                className="w-full bg-foreground px-6 py-3 text-[11px] uppercase tracking-widest text-background transition-opacity hover:opacity-70 min-h-[44px]"
               >
                 {t.works.inquireSubmit}
               </button>

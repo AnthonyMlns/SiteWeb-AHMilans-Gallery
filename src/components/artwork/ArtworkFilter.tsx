@@ -53,7 +53,7 @@ export default function ArtworkFilter({ artworks }: ArtworkFilterProps) {
               key={a.slug}
               onClick={() => setSelected(a.slug)}
               className={[
-                'border px-4 py-1.5 text-[10px] uppercase tracking-widest transition-colors',
+              'border px-4 py-3 text-[11px] uppercase tracking-widest transition-colors min-h-[44px]',
                 selected === a.slug
                   ? 'border-foreground bg-foreground text-background'
                   : 'border-border text-muted hover:border-foreground hover:text-foreground',

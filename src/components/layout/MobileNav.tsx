@@ -53,7 +53,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
       <button
         onClick={onClose}
         aria-label="Close menu"
-        className="fixed right-6 top-[17px] z-10 flex h-8 w-8 items-center justify-center"
+        className="fixed right-4 top-3 z-10 flex h-11 w-11 items-center justify-center"
       >
         <span className="relative block h-4 w-4">
           <span className="absolute inset-x-0 top-1/2 block h-px origin-center -translate-y-px -rotate-45 bg-foreground" />

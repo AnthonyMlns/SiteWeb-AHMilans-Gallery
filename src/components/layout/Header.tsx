@@ -94,10 +94,10 @@ export default function Header() {
 <button
               onClick={toggleTheme}
               aria-label={theme === 'dark' ? 'Light mode' : 'Dark mode'}
-              className="text-muted transition-colors hover:text-foreground"
+              className="flex items-center justify-center p-2 text-muted transition-colors hover:text-foreground"
             >
               {theme === 'dark' ? (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="4"/>
                   <line x1="12" y1="2" x2="12" y2="5"/>
                   <line x1="12" y1="19" x2="12" y2="22"/>
@@ -109,7 +109,7 @@ export default function Header() {
                   <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
                 </svg>
               ) : (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                 </svg>
               )}
@@ -120,10 +120,10 @@ export default function Header() {
               onClick={() => setIsOpen(true)}
               aria-label="Open menu"
               aria-expanded={isOpen}
-              className="flex h-8 w-6 flex-col items-end justify-center gap-[5px]"
+              className="flex h-10 w-10 items-center justify-center gap-[5px] lg:hidden"
             >
               <span className="block h-px w-5 bg-foreground" />
-              <span className="block h-px w-3 bg-foreground" />
+              <span className="block h-px w-5 bg-foreground" />
             </button>
           </div>
         </div>

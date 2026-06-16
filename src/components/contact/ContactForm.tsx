@@ -81,7 +81,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="mt-2 inline-flex items-center gap-3 border border-foreground px-8 py-4 text-[11px] uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background"
+        className="mt-2 inline-flex items-center gap-3 border border-foreground px-8 py-4 text-[11px] uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background min-h-[44px]"
       >
         {t.contact.form.send}
         <span className="text-base leading-none">→</span>
