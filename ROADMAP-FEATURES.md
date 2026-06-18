@@ -158,6 +158,106 @@ twitter: {
 
 ---
 
+## 🖨️ Prints on Demand (Gelato)
+
+### Vision
+
+Permettre aux visiteurs d'acheter des reproductions (prints) d'œuvres sélectionnées, imprimées et expédiées via Gelato. Pas de stock, pas d'expédition : Gelato fabrique et envoie à l'unité. Fonctionne **œuvre par œuvre** (opt-in, pas un catalogue print global).
+
+### Use case — Parcours utilisateur
+
+1. **Depuis la page d'une œuvre** (`/works/[slug]`) qui a `printEnabled: true`, un bouton toggle `"Voir le print"` remplace l'affichage — le prix original disparaît, les options print apparaissent.
+2. **L'utilisateur choisit** :
+   - **Format** : A4 (21×29.7cm), A3 (29.7×42cm), 30×40cm, 50×70cm
+   - **Papier** : Premium Matt, Fine Art Paper, Lustre Photo
+   - **Encadrement** : Non / Cadre noir / Cadre blanc
+3. **Prix calculé** dynamiquement (via API Gelato ou lookup local) et affiché.
+4. **"Ajouter au panier"** → stocké dans `localStorage` (persiste entre les pages).
+5. **L'utilisateur continue** sa navigation sur le site, visite d'autres œuvres avec print activé, ajoute d'autres prints au même panier.
+6. **Icône panier** dans le header (badge avec compteur) → tiroir latéral ou dropdown récapitulatif : produit, variante, quantité, prix unitaire, total.
+7. **"Passer la commande"** → redirection vers le **checkout Gelato** (ou formulaire de commande simplifié + paiement Stripe).
+8. **Confirmation** : email via Brevo (déjà intégré) + tracking Gelato envoyé par email.
+
+### Données — Schema Sanity
+
+**Sur `artwork`**, ajouter :
+
+```ts
+defineField({
+  name: 'printEnabled',
+  title: 'Print available',
+  type: 'boolean',
+  initialValue: false,
+})
+```
+
+Optionnel : un document `printProduct` lié à l'artwork si on veut des réglages fins (images cropées pour print, variantes custom, marges).
+
+### Frontend — Composants à créer
+
+| Composant | Rôle |
+|-----------|------|
+| `PrintToggle` | Bascule entre vue œuvre originale et vue print (bouton + state) |
+| `PrintOptions` | Sélecteur format × papier × cadre avec prix dynamique |
+| `PrintCartDrawer` | Tiroir panier latéral (accessible depuis le header) |
+| `PrintCartProvider` | Contexte React + localStorage pour le panier |
+| `CheckoutButton` | Redirection vers checkout Gelato ou formulaire de paiement |
+
+### API Routes (Vercel)
+
+| Route | Rôle |
+|-------|------|
+| `POST /api/gelato/products` | Créer/mettre à jour un produit print dans Gelato |
+| `POST /api/gelato/price` | Obtenir un devis (print + shipping) pour une variante |
+| `POST /api/gelato/orders` | Créer une commande Gelato |
+| `POST /api/gelato/webhook` | Recevoir les mises à jour de statut (en production, expédié) |
+
+### Gestion du panier & suivi client
+
+- **Panier** : 100% client-side (`localStorage`). Pas de compte utilisateur requis. Pas de panier général — le print-cart est isolé, ne touche pas aux œuvres originales.
+- **Checkout** : au choix —
+  - **Checkout Gelato direct** (recommandé) : Gelato gère paiement + expédition + tracking. Pas de données bancaires à gérer.
+  - **Formulaire custom** : nom, email, adresse → appel API Gelato pour créer la commande → email confirmation Brevo + tracking de Gelato transmis par email.
+- **Suivi** : Gelato envoie directement l'email de confirmation d'expédition avec le tracking number (colis). Aucune gestion côté site.
+
+### Architecture technique
+
+```
+Sanity (printEnabled + images)
+        │
+        ▼
+Page œuvre ── toggle ──► PrintOptions (format × papier × cadre)
+        │                      │
+        │                      ▼
+        │              localStorage (panier)
+        │                      │
+        │                      ▼
+        │              Checkout ──► Gelato API ──► Fabrication + Expédition
+        │                                    │
+        │                                    ▼
+        │                               Email tracking (Gelato → client)
+        │
+        └──► InquireModal (inchangé pour œuvres originales)
+```
+
+### Notes
+
+- **Per-œuvre** : `printEnabled: false` par défaut. Seules les œuvres explicitement activées dans Sanity affichent le toggle print.
+- **Pas de conflit** avec le système existant : le `InquireModal` reste pour les œuvres originales, le panier print est géré à part.
+- **Gelato** : compte gratuit, API REST, paiement à l'unité. Pas d'abonnement.
+
+| Feature | Priorité | Effort |
+|---------|----------|--------|
+| Schema `printEnabled` + `PrintToggle` basique | 🔴 | 1 jour |
+| `PrintOptions` (format × papier × cadre) | 🔴 | 2 jours |
+| `PrintCartDrawer` + `localStorage` | 🔴 | 1 jour |
+| `POST /api/gelato/products` + sync catalogue | 🟡 | 2 jours |
+| `POST /api/gelato/orders` + checkout | 🟡 | 2 jours |
+| Webhook + email confirmation | 🟢 | 0.5 jour |
+| **Total** | | **~8.5 jours** |
+
+---
+
 ## Priorisation recommandée
 
 ### 🔥 Phase 1 — SEO blast (crawlable, partageable, indexable)
@@ -203,6 +303,13 @@ twitter: {
 29. Vue "salle d'exposition" / Room View
 30. Comparaison d'œuvres
 
+### 🖨️ Phase 6 — Prints on Demand
+31. Schema `printEnabled` + `PrintToggle` basique
+32. `PrintOptions` (format × papier × cadre)
+33. `PrintCartDrawer` + localStorage panier
+34. Sync catalogue Gelato + API routes
+35. Checkout + webhook de statut
+
 ---
 
-> Dernière mise à jour : 12 juin 2026 — ajout sections Découverte & Navigation, Expérience visuelle, et nouveaux items Collectionneurs (statut disponibilité, témoignages, partage) + archive newsletter.
+> Dernière mise à jour : 19 juin 2026 — ajout section Prints on Demand (Gelato) : use case complet, schéma, composants, API, architecture, estimation d'effort.
