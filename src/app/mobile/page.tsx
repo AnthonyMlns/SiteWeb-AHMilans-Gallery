@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import MobileContent from './MobileContent'
 import { getAllArtists, getRandomArtworks, getLatestArticles } from '@/lib/sanity/queries'
 
@@ -10,14 +11,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AH \u2014 Milans",
     description: "Link in bio \u2014 AH Milans",
-    url: "https://ahmilans.gallery/mobile",
+    url: `${SITE_URL}/mobile`,
   },
   twitter: {
     title: "AH \u2014 Milans",
     description: "Link in bio \u2014 AH Milans",
   },
   alternates: {
-    canonical: "https://ahmilans.gallery/mobile",
+    canonical: `${SITE_URL}/mobile`,
   },
 }
 

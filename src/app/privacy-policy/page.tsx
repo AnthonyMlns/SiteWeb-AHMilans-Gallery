@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import PrivacyPolicyContent from './PrivacyPolicyContent'
 
 export const metadata: Metadata = {
@@ -7,14 +8,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Privacy Policy \u2014 AH \u2014 Milans",
     description: "Privacy policy and personal data processing at AH \u2014 Milans.",
-    url: "https://ahmilans.gallery/privacy-policy",
+    url: `${SITE_URL}/privacy-policy`,
   },
   twitter: {
     title: "Privacy Policy \u2014 AH \u2014 Milans",
     description: "Privacy policy and personal data processing at AH \u2014 Milans.",
   },
   alternates: {
-    canonical: "https://ahmilans.gallery/privacy-policy",
+    canonical: `${SITE_URL}/privacy-policy`,
   },
 }
 

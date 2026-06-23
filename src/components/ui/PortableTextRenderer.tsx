@@ -4,6 +4,29 @@ import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity/image'
 
+function renderCaption(caption: string) {
+  const parts = caption.split(/(\[.+?\]\(.+?\))/g)
+  return parts.map((part, i) => {
+    const match = part.match(/^\[(.+?)\]\((.+?)\)$/)
+    if (match) {
+      const href = match[2]
+      const isInternal = href.startsWith('/')
+      return (
+        <a
+          key={i}
+          href={href}
+          target={isInternal ? undefined : '_blank'}
+          rel={isInternal ? undefined : 'noopener noreferrer'}
+          className="underline underline-offset-2 transition-opacity hover:opacity-50"
+        >
+          {match[1]}
+        </a>
+      )
+    }
+    return <span key={i}>{part}</span>
+  })
+}
+
 interface PortableTextRendererProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any[]
@@ -43,16 +66,20 @@ export default function PortableTextRenderer({ value }: PortableTextRendererProp
               <strong className="font-medium text-foreground">{children}</strong>
             ),
             em: ({ children }) => <em className="italic">{children}</em>,
-            link: ({ children, value: v }) => (
-              <a
-                href={v?.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-2 transition-opacity hover:opacity-50"
-              >
-                {children}
-              </a>
-            ),
+            link: ({ children, value: v }) => {
+              const href = v?.href || ''
+              const isInternal = href.startsWith('/')
+              return (
+                <a
+                  href={href}
+                  target={isInternal ? undefined : '_blank'}
+                  rel={isInternal ? undefined : 'noopener noreferrer'}
+                  className="underline underline-offset-2 transition-opacity hover:opacity-50"
+                >
+                  {children}
+                </a>
+              )
+            },
           },
           types: {
             table: ({ value: v }) => {
@@ -92,12 +119,16 @@ export default function PortableTextRenderer({ value }: PortableTextRendererProp
               const url = urlFor(v).width(1200).url()
               return (
                 <figure className="my-10">
-                  <div className="relative aspect-[16/9] overflow-hidden bg-placeholder">
-                    <Image src={url} alt={v.alt || ''} fill className="object-cover" />
-                  </div>
+                  <Image
+                    src={url}
+                    alt={v.alt || ''}
+                    width={1200}
+                    height={900}
+                    className="w-full h-auto"
+                  />
                   {v.caption && (
                     <figcaption className="mt-2 text-center text-xs text-muted">
-                      {v.caption}
+                      {renderCaption(v.caption)}
                     </figcaption>
                   )}
                 </figure>

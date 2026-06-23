@@ -59,6 +59,42 @@ function mdToPortableText(md) {
       continue
     }
 
+    // Image: ![alt text](url) — convert cdn.sanity.io URLs to asset references
+    const imageMatch = line.match(/^!\[(.+)\]\((.+)\)/)
+    if (imageMatch) {
+      const alt = imageMatch[1]
+      const url = imageMatch[2]
+      let caption = null
+      i++
+      // Optional caption on next line: *caption text*
+      if (i < lines.length && /^\*(.+)\*$/.test(lines[i].trim())) {
+        caption = lines[i].trim().replace(/^\*(.+)\*$/, '$1')
+        i++
+      }
+      // Convert Sanity CDN URL to asset reference
+      const sanityMatch = url.match(/cdn\.sanity\.io\/images\/g4bdpvz6\/production\/(.+?)\.(png|jpg|jpeg|webp)/)
+      if (sanityMatch) {
+        const assetId = `image-${sanityMatch[1]}-${sanityMatch[2]}`
+        blocks.push({
+          _type: 'image',
+          _key: nextKey(),
+          asset: { _type: 'reference', _ref: assetId },
+          alt,
+          ...(caption ? { caption } : {}),
+        })
+      } else {
+        // Non-Sanity URL: skip image but keep a placeholder note
+        blocks.push({
+          _type: 'block',
+          _key: nextKey(),
+          style: 'normal',
+          children: [{ _type: 'span', _key: nextKey(), text: `[Image: ${alt}]` }],
+          markDefs: [],
+        })
+      }
+      continue
+    }
+
     // Heading h2: ## text
     if (/^## (.+)/.test(line)) {
       const text = line.replace(/^## /, '')
@@ -196,46 +232,7 @@ function parseInline(text) {
   let remaining = text
 
   while (remaining.length > 0) {
-    // Bold + italic: ***text***
-    const boldItalicMatch = remaining.match(/^\*\*\*(.+?)\*\*\*/)
-    if (boldItalicMatch) {
-      children.push({
-        _type: 'span',
-        _key: nextKey(),
-        marks: ['strong', 'em'],
-        text: boldItalicMatch[1],
-      })
-      remaining = remaining.slice(boldItalicMatch[0].length)
-      continue
-    }
-
-    // Bold: **text**
-    const boldMatch = remaining.match(/^\*\*(.+?)\*\*/)
-    if (boldMatch) {
-      children.push({
-        _type: 'span',
-        _key: nextKey(),
-        marks: ['strong'],
-        text: boldMatch[1],
-      })
-      remaining = remaining.slice(boldMatch[0].length)
-      continue
-    }
-
-    // Italic: *text*
-    const italicMatch = remaining.match(/^\*(.+?)\*/)
-    if (italicMatch) {
-      children.push({
-        _type: 'span',
-        _key: nextKey(),
-        marks: ['em'],
-        text: italicMatch[1],
-      })
-      remaining = remaining.slice(italicMatch[0].length)
-      continue
-    }
-
-    // Link: [text](url)
+    // Link: [text](url) — MUST be parsed BEFORE bold/italic to avoid *[link](url)* swallowing
     const linkMatch = remaining.match(/^\[(.+?)\]\((.+?)\)/)
     if (linkMatch) {
       const linkText = linkMatch[1]
@@ -248,8 +245,79 @@ function parseInline(text) {
         text: linkText,
       })
       markDefs.push({ _key: markKey, _type: 'link', href })
-
       remaining = remaining.slice(linkMatch[0].length)
+      continue
+    }
+
+    // Bold + italic: ***text***
+    const boldItalicMatch = remaining.match(/^\*\*\*(.+?)\*\*\*/)
+    if (boldItalicMatch) {
+      const inner = boldItalicMatch[1]
+      if (inner.includes('[')) {
+        const { children: innerChildren, markDefs: innerDefs } = parseInline(inner)
+        for (const child of innerChildren) {
+          if (!child.marks) child.marks = []
+          child.marks.push('strong', 'em')
+        }
+        children.push(...innerChildren)
+        markDefs.push(...innerDefs)
+      } else {
+        children.push({
+          _type: 'span',
+          _key: nextKey(),
+          marks: ['strong', 'em'],
+          text: inner,
+        })
+      }
+      remaining = remaining.slice(boldItalicMatch[0].length)
+      continue
+    }
+
+    // Bold: **text**
+    const boldMatch = remaining.match(/^\*\*(.+?)\*\*/)
+    if (boldMatch) {
+      const inner = boldMatch[1]
+      if (inner.includes('[')) {
+        const { children: innerChildren, markDefs: innerDefs } = parseInline(inner)
+        for (const child of innerChildren) {
+          if (!child.marks) child.marks = []
+          child.marks.push('strong')
+        }
+        children.push(...innerChildren)
+        markDefs.push(...innerDefs)
+      } else {
+        children.push({
+          _type: 'span',
+          _key: nextKey(),
+          marks: ['strong'],
+          text: inner,
+        })
+      }
+      remaining = remaining.slice(boldMatch[0].length)
+      continue
+    }
+
+    // Italic: *text*
+    const italicMatch = remaining.match(/^\*(.+?)\*/)
+    if (italicMatch) {
+      const inner = italicMatch[1]
+      if (inner.includes('[')) {
+        const { children: innerChildren, markDefs: innerDefs } = parseInline(inner)
+        for (const child of innerChildren) {
+          if (!child.marks) child.marks = []
+          child.marks.push('em')
+        }
+        children.push(...innerChildren)
+        markDefs.push(...innerDefs)
+      } else {
+        children.push({
+          _type: 'span',
+          _key: nextKey(),
+          marks: ['em'],
+          text: inner,
+        })
+      }
+      remaining = remaining.slice(italicMatch[0].length)
       continue
     }
 
@@ -334,6 +402,14 @@ async function importArticles() {
       })
       if (artist) {
         document.relatedArtist = { _type: 'reference', _ref: artist._id }
+      }
+    }
+
+    // Auto-set thumbnail from first image in body
+    if (!frontmatter.thumbnail) {
+      const firstImage = document.body.find(b => b._type === 'image' && b.asset)
+      if (firstImage) {
+        document.thumbnail = { _type: 'image', asset: firstImage.asset }
       }
     }
 

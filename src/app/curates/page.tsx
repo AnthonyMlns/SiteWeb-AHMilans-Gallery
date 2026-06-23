@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import CuratesContent from './CuratesContent'
 import { getAllCurates } from '@/lib/sanity/queries'
 
@@ -10,14 +11,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AH Milans Curates \u2014 Weekly Artwork Selection | AH Milans Gallery",
     description: "A weekly curated selection of artworks from AH Milans Gallery \u2014 one artwork, one story, every Friday.",
-    url: "https://ahmilans.gallery/curates",
+    url: `${SITE_URL}/curates`,
   },
   twitter: {
     title: "AH Milans Curates \u2014 Weekly Artwork Selection | AH Milans Gallery",
     description: "A weekly curated selection of artworks from AH Milans Gallery \u2014 one artwork, one story, every Friday.",
   },
   alternates: {
-    canonical: "https://ahmilans.gallery/curates",
+    canonical: `${SITE_URL}/curates`,
   },
 }
 

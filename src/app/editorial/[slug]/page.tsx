@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import ArticlePageContent from './ArticlePageContent'
 import { getArticleBySlug, getAllArticleSlugs } from '@/lib/sanity/queries'
+import { SITE_URL } from '@/lib/config'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `https://ahmilans.gallery/editorial/${article.slug.current}`,
+      url: `${SITE_URL}/editorial/${article.slug.current}`,
       images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630 }] : undefined,
       type: 'article',
     },
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: imageUrl ? [imageUrl] : undefined,
     },
     alternates: {
-      canonical: `https://ahmilans.gallery/editorial/${article.slug.current}`,
+      canonical: `${SITE_URL}/editorial/${article.slug.current}`,
     },
   }
 }

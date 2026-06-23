@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import ArtworkPageContent from './ArtworkPageContent'
 import { getArtworkBySlug, getAllArtworkSlugs } from '@/lib/sanity/queries'
 
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: metaTitle,
       description: metaDesc,
-      url: `https://ahmilans.gallery/works/${artwork.slug.current}`,
+      url: `${SITE_URL}/works/${artwork.slug.current}`,
       images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630 }] : undefined,
     },
     twitter: {
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: imageUrl ? [imageUrl] : undefined,
     },
     alternates: {
-      canonical: `https://ahmilans.gallery/works/${artwork.slug.current}`,
+      canonical: `${SITE_URL}/works/${artwork.slug.current}`,
     },
   }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import MainLayout from '@/components/layout/MainLayout'
 import ArtworkFilter from '@/components/artwork/ArtworkFilter'
 import { getAvailableArtworks } from '@/lib/sanity/queries'
@@ -12,14 +13,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Artworks \u2014 Contemporary Abstract Art Collection | AH Milans Gallery",
     description: "Browse the AH Milans collection \u2014 original contemporary abstract paintings and mixed media works by emerging and mid-career artists.",
-    url: "https://ahmilans.gallery/works",
+    url: `${SITE_URL}/works`,
   },
   twitter: {
     title: "Artworks \u2014 Contemporary Abstract Art Collection | AH Milans Gallery",
     description: "Browse the AH Milans collection \u2014 original contemporary abstract paintings and mixed media works by emerging and mid-career artists.",
   },
   alternates: {
-    canonical: "https://ahmilans.gallery/works",
+    canonical: `${SITE_URL}/works`,
   },
 }
 

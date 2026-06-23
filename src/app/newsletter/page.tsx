@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import NewsletterContent from './NewsletterContent'
 import { getFeaturedArtworks } from '@/lib/sanity/queries'
 import type { ArtworkPreview } from '@/lib/types'
@@ -9,14 +10,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Newsletter \u2014 AH \u2014 Milans",
     description: "Not your average newsletter. Best emerging artist updates.",
-    url: "https://ahmilans.gallery/newsletter",
+    url: `${SITE_URL}/newsletter`,
   },
   twitter: {
     title: "Newsletter \u2014 AH \u2014 Milans",
     description: "Not your average newsletter. Best emerging artist updates.",
   },
   alternates: {
-    canonical: "https://ahmilans.gallery/newsletter",
+    canonical: `${SITE_URL}/newsletter`,
   },
 }
 

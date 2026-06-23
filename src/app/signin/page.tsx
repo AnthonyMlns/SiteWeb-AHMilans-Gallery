@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import SignInContent from './SignInContent'
 
 export const metadata: Metadata = {
@@ -7,14 +8,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sign in \u2014 AH \u2014 Milans",
     description: "Log in or create an account to access exclusive content.",
-    url: "https://ahmilans.gallery/signin",
+    url: `${SITE_URL}/signin`,
   },
   twitter: {
     title: "Sign in \u2014 AH \u2014 Milans",
     description: "Log in or create an account to access exclusive content.",
   },
   alternates: {
-    canonical: "https://ahmilans.gallery/signin",
+    canonical: `${SITE_URL}/signin`,
   },
 }
 

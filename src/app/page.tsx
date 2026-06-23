@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import HomeContent from './HomeContent'
 import {
   getLatestArticles,
@@ -15,14 +16,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art',
     description: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art. Discover a focused roster of emerging artists, weekly curates, and collector guides.',
-    url: 'https://ahmilans.gallery',
+    url: `${SITE_URL}`,
   },
   twitter: {
     title: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art',
     description: 'AH Milans Gallery \u2014 A curatorial label for contemporary abstract art. Discover a focused roster of emerging artists, weekly curates, and collector guides.',
   },
   alternates: {
-    canonical: 'https://ahmilans.gallery',
+    canonical: `${SITE_URL}`,
   },
 }
 

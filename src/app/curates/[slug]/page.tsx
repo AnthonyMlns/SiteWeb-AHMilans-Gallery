@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import CuratePageContent from './CuratePageContent'
 import { getCurateBySlug, getAllCuratesSlugs, getAdjacentCurates } from '@/lib/sanity/queries'
 
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `https://ahmilans.gallery/curates/${curate.slug.current}`,
+      url: `${SITE_URL}/curates/${curate.slug.current}`,
       images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630 }] : undefined,
       type: 'article',
     },
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: imageUrl ? [imageUrl] : undefined,
     },
     alternates: {
-      canonical: `https://ahmilans.gallery/curates/${curate.slug.current}`,
+      canonical: `${SITE_URL}/curates/${curate.slug.current}`,
     },
   }
 }

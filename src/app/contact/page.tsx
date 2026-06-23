@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 import ContactContent from './ContactContent'
 
 export const metadata: Metadata = {
@@ -7,14 +8,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact \u2014 AH \u2014 Milans",
     description: "Contact AH \u2014 Milans for acquisition inquiries, collaborations, or information.",
-    url: "https://ahmilans.gallery/contact",
+    url: `${SITE_URL}/contact`,
   },
   twitter: {
     title: "Contact \u2014 AH \u2014 Milans",
     description: "Contact AH \u2014 Milans for acquisition inquiries, collaborations, or information.",
   },
   alternates: {
-    canonical: "https://ahmilans.gallery/contact",
+    canonical: `${SITE_URL}/contact`,
   },
 }
 
