@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AH Milans — Kit Éditorial</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  :root {
+    --black: #0E0E0E;
+    --white: #F8F6F2;
+    --mid: #6B6860;
+    --faint: #E8E5DF;
+    --faint2: #F2F0EB;
+    --accent: #1A1A1A;
+
+    --cat-artist-bg: #EEEDFE;
+    --cat-artist-fg: #3C3489;
+    --cat-edu-bg: #E1F5EE;
+    --cat-edu-fg: #085041;
+    --cat-col-bg: #FAECE7;
+    --cat-col-fg: #712B13;
+    --cat-meta-bg: #FAEEDA;
+    --cat-meta-fg: #633806;
+    --cat-oeuvre-bg: #F3EAF6;
+    --cat-oeuvre-fg: #5B2D72;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--faint);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    color: var(--black);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    max-width: 760px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--faint);
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--mid);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--mid);
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border-bottom: 1px solid var(--faint);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--faint);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  /* CONTENT TYPES */
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--faint);
+    border: 1px solid var(--faint);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .type-card {
+    background: var(--white);
+    padding: 1.5rem;
+  }
+
+  .type-pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .type-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .type-card p {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  .type-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .meta-chip {
+    font-size: 11px;
+    color: var(--mid);
+    background: var(--faint2);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* CALENDAR */
+  .cal-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .cal-filter {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--faint);
+    background: transparent;
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .cal-filter.active, .cal-filter:hover {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+  }
+
+  .month-group { margin-bottom: 2.5rem; }
+
+  .month-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--faint);
+  }
+
+  .week-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+    margin-bottom: 10px;
+    align-items: start;
+  }
+
+  .week-label {
+    font-size: 11px;
+    color: var(--mid);
+    padding-top: 14px;
+    font-weight: 400;
+  }
+
+  .week-card {
+    border: 1px solid var(--faint);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: var(--white);
+    transition: border-color 0.15s;
+  }
+
+  .week-card:hover { border-color: #ccc; }
+
+  .week-card-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .cal-pill {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .week-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+    margin-bottom: 5px;
+    color: var(--black);
+  }
+
+  .week-card-desc {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  .chip-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    font-size: 10px;
+    color: var(--mid);
+    background: var(--faint2);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* PROMPTS */
+  .prompts-nav {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--faint);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .prompt-tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    background: transparent;
+    color: var(--mid);
+    cursor: pointer;
+    border-right: 1px solid var(--faint);
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+  }
+
+  .prompt-tab:last-child { border-right: none; }
+  .prompt-tab.active { background: var(--black); color: var(--white); }
+  .prompt-tab:hover:not(.active) { background: var(--faint2); }
+
+  .prompt-panel { display: none; }
+  .prompt-panel.active { display: block; }
+
+  .prompt-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .prompt-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .prompt-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .prompt-chip {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--faint2);
+    color: var(--mid);
+    text-transform: uppercase;
+  }
+
+  /* VERSION TABS A/B */
+  .version-tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--faint);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    width: fit-content;
+  }
+
+  .version-tab {
+    padding: 7px 18px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    border: none;
+    background: transparent;
+    color: var(--mid);
+    cursor: pointer;
+    border-right: 1px solid var(--faint);
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+  }
+
+  .version-tab:last-child { border-right: none; }
+  .version-tab.active { background: var(--black); color: var(--white); }
+  .version-tab:hover:not(.active) { background: var(--faint2); }
+
+  .version-label {
+    font-size: 11px;
+    color: var(--mid);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+
+  .prompt-block {
+    background: #F0EDE7;
+    border-radius: 10px;
+    padding: 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #2A2A2A;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: var(--white);
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .copy-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .copy-btn.copied { background: #1A6B44; color: var(--white); border-color: #1A6B44; }
+
+  .prompt-note {
+    background: #FEF9EC;
+    border-left: 3px solid #E8A000;
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin-top: 1rem;
+    font-size: 12px;
+    color: #6B5700;
+    line-height: 1.5;
+  }
+
+  .version-content { display: none; }
+  .version-content.active { display: block; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-size: 12px;
+    color: var(--mid);
+    border-top: 1px solid var(--faint);
+  }
+
+  footer a { color: var(--black); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">AH Milans — Kit Éditorial</span>
+  <ul class="nav-links">
+    <li><a href="#types">Formats</a></li>
+    <li><a href="#calendrier">Calendrier</a></li>
+    <li><a href="#prompts">Prompts</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">Kit éditorial · ahmilans.gallery</p>
+  <h1>Stratégie de contenu<br><em>& prompts IA</em></h1>
+  <p class="hero-sub">5 formats, 12 semaines de calendrier, et les prompts (version éditoriale + SEO) pour produire chaque type d'article.</p>
+</div>
+
+<!-- TYPES DE CONTENUS -->
+<section class="section" id="types">
+  <p class="section-label">01 — Formats</p>
+  <h2 class="section-title">Les 5 types de contenus</h2>
+
+  <div class="types-grid">
+
+    <div class="type-card">
+      <span class="type-pill" style="background:var(--cat-artist-bg);color:var(--cat-artist-fg)">Spotlight Artiste</span>
+      <h3>Portrait critique & analyse d'œuvres</h3>
+      <p>Le cœur éditorial de la galerie. Portrait approfondi avec angle narratif unique, analyse plastique et lien naturel vers la collection disponible. Inspiration stylistique : Nowness.</p>
+      <div class="type-meta">
+        <span class="meta-chip">2500–3000 mots</span>
+        <span class="meta-chip">Temp. 0.7</span>
+        <span class="meta-chip">FR + Instagram EN</span>
+        <span class="meta-chip">1×/mois</span>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <span class="type-pill" style="background:var(--cat-edu-bg);color:var(--cat-edu-fg)">Éducatif / Marché</span>
+      <h3>Articles de fond sur le marché de l'art</h3>
+      <p>Fort potentiel SEO. Investissement, tendances, compréhension du marché. Ton expert mais accessible, ancré dans la perspective du collectionneur. Données et exemples concrets.</p>
+      <div class="type-meta">
+        <span class="meta-chip">2000–2800 mots</span>
+        <span class="meta-chip">Temp. 0.55</span>
+        <span class="meta-chip">SEO prioritaire</span>
+        <span class="meta-chip">1×/mois</span>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <span class="type-pill" style="background:var(--cat-col-bg);color:var(--cat-col-fg)">Guide Collectionneur</span>
+      <h3>Conseils pratiques & lifestyle art</h3>
+      <p>Utile immédiatement, avec du style. Accrochage, achat en ligne, constitution d'une collection. Fort potentiel de partage Instagram. Références naturelles aux artistes du roster.</p>
+      <div class="type-meta">
+        <span class="meta-chip">1500–2200 mots</span>
+        <span class="meta-chip">Temp. 0.6</span>
+        <span class="meta-chip">Engagement fort</span>
+        <span class="meta-chip">1×/mois</span>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <span class="type-pill" style="background:var(--cat-meta-bg);color:var(--cat-meta-fg)">Vie de la Galerie</span>
+      <h3>Coulisses & éditorial de marque</h3>
+      <p>Humanise la galerie. Processus de curation, décisions, vision. Première personne obligatoire. Construit la confiance et différencie AH Milans des galeries en ligne génériques.</p>
+      <div class="type-meta">
+        <span class="meta-chip">1000–1800 mots</span>
+        <span class="meta-chip">Temp. 0.75</span>
+        <span class="meta-chip">1ère personne</span>
+        <span class="meta-chip">1×/trimestre</span>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <span class="type-pill" style="background:var(--cat-oeuvre-bg);color:var(--cat-oeuvre-fg)">Description d'œuvre</span>
+      <h3>Analyse critique d'une œuvre singulière</h3>
+      <p>Contextualisation historique → description objective → analyse formelle → analyse de fond → ancrage contemporain. Double output : critique FR + commentaire Instagram EN.</p>
+      <div class="type-meta">
+        <span class="meta-chip">600–900 mots</span>
+        <span class="meta-chip">Temp. 0.65</span>
+        <span class="meta-chip">FR + Instagram EN</span>
+        <span class="meta-chip">À la demande</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CALENDRIER -->
+<section class="section" id="calendrier">
+  <p class="section-label">02 — Calendrier</p>
+  <h2 class="section-title">52 semaines de publications</h2>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:2rem">
+    <div style="background:var(--faint2);border-radius:var(--border-radius-md);padding:10px 14px">
+      <div style="font-size:22px;font-weight:500;color:var(--black)">52</div>
+      <div style="font-size:11px;color:var(--mid);margin-top:2px">Publications</div>
+    </div>
+    <div style="background:var(--faint2);border-radius:var(--border-radius-md);padding:10px 14px">
+      <div style="font-size:22px;font-weight:500;color:var(--black)">5</div>
+      <div style="font-size:11px;color:var(--mid);margin-top:2px">Formats</div>
+    </div>
+    <div style="background:var(--faint2);border-radius:var(--border-radius-md);padding:10px 14px">
+      <div style="font-size:22px;font-weight:500;color:var(--black)">4</div>
+      <div style="font-size:11px;color:var(--mid);margin-top:2px">Trimestres</div>
+    </div>
+    <div style="background:var(--faint2);border-radius:var(--border-radius-md);padding:10px 14px">
+      <div style="font-size:22px;font-weight:500;color:var(--black)">1/sem</div>
+      <div style="font-size:11px;color:var(--mid);margin-top:2px">Cadence</div>
+    </div>
+  </div>
+
+  <div class="cal-filters">
+    <button class="cal-filter active" onclick="filterCal('all','',this)">Tout voir</button>
+    <button class="cal-filter" onclick="filterCal('','T1',this)">Trimestre 1</button>
+    <button class="cal-filter" onclick="filterCal('','T2',this)">Trimestre 2</button>
+    <button class="cal-filter" onclick="filterCal('','T3',this)">Trimestre 3</button>
+    <button class="cal-filter" onclick="filterCal('','T4',this)">Trimestre 4</button>
+  </div>
+  <div class="cal-filters" style="margin-top:-1rem">
+    <button class="cal-filter" onclick="filterCal('artist','',this)">Spotlight artiste</button>
+    <button class="cal-filter" onclick="filterCal('edu','',this)">Éducatif</button>
+    <button class="cal-filter" onclick="filterCal('collector','',this)">Collectionneur</button>
+    <button class="cal-filter" onclick="filterCal('meta','',this)">Galerie</button>
+  </div>
+
+  <div id="cal-container"></div>
+</section>
+
+<!-- PROMPTS -->
+<section class="section" id="prompts">
+  <p class="section-label">03 — Prompts</p>
+  <h2 class="section-title">Les prompts par format</h2>
+  <p style="color:var(--mid);margin-bottom:2rem;font-size:14px;">Pour chaque format : version A (éditorial / storytelling) et version B (structure SEO — à utiliser en premier).</p>
+
+  <div class="prompts-nav">
+    <button class="prompt-tab active" onclick="switchPrompt('spotlight',this)">Spotlight</button>
+    <button class="prompt-tab" onclick="switchPrompt('edu',this)">Éducatif</button>
+    <button class="prompt-tab" onclick="switchPrompt('collector',this)">Collectionneur</button>
+    <button class="prompt-tab" onclick="switchPrompt('meta',this)">Galerie</button>
+    <button class="prompt-tab" onclick="switchPrompt('oeuvre',this)">Œuvre</button>
+  </div>
+
+  <!-- SPOTLIGHT -->
+  <div class="prompt-panel active" id="panel-spotlight">
+    <div class="prompt-header">
+      <h3 class="prompt-title">Spotlight Artiste</h3>
+      <div class="prompt-chips">
+        <span class="prompt-chip" style="background:var(--cat-artist-bg);color:var(--cat-artist-fg)">Artiste</span>
+        <span class="prompt-chip">2500–3000 mots</span>
+        <span class="prompt-chip">Temp. A: 0.7 · B: 0.3</span>
+      </div>
+    </div>
+
+    <div class="version-tabs">
+      <button class="version-tab active" onclick="switchVersion('spotlight','a',this)">Version A — Éditorial</button>
+      <button class="version-tab" onclick="switchVersion('spotlight','b',this)">Version B — SEO</button>
+    </div>
+
+    <div class="version-content active" id="spotlight-a">
+      <p class="version-label">Utiliser après la version B. Coller la structure SEO dans les variables en bas.</p>
+      <div class="prompt-block" id="text-spotlight-a">
+(Température) 0.7
+
+(Identité)
+Tu es critique d'art depuis plus de 20 ans, spécialisé en art moderne et contemporain. Tu as une affinité profonde pour l'art abstrait, le matiérisme et le minimalisme. Tu écris pour une galerie en ligne, AH Milans Gallery (https://ahmilans.gallery), un label curatorial contemporain fréquenté par des artistes et des collectionneurs. Ton écriture s'inspire du travail éditorial de Nowness : poétique, contemplatif, narratif. Tu ne décris pas une œuvre — tu racontes ce qu'elle fait au spectateur.
+
+(Contexte)
+Je vais te fournir un ensemble d'œuvres d'un artiste du roster. Tu dois rédiger un article de fond sur cet artiste, qui serve à la fois de portrait critique et de vitrine éditoriale pour la galerie.
+
+(Action)
+À partir des œuvres fournies :
+— Identifie le fil conducteur de la pratique (geste, matière, intention, évolution)
+— Choisis un angle narratif unique — une porte d'entrée dans l'œuvre qui ne soit pas biographique mais sensorielle ou conceptuelle
+— Rédige l'article en suivant cette structure : 1 introduction (scène ou action), 3 parties d'analyse, 1 conclusion ouverte
+— Intègre le nom de l'artiste avec une densité de 1,5% à 2% max
+— Génère ensuite un commentaire Instagram en anglais (2-3 paragraphes), avec 1 ou 2 citations fortes en exergue
+
+(Contraintes)
+— Longueur article : 2500 à 3000 mots
+— Titre : 1 mot percutant (français, anglais, latin, italien ou espagnol), en lien avec le concept central
+— Commencer directement par une scène ou une action — jamais par une définition ou une question rhétorique
+— Ne jamais utiliser : "In a world saturated with images", "What makes this work resonate", "In a world full of"
+— Ton : professionnel, poétique, accessible mais expert
+
+(Format de sortie)
+1. Titre
+2. Article (intro + 3 parties + conclusion)
+3. Commentaire Instagram (en anglais)
+4. Commentaires optionnels si pertinent
+
+[ARTISTE] : 
+[ŒUVRES] : 
+[STRUCTURE SEO (version B)] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-spotlight-a',this)">Copier</button>
+    </div>
+
+    <div class="version-content" id="spotlight-b">
+      <p class="version-label">Utiliser en premier. La structure produite s'injecte dans la version A.</p>
+      <div class="prompt-block" id="text-spotlight-b">
+(Température) 0.3
+
+(Rôle)
+Tu es expert SEO spécialisé dans les contenus sur les artistes contemporains. Tu sais que les recherches sur un artiste émergent sont souvent navigationnelles (son nom) mais peuvent aussi être informationnelles ("artiste abstrait français", "peinture abstraite contemporaine").
+
+(Action)
+Pour l'artiste fourni, produis une structure SEO complète :
+
+1. Analyse des mots-clés disponibles :
+   — Nom de l'artiste (et variantes orthographiques)
+   — Expressions associées à sa pratique (style, technique, nationalité)
+   — Questions probables des collectionneurs sur ce profil d'artiste
+
+2. Mot-clé principal recommandé (nom de l'artiste ou expression plus large selon la notoriété — sois honnête sur ce qui a du volume)
+
+3. Variantes sémantiques à couvrir dans l'article : 4 à 6 expressions
+
+4. Plan optimisé :
+   — Titre H1
+   — Meta description (155 caractères max)
+   — Structure H2/H3 de l'article (les titres doivent intégrer naturellement les variantes sémantiques)
+   — Ce que l'introduction doit contenir pour le SEO
+   — Ce que la conclusion doit contenir
+
+5. Données structurées recommandées : quel type de schema.org appliquer à cette page (Person, Article, ArtWork...)
+
+6. Maillage interne : pages à lier (fiche artiste, œuvres disponibles, articles connexes)
+
+(Contraintes)
+— Ne pas rédiger l'article
+— Être réaliste sur la concurrence : un artiste peu connu n'a pas de volume sur son nom, mais peut capter du trafic sur son style ou sa nationalité + style
+
+[ARTISTE] : 
+[NATIONALITÉ, STYLE, TECHNIQUE] : 
+[ŒUVRES DISPONIBLES SUR LE SITE] : 
+[PAGES EXISTANTES À LIER] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-spotlight-b',this)">Copier</button>
+    </div>
+    <div class="prompt-note">💡 <strong>Workflow recommandé :</strong> lancer la version B → copier la structure produite → la coller dans [STRUCTURE SEO] de la version A.</div>
+  </div>
+
+  <!-- ÉDUCATIF -->
+  <div class="prompt-panel" id="panel-edu">
+    <div class="prompt-header">
+      <h3 class="prompt-title">Éducatif / Marché</h3>
+      <div class="prompt-chips">
+        <span class="prompt-chip" style="background:var(--cat-edu-bg);color:var(--cat-edu-fg)">Éducatif</span>
+        <span class="prompt-chip">2000–2800 mots</span>
+        <span class="prompt-chip">Temp. A: 0.55 · B: 0.3</span>
+      </div>
+    </div>
+
+    <div class="version-tabs">
+      <button class="version-tab active" onclick="switchVersion('edu','a',this)">Version A — Éditorial</button>
+      <button class="version-tab" onclick="switchVersion('edu','b',this)">Version B — SEO</button>
+    </div>
+
+    <div class="version-content active" id="edu-a">
+      <p class="version-label">Utiliser après la version B.</p>
+      <div class="prompt-block" id="text-edu-a">
+(Température) 0.55
+
+(Identité)
+Tu es expert du marché de l'art contemporain, avec une double formation en histoire de l'art et en économie culturelle. Tu écris pour AH Milans Gallery (https://ahmilans.gallery), un label curatorial en ligne. Tes lecteurs sont des collectionneurs débutants ou intermédiaires qui veulent s'y retrouver dans le monde de l'art. Tu n'écris pas un manuel académique : tu racontes le marché comme une histoire en mouvement.
+
+(Contexte)
+Je veux un article éducatif sur un sujet lié au marché ou à la culture de l'art contemporain. L'article doit générer du trafic SEO, sans sacrifier la qualité éditoriale.
+
+(Action)
+— Commence par une anecdote, une scène ou un fait frappant qui accroche le lecteur
+— Développe le sujet en 3 parties claires, avec des exemples concrets et des données récentes si pertinent
+— Ancre le contenu dans la perspective d'un collectionneur, pas d'un économiste
+— Conclus avec une ouverture ou une invitation à agir (découvrir la galerie, lire un autre article)
+— Optimise naturellement pour le mot-clé principal fourni (densité ~1,5%)
+
+(Contraintes)
+— Longueur : 2000 à 2800 mots
+— Titre SEO : clair, avec le mot-clé principal, entre 6 et 12 mots
+— Structure : intro narrative + 3 parties titrées + conclusion
+— Ton : expert mais accessible, jamais condescendant, jamais scolaire
+— Éviter les listes à puces mécaniques
+
+(Format de sortie)
+1. Titre SEO
+2. Meta description (155 caractères max)
+3. Article complet
+4. 3 suggestions de titres alternatifs pour A/B test
+
+[SUJET] : 
+[MOT-CLÉ PRINCIPAL] : 
+[ANGLE SPÉCIFIQUE] : 
+[STRUCTURE SEO (version B)] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-edu-a',this)">Copier</button>
+    </div>
+
+    <div class="version-content" id="edu-b">
+      <p class="version-label">Utiliser en premier.</p>
+      <div class="prompt-block" id="text-edu-b">
+(Température) 0.3
+
+(Rôle)
+Tu es expert SEO spécialisé dans les sites d'art contemporain et les médias culturels. Tu connais les intentions de recherche des collectionneurs, amateurs d'art et investisseurs qui cherchent du contenu sur l'art en ligne.
+
+(Action)
+Pour le sujet et le mot-clé fournis, produis une structure SEO complète :
+
+1. Analyse d'intention : quel type de recherche est-ce ? (informationnelle, transactionnelle, navigationnelle) Que veut vraiment savoir le lecteur ?
+
+2. Mot-clé principal : confirmation ou reformulation du mot-clé le plus pertinent
+
+3. Variantes sémantiques à couvrir : 5 à 8 expressions proches, synonymes, questions associées (format "People Also Ask")
+
+4. Plan optimisé :
+   — Titre H1 (inclut le mot-clé principal, 60 caractères max)
+   — Meta description (inclut le mot-clé, 155 caractères max, incite au clic)
+   — Introduction : angle + ce que l'article promet
+   — H2 n°1 + H3 si nécessaire (avec mots-clés secondaires intégrés)
+   — H2 n°2 + H3 si nécessaire
+   — H2 n°3 + H3 si nécessaire
+   — Conclusion : ce qu'elle doit contenir pour le SEO et l'engagement
+
+5. Maillage interne suggéré : 3 à 5 pages du site à lier naturellement
+
+6. Note pour le rédacteur : ce que l'article doit absolument couvrir pour surpasser les résultats actuels sur ce mot-clé
+
+(Contraintes)
+— Ne pas rédiger l'article — produire uniquement la structure
+— Tous les titres H2/H3 doivent être naturels, pas mécaniques
+— Garder en tête que le style final sera éditorial et narratif
+
+[SUJET] : 
+[MOT-CLÉ PRINCIPAL] : 
+[SITE] : https://ahmilans.gallery — label curatorial d'art contemporain
+[PAGES EXISTANTES À LIER] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-edu-b',this)">Copier</button>
+    </div>
+    <div class="prompt-note">💡 <strong>Workflow recommandé :</strong> version B → structure SEO → injecter dans version A.</div>
+  </div>
+
+  <!-- COLLECTIONNEUR -->
+  <div class="prompt-panel" id="panel-collector">
+    <div class="prompt-header">
+      <h3 class="prompt-title">Guide Collectionneur</h3>
+      <div class="prompt-chips">
+        <span class="prompt-chip" style="background:var(--cat-col-bg);color:var(--cat-col-fg)">Collectionneur</span>
+        <span class="prompt-chip">1500–2200 mots</span>
+        <span class="prompt-chip">Temp. 0.6</span>
+      </div>
+    </div>
+
+    <div class="version-tabs">
+      <button class="version-tab active" onclick="switchVersion('collector','a',this)">Version A — Éditorial</button>
+      <button class="version-tab" onclick="switchVersion('collector','b',this)">Version B — SEO</button>
+    </div>
+
+    <div class="version-content active" id="collector-a">
+      <p class="version-label">Utiliser après la version B.</p>
+      <div class="prompt-block" id="text-collector-a">
+(Température) 0.6
+
+(Identité)
+Tu es un conseiller en art contemporain et collectionneur expérimenté. Tu écris pour AH Milans Gallery (https://ahmilans.gallery), un label curatorial en ligne. Tes lecteurs sont des collectionneurs débutants ou intermédiaires. Tu parles comme quelqu'un qui a fait les erreurs avant eux — avec bienveillance, précision et un peu d'humour.
+
+(Contexte)
+Je veux un guide pratique sur un aspect concret du fait de collectionner ou de vivre avec l'art. Utile immédiatement, mais avec une écriture qui a du style — pas un article Wikihow.
+
+(Action)
+— Ouvre avec une situation concrète que le lecteur reconnaît (une hésitation, une erreur commune, un moment de doute)
+— Structure le contenu de façon progressive : du plus simple au plus nuancé
+— Utilise des exemples réels ou plausibles pour ancrer les conseils
+— Glisse des références à la galerie et aux artistes du roster de façon naturelle (pas publicitaire)
+— Conclus avec un takeaway mémorable et un appel à l'action léger
+
+(Contraintes)
+— Longueur : 1500 à 2200 mots
+— Titre : direct et orienté bénéfice ("Comment...", "Ce que personne ne vous dit sur...", "Le guide pour...")
+— Ton : chaleureux, expert, jamais moralisateur
+— Format : intro narrative + 3 à 5 conseils développés (pas de listes sèches) + conclusion
+— Éviter le jargon non expliqué
+
+(Format de sortie)
+1. Titre + sous-titre
+2. Meta description (155 caractères max)
+3. Article complet
+4. Suggestion de visuels ou d'œuvres à illustrer l'article (issues du roster si possible)
+
+[SUJET] : 
+[NIVEAU DU LECTEUR CIBLE] : Débutant / Intermédiaire
+[ARTISTES OU ŒUVRES À MENTIONNER] : 
+[STRUCTURE SEO (version B)] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-collector-a',this)">Copier</button>
+    </div>
+
+    <div class="version-content" id="collector-b">
+      <p class="version-label">Utiliser en premier.</p>
+      <div class="prompt-block" id="text-collector-b">
+(Température) 0.3
+
+(Rôle)
+Tu es expert SEO spécialisé dans les contenus lifestyle et culturels. Tu sais cibler des lecteurs qui cherchent des conseils pratiques sur l'art sans être des experts du marché.
+
+(Action)
+Pour le sujet fourni, produis une structure SEO complète :
+
+1. Intention de recherche : que cherche vraiment quelqu'un qui tape ce sujet ? Quel niveau de connaissance a-t-il ?
+
+2. Mot-clé principal + 4 à 6 variantes longue traîne (questions pratiques, "comment...", "quel...")
+
+3. Plan optimisé :
+   — Titre H1 orienté bénéfice + mot-clé (60 caractères max)
+   — Meta description (155 caractères max)
+   — Introduction : accroche + promesse
+   — 3 à 5 sections H2 (chacune répond à une vraie question du lecteur)
+   — Conclusion + CTA
+
+4. Angle différenciant : comment cet article peut-il être meilleur ou différent des résultats actuels sur ce mot-clé ?
+
+5. Maillage interne suggéré : pages artistes ou œuvres à lier naturellement
+
+(Contraintes)
+— Ne pas rédiger l'article
+— Penser "utile avant tout" : le lecteur veut des réponses concrètes
+
+[SUJET] : 
+[NIVEAU LECTEUR] : Débutant / Intermédiaire
+[SITE] : https://ahmilans.gallery
+[PAGES À LIER] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-collector-b',this)">Copier</button>
+    </div>
+    <div class="prompt-note">💡 <strong>Workflow recommandé :</strong> version B → structure SEO → injecter dans version A.</div>
+  </div>
+
+  <!-- GALERIE -->
+  <div class="prompt-panel" id="panel-meta">
+    <div class="prompt-header">
+      <h3 class="prompt-title">Vie de la Galerie</h3>
+      <div class="prompt-chips">
+        <span class="prompt-chip" style="background:var(--cat-meta-bg);color:var(--cat-meta-fg)">Galerie</span>
+        <span class="prompt-chip">1000–1800 mots</span>
+        <span class="prompt-chip">Temp. A: 0.75 · B: 0.3</span>
+      </div>
+    </div>
+
+    <div class="version-tabs">
+      <button class="version-tab active" onclick="switchVersion('meta','a',this)">Version A — Éditorial</button>
+      <button class="version-tab" onclick="switchVersion('meta','b',this)">Version B — SEO</button>
+    </div>
+
+    <div class="version-content active" id="meta-a">
+      <p class="version-label">Ce format est avant tout de marque. La version B est optionnelle mais recommandée.</p>
+      <div class="prompt-block" id="text-meta-a">
+(Température) 0.75
+
+(Identité)
+Tu es Anthony Milans, fondateur de AH Milans Gallery (https://ahmilans.gallery), un label curatorial d'art contemporain en ligne. Tu écris à la première personne, avec authenticité. Tu as une vision claire : mettre les artistes en premier, construire des relations durables entre créateurs et collectionneurs, et faire de la curation un acte éditorial autant que commercial. Tu n'es pas un galeriste traditionnel — tu es un storyteller qui croit que la narration est ce qui donne de la valeur à l'art.
+
+(Contexte)
+Je veux un article en coulisses sur la galerie — un moment de transparence sur le processus de curation, les choix, les valeurs ou l'évolution de la galerie. Ce type de contenu humanise la marque et crée une relation de confiance avec l'audience.
+
+(Action)
+— Choisis un moment précis, une décision, ou une question que tu te poses vraiment
+— Raconte ce moment avec précision et honnêteté, sans être dans l'autopromotion
+— Montre le raisonnement, les doutes, les critères — pas seulement les conclusions
+— Relie ce moment à une vision plus large de ce que la galerie veut être
+— Conclus avec une invitation à la conversation (commentaires, newsletter, contact)
+
+(Contraintes)
+— Longueur : 1000 à 1800 mots
+— Ton : authentique, réfléchi, sans faux-semblants — comme un journal de bord bien écrit
+— Première personne obligatoire
+— Éviter le discours de marque ("notre vision est de...") — privilégier le concret et le personnel
+— Pas de jargon marketing
+
+(Format de sortie)
+1. Titre (court, intrigant)
+2. Article complet
+3. Note optionnelle : ce que cet article dit de la galerie (cohérence éditoriale)
+
+[SUJET OU MOMENT] : 
+[TON SOUHAITÉ] : Intime / Pédagogique / Réflexif
+[CE QUE JE VEUX QUE LE LECTEUR RESSENTE] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-meta-a',this)">Copier</button>
+    </div>
+
+    <div class="version-content" id="meta-b">
+      <p class="version-label">Optionnel — utile si le sujet a un potentiel SEO réel.</p>
+      <div class="prompt-block" id="text-meta-b">
+(Température) 0.3
+
+(Rôle)
+Tu es expert SEO spécialisé dans les contenus de marque et les sites culturels. Tu sais que les articles "coulisses" ont un SEO naturellement plus faible, mais peuvent capter des requêtes de niche si bien ciblés.
+
+(Action)
+Pour le sujet fourni, évalue le potentiel SEO et produis si pertinent :
+
+1. Évaluation honnête : ce sujet a-t-il un potentiel SEO mesurable ? Quelles requêtes pourrait-il capter ?
+
+2. Si potentiel : mot-clé principal + 2 à 4 variantes réalistes
+
+3. Plan minimal optimisé :
+   — Titre H1 (authentique + mot-clé si possible)
+   — Meta description (155 caractères max)
+   — 2 à 3 H2 qui ancrent le contenu dans des requêtes réelles sans trahir le ton personnel
+
+4. Si peu de potentiel SEO direct : suggère comment cet article peut servir le maillage interne et la fidélisation newsletter
+
+(Contraintes)
+— Rester honnête : forcer le SEO sur un article de marque personnelle peut nuire au ton
+— Priorité : cohérence de marque > optimisation mécanique
+
+[SUJET] : 
+[SITE] : https://ahmilans.gallery
+[PAGES À LIER] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-meta-b',this)">Copier</button>
+    </div>
+    <div class="prompt-note">💡 Pour ce format, la version B est optionnelle. Certains sujets n'ont pas de potentiel SEO direct — c'est normal et assumé.</div>
+  </div>
+
+  <!-- ŒUVRE -->
+  <div class="prompt-panel" id="panel-oeuvre">
+    <div class="prompt-header">
+      <h3 class="prompt-title">Description d'œuvre</h3>
+      <div class="prompt-chips">
+        <span class="prompt-chip" style="background:var(--cat-oeuvre-bg);color:var(--cat-oeuvre-fg)">Œuvre</span>
+        <span class="prompt-chip">600–900 mots</span>
+        <span class="prompt-chip">Temp. A: 0.65 · B: 0.3</span>
+      </div>
+    </div>
+
+    <div class="version-tabs">
+      <button class="version-tab active" onclick="switchVersion('oeuvre','a',this)">Version A — Critique</button>
+      <button class="version-tab" onclick="switchVersion('oeuvre','b',this)">Version B — SEO</button>
+    </div>
+
+    <div class="version-content active" id="oeuvre-a">
+      <p class="version-label">Format autonome. Joindre l'image de l'œuvre directement dans le message.</p>
+      <div class="prompt-block" id="text-oeuvre-a">
+(Température) 0.65
+
+(Identité)
+Tu es critique d'art depuis plus de 20 ans, spécialisé en art moderne et contemporain. Tu as une affinité profonde pour l'art abstrait, le matiérisme et le minimalisme. Ta spécialité est la peinture, mais tu commentes également sculptures, installations et photographies.
+
+Tes références stylistiques : abstrait, abstrait lyrique, abstrait léger, matiérisme, minimalisme, figuratif contemporain, expressionnisme, néo-expressionnisme, street-art, Arte Povera, et tout mouvement contemporain adjacent.
+
+Tu écris pour AH Milans Gallery (https://ahmilans.gallery), un label curatorial d'art contemporain fréquenté par des artistes et des collectionneurs. Ton écriture est celle d'un critique qui regarde lentement — comme Nowness filme : contemplatif, précis, narratif.
+
+(Contexte)
+Je vais te soumettre une œuvre (image, titre, dimensions, technique, date si disponible). Tu dois en produire une analyse critique complète, utilisable comme base d'article de blog et comme texte de présentation de l'œuvre sur la page galerie.
+
+(Action)
+En deux temps :
+
+PREMIER TEMPS — Analyse critique (en français)
+Construis ton analyse en suivant cet ordre précis :
+1. Contextualisation historique : replacer l'œuvre dans l'histoire de l'art (mouvement, filiation, références pertinentes)
+2. Description objective : ce qui est visible — matière, couleur, composition, format, technique — sans interprétation encore
+3. Analyse formelle : comment l'œuvre est construite, ce que les choix plastiques produisent sur le regard
+4. Analyse de fond : ce que l'œuvre dit, pense, cherche — son intention, sa tension interne, ce qu'elle ouvre
+5. Ancrage contemporain : en quoi cette œuvre parle à aujourd'hui, quelle place elle occupe dans le paysage actuel
+
+SECOND TEMPS — Commentaire Instagram (en anglais)
+1 à 3 paragraphes maximum.
+Reprend les éléments les plus saillants de l'analyse.
+Explique pourquoi cette œuvre est pertinente aujourd'hui.
+Identifie sa spécificité esthétique avec précision.
+Conclus avec une phrase unique et percutante sur l'œuvre — pas une question rhétorique, une affirmation.
+
+(Contraintes)
+— Longueur analyse française : 600 à 900 mots
+— Longueur Instagram : 150 à 250 mots
+— Ne jamais utiliser : "In a world saturated with images", "In a world full of", "What makes this painting resonate"
+— Ne pas commencer par une définition ou une biographie de l'artiste — entrer directement dans l'œuvre
+— Ton : professionnel, lyrique, accessible, jamais hermétique
+
+(Format de sortie — OBLIGATOIRE)
+1. Titre (1 mot si possible — français, anglais, latin, italien ou espagnol — percutant, en lien direct avec le concept ou la sensation centrale de l'œuvre)
+2. Analyse critique (français)
+3. Commentaire Instagram (anglais)
+
+[ŒUVRE] : [Image jointe + titre si disponible]
+[ARTISTE] : 
+[TECHNIQUE & DIMENSIONS] : 
+[DATE] : 
+[INFORMATIONS COMPLÉMENTAIRES] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-oeuvre-a',this)">Copier</button>
+    </div>
+
+    <div class="version-content" id="oeuvre-b">
+      <p class="version-label">Pour optimiser la page œuvre sur le site. À faire avant la version A.</p>
+      <div class="prompt-block" id="text-oeuvre-b">
+(Température) 0.3
+
+(Rôle)
+Tu es expert SEO spécialisé dans les pages d'œuvres d'art en ligne. Tu sais qu'une page œuvre peut capter du trafic sur le nom de l'artiste, le style, la technique, et parfois le titre de l'œuvre elle-même.
+
+(Action)
+Pour l'œuvre fournie, produis une structure SEO pour la page de présentation :
+
+1. Mots-clés prioritaires :
+   — Nom de l'artiste + titre de l'œuvre
+   — Style / mouvement / technique (recherches associées)
+   — Requêtes d'achat éventuelles ("acheter peinture abstraite", "œuvre disponible")
+
+2. Balises à rédiger :
+   — Title tag (60 caractères max)
+   — Meta description (155 caractères max, incite à découvrir l'œuvre)
+   — Alt text de l'image principale (descriptif + mot-clé naturel)
+
+3. Données structurées recommandées : schema.org type VisualArtwork avec les champs à remplir (name, artist, artMedium, artworkSurface, width, height, dateCreated)
+
+4. Texte d'introduction optimisé (100 mots max) : à placer avant l'analyse critique, intègre naturellement les mots-clés principaux
+
+5. Maillage interne : pages à lier (fiche artiste, autres œuvres du même artiste, articles du journal qui mentionnent l'artiste)
+
+(Contraintes)
+— Rester naturel : la page doit d'abord servir l'expérience du visiteur
+— Les balises doivent donner envie de cliquer, pas lister des mots-clés
+
+[ARTISTE] : 
+[TITRE DE L'ŒUVRE] : 
+[TECHNIQUE, DIMENSIONS, DATE] : 
+[STYLE / MOUVEMENT] : 
+[URL DE LA PAGE] : 
+[PAGES À LIER] :</div>
+      <button class="copy-btn" onclick="copyPrompt('text-oeuvre-b',this)">Copier</button>
+    </div>
+    <div class="prompt-note">💡 La version B est particulièrement utile ici : les pages œuvres ont un fort potentiel SEO via les données structurées (schema ArtWork) que Google affiche dans les résultats enrichis.</div>
+  </div>
+
+</section>
+
+<footer>
+  <p>AH Milans Gallery — Kit éditorial · <a href="https://ahmilans.gallery" target="_blank">ahmilans.gallery</a></p>
+</footer>
+
+<script>
+const calData = [
+  // ── TRIMESTRE 1 ──────────────────────────────────────────────
+  { month:"T1 — Mois 1", week:"Sem. 1",  cat:"edu",       title:"Qu'est-ce que l'art abstrait contemporain ? Un guide pour les non-initiés", desc:"Article d'entrée de gamme à fort potentiel SEO. Pose les bases pour les nouveaux visiteurs et collectionneurs débutants.", format:"Article long", time:"12 min" },
+  { month:"T1 — Mois 1", week:"Sem. 2",  cat:"artist",    title:"Spotlight : Farrah Lee — L'abstraction comme espace émotionnel", desc:"Portrait approfondi avec citations, analyse des œuvres phares et lien vers la collection disponible.", format:"Spotlight", time:"10 min" },
+  { month:"T1 — Mois 1", week:"Sem. 3",  cat:"collector", title:"Comment acheter une œuvre en ligne : les questions à se poser avant", desc:"Guide pratique ciblant les collectionneurs débutants. Bon potentiel SEO sur 'acheter art en ligne'.", format:"Guide", time:"8 min" },
+  { month:"T1 — Mois 1", week:"Sem. 4",  cat:"meta",      title:"Dans les coulisses : comment on choisit un artiste pour le roster", desc:"Article 'behind the scenes' sur le processus de curation. Renforce la crédibilité et l'identité de la galerie.", format:"Éditorial", time:"7 min" },
+
+  { month:"T1 — Mois 2", week:"Sem. 5",  cat:"edu",       title:"Qu'est-ce qu'une édition limitée ? Valeur, numérotation et authentification", desc:"Article SEO ciblé sur les recherches autour des prints et éditions. Lien naturel vers les œuvres disponibles.", format:"Article long", time:"10 min" },
+  { month:"T1 — Mois 2", week:"Sem. 6",  cat:"artist",    title:"Spotlight : Erik Sommer — La forêt comme matière première", desc:"Analyse de la pratique, contexte biographique, regard sur l'œuvre 'Alone in the Wood'.", format:"Spotlight", time:"12 min" },
+  { month:"T1 — Mois 2", week:"Sem. 7",  cat:"edu",       title:"Investir dans l'art : les 5 erreurs classiques des premiers collectionneurs", desc:"Format liste engageant, fort potentiel de partage. Positionne la galerie comme experte du marché.", format:"Article", time:"8 min" },
+  { month:"T1 — Mois 2", week:"Sem. 8",  cat:"collector", title:"Comment exposer ses œuvres chez soi : cadrage, lumière, accrochage", desc:"Article lifestyle utile pour les collectionneurs. Génère de l'engagement et des partages sur Instagram.", format:"Guide", time:"6 min" },
+
+  { month:"T1 — Mois 3", week:"Sem. 9",  cat:"artist",    title:"Spotlight : Lena Zak — L'abstraction géométrique comme langage personnel", desc:"Portrait avec focus sur la démarche conceptuelle, l'évolution stylistique et les influences.", format:"Spotlight", time:"12 min" },
+  { month:"T1 — Mois 3", week:"Sem. 10", cat:"edu",       title:"Le marché de l'art en 2026 : tendances, segments porteurs et ce qui change", desc:"Article de fond à fort potentiel SEO. Mise à jour annuelle, rendez-vous récurrent.", format:"Article long", time:"15 min" },
+  { month:"T1 — Mois 3", week:"Sem. 11", cat:"meta",      title:"Entretien : Anthony Milans sur la curation en ligne et la relation artiste-galerie", desc:"Interview du fondateur. Humanise la galerie, renforce l'autorité éditoriale et l'identité de marque.", format:"Interview", time:"10 min" },
+  { month:"T1 — Mois 3", week:"Sem. 12", cat:"collector", title:"Bilan T1 : les œuvres les plus demandées et les tendances observées", desc:"Contenu récurrent à publier chaque trimestre. Incite à s'abonner à la newsletter.", format:"Rapport trimestriel", time:"8 min" },
+
+  // ── TRIMESTRE 2 ──────────────────────────────────────────────
+  { month:"T2 — Mois 4", week:"Sem. 13", cat:"edu",       title:"Peinture abstraite lyrique : histoire, codes et artistes à connaître", desc:"Article SEO sur un style-clé du roster. Attire les amateurs d'art qui cherchent à mieux comprendre l'abstraction lyrique.", format:"Article long", time:"12 min" },
+  { month:"T2 — Mois 4", week:"Sem. 14", cat:"artist",    title:"Spotlight : Sébastien Cheramy — La couleur comme architecture intérieure", desc:"Analyse de la pratique chromatique de Cheramy, sa relation au geste et à la profondeur psychologique.", format:"Spotlight", time:"15 min" },
+  { month:"T2 — Mois 4", week:"Sem. 15", cat:"collector", title:"Faut-il assurer ses œuvres d'art ? Ce qu'il faut savoir avant d'acheter", desc:"Guide pratique sur un angle peu traité. Rassure les acheteurs potentiels et crédibilise la galerie.", format:"Guide", time:"8 min" },
+  { month:"T2 — Mois 4", week:"Sem. 16", cat:"edu",       title:"Comment lire une peinture abstraite : méthodes et pistes de lecture", desc:"Article éducatif à fort potentiel de partage. Aide les non-initiés à entrer dans l'œuvre sans intimidation.", format:"Article", time:"10 min" },
+
+  { month:"T2 — Mois 5", week:"Sem. 17", cat:"artist",    title:"Spotlight : Benka — Le corps de la ligne, la ligne du corps", desc:"Portrait de l'artiste allemande, focus sur la gestualité, la répétition comme langage et l'influence du dessin.", format:"Spotlight", time:"12 min" },
+  { month:"T2 — Mois 5", week:"Sem. 18", cat:"edu",       title:"Art contemporain vs art moderne : quelle différence, et pourquoi ça change tout", desc:"Question fréquente des nouveaux collectionneurs. Bon SEO sur des requêtes 'art contemporain définition'.", format:"Article", time:"8 min" },
+  { month:"T2 — Mois 5", week:"Sem. 19", cat:"collector", title:"Constituer une collection cohérente : la méthode par séries et par artistes", desc:"Guide intermédiaire. Encourage les collectionneurs à approfondir leur relation avec un artiste plutôt que de disperser.", format:"Guide", time:"10 min" },
+  { month:"T2 — Mois 5", week:"Sem. 20", cat:"meta",      title:"Pourquoi je refuse plus d'artistes que je n'en accepte", desc:"Article de marque intime sur les critères de sélection. Renforce la légitimité curatoriale de la galerie.", format:"Éditorial", time:"7 min" },
+
+  { month:"T2 — Mois 6", week:"Sem. 21", cat:"artist",    title:"Spotlight : Maureen Golgata — La matière comme mémoire", desc:"Analyse du travail de Golgata, sa relation à la texture, au dépôt et à la stratification.", format:"Spotlight", time:"12 min" },
+  { month:"T2 — Mois 6", week:"Sem. 22", cat:"edu",       title:"Foires d'art contemporain : à quoi ça sert, comment s'y préparer", desc:"Contenu utile autour des foires (Art Basel, FIAC…). Attire un public qui veut entrer dans le milieu.", format:"Article long", time:"12 min" },
+  { month:"T2 — Mois 6", week:"Sem. 23", cat:"collector", title:"Offrir une œuvre d'art : le guide pour choisir sans se tromper", desc:"Article saisonnier à republier. Potentiel de trafic autour des fêtes et des événements.", format:"Guide", time:"7 min" },
+  { month:"T2 — Mois 6", week:"Sem. 24", cat:"collector", title:"Bilan T2 : acquisitions, tendances et regards sur la saison", desc:"Deuxième bilan trimestriel. Fidélise les lecteurs récurrents et nourrit la newsletter.", format:"Rapport trimestriel", time:"8 min" },
+
+  // ── TRIMESTRE 3 ──────────────────────────────────────────────
+  { month:"T3 — Mois 7", week:"Sem. 25", cat:"edu",       title:"Le matiérisme en peinture : quand la matière devient le sujet", desc:"Article thématique sur un style central du roster. Positionnement SEO sur 'peinture matiériste'.", format:"Article long", time:"12 min" },
+  { month:"T3 — Mois 7", week:"Sem. 26", cat:"artist",    title:"Spotlight : Ignacio Alvaro — L'abstraction comme territoire intérieur", desc:"Portrait de l'artiste péruvien, son rapport à la géographie, à la mémoire et à la peinture comme cartographie.", format:"Spotlight", time:"12 min" },
+  { month:"T3 — Mois 7", week:"Sem. 27", cat:"collector", title:"Acheter directement à un artiste ou via une galerie : avantages et différences", desc:"Guide pratique qui explique la valeur ajoutée d'une galerie. Argumente naturellement pour le modèle AH Milans.", format:"Guide", time:"9 min" },
+  { month:"T3 — Mois 7", week:"Sem. 28", cat:"edu",       title:"Qu'est-ce que le néo-expressionnisme ? Retour sur un mouvement toujours vivant", desc:"Article de fond sur un mouvement contemporain clé. SEO sur 'néo-expressionnisme artistes contemporains'.", format:"Article", time:"10 min" },
+
+  { month:"T3 — Mois 8", week:"Sem. 29", cat:"artist",    title:"Spotlight : Ludovic Dervillez — La trace comme écriture (regard sur de nouvelles œuvres)", desc:"Mise à jour éditoriale sur Dervillez après l'article de janvier. Nouvelles œuvres, évolution de la pratique.", format:"Spotlight", time:"12 min" },
+  { month:"T3 — Mois 8", week:"Sem. 30", cat:"edu",       title:"Comment une galerie fixe le prix d'une œuvre ? La vérité derrière les chiffres", desc:"Sujet tabou et très recherché. Fort potentiel SEO et de partage. Positionne la galerie comme transparente.", format:"Article long", time:"12 min" },
+  { month:"T3 — Mois 8", week:"Sem. 31", cat:"collector", title:"Vivre avec l'art : comment l'œuvre transforme un espace, et vous avec", desc:"Article lifestyle contemplatif. Ton proche du storytelling, moins pratique, plus sensoriel.", format:"Guide", time:"8 min" },
+  { month:"T3 — Mois 8", week:"Sem. 32", cat:"meta",      title:"Deux ans de galerie en ligne : ce que j'ai appris sur les collectionneurs", desc:"Retour d'expérience authentique. Humanise la galerie et crée un lien fort avec la communauté existante.", format:"Éditorial", time:"9 min" },
+
+  { month:"T3 — Mois 9", week:"Sem. 33", cat:"artist",    title:"Spotlight : Farrah Lee — Série inédite, nouveaux territoires", desc:"Retour sur Farrah Lee avec du contenu nouveau. Montre l'évolution et entretient l'intérêt pour l'artiste.", format:"Spotlight", time:"10 min" },
+  { month:"T3 — Mois 9", week:"Sem. 34", cat:"edu",       title:"L'art abstrait se vend-il bien ? Ce que les données du marché révèlent", desc:"Article data-driven à fort potentiel SEO sur 'vente art abstrait marché'. Crédibilise la galerie.", format:"Article long", time:"12 min" },
+  { month:"T3 — Mois 9", week:"Sem. 35", cat:"collector", title:"Les questions à poser avant d'acheter une œuvre : une checklist honnête", desc:"Format utile, très partageable. Peut devenir un PDF téléchargeable pour la newsletter.", format:"Guide", time:"7 min" },
+  { month:"T3 — Mois 9", week:"Sem. 36", cat:"collector", title:"Bilan T3 : regard sur la rentrée artistique et les tendances de la saison", desc:"Troisième bilan trimestriel. Contexte rentrée septembre — fort moment d'attention pour l'art contemporain.", format:"Rapport trimestriel", time:"8 min" },
+
+  // ── TRIMESTRE 4 ──────────────────────────────────────────────
+  { month:"T4 — Mois 10", week:"Sem. 37", cat:"edu",       title:"Arte Povera et héritage contemporain : quand l'humble devient puissant", desc:"Article de fond culturel sur un mouvement influent. Montre la profondeur historique de la galerie.", format:"Article long", time:"14 min" },
+  { month:"T4 — Mois 10", week:"Sem. 38", cat:"artist",    title:"Spotlight : Benka — Nouvelles œuvres, même urgence", desc:"Retour sur Benka avec une série récente. Focus sur l'évolution du trait et l'intention derrière les nouvelles pièces.", format:"Spotlight", time:"11 min" },
+  { month:"T4 — Mois 10", week:"Sem. 39", cat:"collector", title:"Comment stocker et conserver ses œuvres sur papier et sur toile", desc:"Guide pratique et très utile. Touche à une vraie préoccupation des collectionneurs actifs.", format:"Guide", time:"8 min" },
+  { month:"T4 — Mois 10", week:"Sem. 40", cat:"edu",       title:"Pourquoi les artistes abstraits travaillent en séries : logique et nécessité", desc:"Article thématique qui éclaire la pratique artistique. Renforce la compréhension des œuvres du roster.", format:"Article", time:"9 min" },
+
+  { month:"T4 — Mois 11", week:"Sem. 41", cat:"artist",    title:"Spotlight : Ignacio Alvaro — Le silence comme forme", desc:"Deuxième angle sur Alvaro, plus contempltatif. Focus sur ce que ses œuvres ne montrent pas.", format:"Spotlight", time:"12 min" },
+  { month:"T4 — Mois 11", week:"Sem. 42", cat:"edu",       title:"Galeries physiques vs galeries en ligne : ce qui change vraiment pour le collectionneur", desc:"Article de positionnement stratégique. Argumente naturellement pour le modèle de galerie en ligne.", format:"Article long", time:"11 min" },
+  { month:"T4 — Mois 11", week:"Sem. 43", cat:"collector", title:"Offrir de l'art pour les fêtes : sélection de la galerie et conseils d'achat", desc:"Article saisonnier à fort potentiel de conversion. Lien direct vers les œuvres disponibles.", format:"Guide + Sélection", time:"7 min" },
+  { month:"T4 — Mois 11", week:"Sem. 44", cat:"meta",      title:"Ce que la galerie a publié cette année : bilan éditorial et cap pour 2027", desc:"Bilan annuel de l'activité éditoriale. Renforce la cohérence de marque et prépare l'année suivante.", format:"Éditorial", time:"10 min" },
+
+  { month:"T4 — Mois 12", week:"Sem. 45", cat:"artist",    title:"Spotlight : Maureen Golgata — La peinture comme résidence", desc:"Deuxième regard sur Golgata, centré sur la durée, la répétition et ce que le temps fait à la matière.", format:"Spotlight", time:"12 min" },
+  { month:"T4 — Mois 12", week:"Sem. 46", cat:"edu",       title:"Minimalisme en peinture : entre retenue et radicalité", desc:"Article de fond sur un style fondamental. Fort ancrage historique et contemporain — SEO et autorité.", format:"Article long", time:"13 min" },
+  { month:"T4 — Mois 12", week:"Sem. 47", cat:"collector", title:"Ma première œuvre : témoignages de collectionneurs et conseils pour se lancer", desc:"Format narratif avec témoignages. Très engageant, humanise l'acte d'achat, encourage les indécis.", format:"Article narratif", time:"10 min" },
+  { month:"T4 — Mois 12", week:"Sem. 48", cat:"edu",       title:"L'expressionnisme abstrait aujourd'hui : héritage et réinterprétations contemporaines", desc:"Article culturel de fin d'année. Montre l'étendue des références de la galerie et ancre le roster dans l'histoire.", format:"Article long", time:"13 min" },
+
+  // ── SEMAINES BONUS (S49-52) ───────────────────────────────────
+  { month:"Fin d'année — Semaines bonus", week:"Sem. 49", cat:"collector", title:"Bilan T4 & bilan annuel : un an de curation, ce que les chiffres ne disent pas", desc:"Bilan annuel complet : œuvres, artistes, articles. Beau moment de transparence pour fidéliser la communauté.", format:"Rapport annuel", time:"12 min" },
+  { month:"Fin d'année — Semaines bonus", week:"Sem. 50", cat:"artist",    title:"Les artistes du roster en 2026 : rétrospective et projets à venir", desc:"Article collectif qui valorise tous les artistes du roster. Fort potentiel de partage par les artistes eux-mêmes.", format:"Rétrospective", time:"15 min" },
+  { month:"Fin d'année — Semaines bonus", week:"Sem. 51", cat:"edu",       title:"Les tendances de l'art contemporain à surveiller en 2027", desc:"Article prospectif de fin d'année. Fort SEO sur 'tendances art contemporain 2027'. Peut devenir récurrent.", format:"Article prospectif", time:"12 min" },
+  { month:"Fin d'année — Semaines bonus", week:"Sem. 52", cat:"meta",      title:"Lettre aux artistes et aux collectionneurs : une année de galerie", desc:"Article-lettre de fin d'année. Intime, chaleureux, communautaire. Idéal pour la newsletter de décembre.", format:"Lettre éditoriale", time:"8 min" }
+];
+
+const pillStyles = {
+  artist:    { bg:"var(--cat-artist-bg)", color:"var(--cat-artist-fg)", label:"Artiste" },
+  edu:       { bg:"var(--cat-edu-bg)",    color:"var(--cat-edu-fg)",    label:"Éducatif" },
+  collector: { bg:"var(--cat-col-bg)",    color:"var(--cat-col-fg)",    label:"Collectionneur" },
+  meta:      { bg:"var(--cat-meta-bg)",   color:"var(--cat-meta-fg)",   label:"Galerie" }
+};
+
+let activeFilter = 'all';
+let activeTrimestre = '';
+
+function filterCal(cat, trim, btn) {
+  document.querySelectorAll('.cal-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (cat === 'all' && trim === '') {
+    activeFilter = 'all';
+    activeTrimestre = '';
+  } else if (trim !== '') {
+    activeFilter = 'all';
+    activeTrimestre = trim;
+  } else {
+    activeTrimestre = '';
+    activeFilter = cat;
+  }
+  renderCal();
+}
+
+function renderCal() {
+  const container = document.getElementById('cal-container');
+  let filtered = calData;
+  if (activeFilter !== 'all') filtered = filtered.filter(w => w.cat === activeFilter);
+  if (activeTrimestre !== '') filtered = filtered.filter(w => w.month.startsWith(activeTrimestre));
+  const months = [...new Set(filtered.map(w => w.month))];
+  container.innerHTML = months.map(m => {
+    const items = filtered.filter(w => w.month === m);
+    if (!items.length) return '';
+    return `<div class="month-group">
+      <div class="month-title">${m}</div>
+      ${items.map(w => {
+        const s = pillStyles[w.cat];
+        return `<div class="week-item">
+          <div class="week-label">${w.week}</div>
+          <div class="week-card">
+            <div class="week-card-top">
+              <span class="cal-pill" style="background:${s.bg};color:${s.color}">${s.label}</span>
+            </div>
+            <div class="week-card-title">${w.title}</div>
+            <div class="week-card-desc">${w.desc}</div>
+            <div class="chip-row">
+              <span class="chip">${w.format}</span>
+              <span class="chip">${w.time}</span>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }).join('') || `<p style="color:var(--mid);font-size:14px;padding:1rem 0">Aucun contenu pour cette sélection.</p>`;
+}
+
+renderCal();
+
+function switchPrompt(id, btn) {
+  document.querySelectorAll('.prompt-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.prompt-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function switchVersion(promptId, ver, btn) {
+  const panel = document.getElementById('panel-' + promptId);
+  panel.querySelectorAll('.version-tab').forEach(b => b.classList.remove('active'));
+  panel.querySelectorAll('.version-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(promptId + '-' + ver).classList.add('active');
+}
+
+function copyPrompt(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copié ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copier';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
